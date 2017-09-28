@@ -1,7 +1,7 @@
 package farmacia;
 
 import Interfaces.Login;
-import Modelos.ConexionBD;
+import Conexion.ConexionBD;
 
 public class Farmacia {
   
