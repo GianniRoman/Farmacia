@@ -7,9 +7,10 @@ import java.sql.Statement;
 
 public class ConexionBD {
 
-    private static Connection conexion;
+    private Connection conexion;
     private ResultSet rs;
     private Statement s;
+    private static ConexionBD db;
     
     private ConexionBD(){
         rs = null;
@@ -31,25 +32,19 @@ public class ConexionBD {
         }    
     }
     
-    public ConexionBD getInstance(){
-        
-        if(conexion == null)
-        {
-            ConexionBD nuevaConexion = new ConexionBD();
-            return nuevaConexion;
-        }else{
-            
-        }
-        return null;
+    public static ConexionBD getInstance(){    
+        if(db == null)
+            db = new ConexionBD();
+        return db;
     }
     
-    public static Connection getConexion() {
+    public Connection getConexion() {
         
-        return ConexionBD.conexion;
+        return conexion;
     }
 
-    public static void setConexion(Connection conexion) {
-        ConexionBD.conexion = conexion;
+    public void setConexion(Connection conexion) {
+        this.conexion = conexion;
     }
 
     public ResultSet getRs() {

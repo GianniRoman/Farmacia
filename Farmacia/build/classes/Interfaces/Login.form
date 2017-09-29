@@ -139,7 +139,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Farmaceutica 1&quot;, &quot;Farmaceutica 2&quot;, &quot;Farmaceutica 3&quot;})" type="code"/>
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;Farmaceutica 1&quot;, &quot;Farmaceutica 2&quot;, &quot;Fernanda&quot;})" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
