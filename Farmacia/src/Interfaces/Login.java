@@ -10,6 +10,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+        campoContraseña.setVisible(false);
+        labelContraseña.setVisible(false);
         Date d = new Date();
         String hora;
         String fecha = (+d.getDate()+"/"+(d.getMonth()+1)+"/"+(d.getYear()+1900));
@@ -72,7 +74,7 @@ public class Login extends javax.swing.JFrame {
 
         tipoUsuario.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         tipoUsuario.setForeground(new java.awt.Color(51, 51, 51));
-        tipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Farmaceutica 1", "Farmaceutica 2", "Farmaceutica 3"}));
+        tipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Farmaceutica 1", "Farmaceutica 2", "Fernanda"}));
         jPanel1.add(tipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 160, -1));
 
         labelContraseña.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
@@ -123,7 +125,7 @@ public class Login extends javax.swing.JFrame {
         String cargo = String.valueOf(e);
         String pw = campoContraseña.getText();
         //Usuario user;
-        if(cargo == "Gerente")
+        if(cargo == "Fernanda")
         {
             labelContraseña.setVisible(true);
             campoContraseña.setVisible(true);

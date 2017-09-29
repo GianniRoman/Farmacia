@@ -7,9 +7,10 @@ import java.sql.Statement;
 
 public class ConexionBD {
 
-    private static Connection conexion;
+    private Connection conexion;
     private ResultSet rs;
     private Statement s;
+    private static ConexionBD db;
     
     private ConexionBD(){
         rs = null;
@@ -31,25 +32,26 @@ public class ConexionBD {
         }    
     }
     
-    public ConexionBD getInstance(){
+    public static ConexionBD getInstance(){
         
-        if(conexion == null)
+        if(db == null)
         {
-            ConexionBD nuevaConexion = new ConexionBD();
-            return nuevaConexion;
+            db = new ConexionBD();
+            System.out.println("No habia conexion todavia, ella fue creada");
+            return db;
         }else{
-            
+            System.out.println("Ya hay una instancia de conexion a la base");
         }
-        return null;
+        return db;
     }
     
-    public static Connection getConexion() {
+    public Connection getConexion() {
         
-        return ConexionBD.conexion;
+        return conexion;
     }
 
-    public static void setConexion(Connection conexion) {
-        ConexionBD.conexion = conexion;
+    public void setConexion(Connection conexion) {
+        this.conexion = conexion;
     }
 
     public ResultSet getRs() {
