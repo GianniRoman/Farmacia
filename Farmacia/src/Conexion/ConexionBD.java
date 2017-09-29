@@ -31,13 +31,10 @@ public class ConexionBD {
             System.out.println(e.getMessage());            
         }    
     }
-    //Coscu Army
-    public static ConexionBD getInstance(){
-        
+    
+    public static ConexionBD getInstance(){    
         if(db == null)
-        {
             db = new ConexionBD();
-        }
         return db;
     }
     
