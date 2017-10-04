@@ -3,15 +3,15 @@ package Interfaces;
 
 import Conexion.ConexionBD;
 import Modelos.Usuario;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Login extends javax.swing.JFrame {
+    ConexionBD db = ConexionBD.getInstance();
 
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        campoContraseña.setVisible(false);
-        labelContraseña.setVisible(false);
         Date d = new Date();
         String hora;
         String fecha = (+d.getDate()+"/"+(d.getMonth()+1)+"/"+(d.getYear()+1900));
@@ -25,6 +25,8 @@ public class Login extends javax.swing.JFrame {
          } 
          FechaInicio.setText(fecha);
          Hora.setText(hora);
+         CargarNombresDeUsuario();
+         labelContraseñaIncorrecta.setVisible(false);
         
     }
 
@@ -39,11 +41,12 @@ public class Login extends javax.swing.JFrame {
         FechaInicio = new javax.swing.JLabel();
         Hora = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tipoUsuario = new javax.swing.JComboBox<>();
+        nombreUsuario = new javax.swing.JComboBox<>();
         labelContraseña = new javax.swing.JLabel();
         panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         campoContraseña = new org.edisoncor.gui.passwordField.PasswordFieldRectIcon();
         jButton1 = new javax.swing.JButton();
+        labelContraseñaIncorrecta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,16 +73,16 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         jLabel3.setText("Nombre de usuario :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 230, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 230, 30));
 
-        tipoUsuario.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        tipoUsuario.setForeground(new java.awt.Color(51, 51, 51));
-        tipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Farmaceutica 1", "Farmaceutica 2", "Fernanda"}));
-        jPanel1.add(tipoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 160, -1));
+        nombreUsuario.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        nombreUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        nombreUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
+        jPanel1.add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 160, -1));
 
         labelContraseña.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         labelContraseña.setText("Contraseña  :");
-        jPanel1.add(labelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, 150, 30));
+        jPanel1.add(labelContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 150, 30));
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoFarmacia.jpg"))); // NOI18N
 
@@ -95,16 +98,20 @@ public class Login extends javax.swing.JFrame {
         );
 
         jPanel1.add(panelImage1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 100));
-        jPanel1.add(campoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 160, 20));
+        jPanel1.add(campoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 240, 160, 20));
 
         jButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         jButton1.setText("Iniciar sesion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ClickBotonIniciarSesion(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 180, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 180, 40));
+
+        labelContraseñaIncorrecta.setFont(new java.awt.Font("Yu Gothic UI", 0, 23)); // NOI18N
+        labelContraseñaIncorrecta.setText("Contraseña incorrecta, vuelva a intentarlo. ");
+        jPanel1.add(labelContraseñaIncorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 440, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,22 +127,31 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Object e = tipoUsuario.getSelectedItem();
-        String cargo = String.valueOf(e);
+    public void CargarNombresDeUsuario()
+    {
+       try{
+                db.setS(db.getConexion().createStatement());
+                db.setRs(db.getS().executeQuery("select * FROM usuario"));
+                while(db.getRs().next())
+                {
+                    nombreUsuario.addItem(db.getRs().getString("nombre"));    
+                }
+            }catch(SQLException ex){
+                System.out.println(ex);
+            }
+    }
+    
+    private void ClickBotonIniciarSesion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClickBotonIniciarSesion
+        Object e = nombreUsuario.getSelectedItem();
+        String nombre = String.valueOf(e);
         String pw = campoContraseña.getText();
-        //Usuario user;
-        if(cargo == "Fernanda")
+        Usuario user = new Usuario(nombre,pw);
+        int verif = user.IniciarSesion(nombre, pw);
+        if(verif == 0)
         {
-            labelContraseña.setVisible(true);
-            campoContraseña.setVisible(true);
-            //Usuario.IniciarSesion(cargo,pw);
-        }else{
-            labelContraseña.setVisible(false);
-            campoContraseña.setVisible(false);
-            //Usuario.IniciarSesion(cargo,pw);
+            labelContraseñaIncorrecta.setVisible(true);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ClickBotonIniciarSesion
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -156,7 +172,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelContraseña;
+    private javax.swing.JLabel labelContraseñaIncorrecta;
+    private javax.swing.JComboBox<String> nombreUsuario;
     private org.edisoncor.gui.panel.PanelImage panelImage1;
-    private javax.swing.JComboBox<String> tipoUsuario;
     // End of variables declaration//GEN-END:variables
 }
