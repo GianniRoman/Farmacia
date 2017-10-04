@@ -1,7 +1,6 @@
 package farmacia;
 
 import Interfaces.Login;
-import Conexion.ConexionBD;
 
 public class Farmacia {
   
