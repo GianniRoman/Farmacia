@@ -26,3 +26,4 @@ Farmacia/build/classes/Interfaces/Login.class
 Farmacia/build/classes/Interfaces/Login$1.class
 *.properties
 *.xml
+/Farmacia/dist/

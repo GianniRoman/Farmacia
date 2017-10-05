@@ -32,16 +32,9 @@ public class ConexionBD {
         }    
     }
     
-    public static ConexionBD getInstance(){
-        
+    public static ConexionBD getInstance(){    
         if(db == null)
-        {
             db = new ConexionBD();
-            System.out.println("No habia conexion todavia, ella fue creada");
-            return db;
-        }else{
-            System.out.println("Ya hay una instancia de conexion a la base");
-        }
         return db;
     }
     
