@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 package Interfaces;
+import Conexion.ConexionBD;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import javax.swing.UIManager;
 import Modelos.Cliente;
 import Modelos.Usuario;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 
 /**
@@ -15,11 +18,15 @@ import Modelos.Usuario;
  * @author glupi
  */
 public class Principal extends javax.swing.JFrame {
-
+    DefaultListModel lm = new DefaultListModel();
     Usuario user;
+    
     public Principal(Usuario user) {
         this.user = user;
         initComponents();
+        RelativeLayout ly =new RelativeLayout(this.getWidth(), this.getHeight());
+        jPanel3.setLayout(ly);
+        metroTableUI1.setRowHeight(30);
         panelAlta.setVisible(false);
         panelModificacion.setVisible(false);
         panelBaja.setVisible(false);
@@ -50,15 +57,9 @@ public class Principal extends javax.swing.JFrame {
         panelRect2 = new org.edisoncor.gui.panel.PanelRect();
         panelRect3 = new org.edisoncor.gui.panel.PanelRect();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        metroTableUI2 = new win8.swin.MetroTableUI();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        metroTableUI1 = new win8.swin.MetroTableUI();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
-        jDayChooser1 = new com.toedter.calendar.JDayChooser();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -120,7 +121,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(510, Short.MAX_VALUE))
+                .addContainerGap(395, Short.MAX_VALUE))
         );
 
         panelAlta.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,7 +132,7 @@ public class Principal extends javax.swing.JFrame {
         panelAlta.setLayout(panelAltaLayout);
         panelAltaLayout.setHorizontalGroup(
             panelAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1616, Short.MAX_VALUE)
+            .addGap(0, 1494, Short.MAX_VALUE)
         );
         panelAltaLayout.setVerticalGroup(
             panelAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +148,7 @@ public class Principal extends javax.swing.JFrame {
         panelModificacion.setLayout(panelModificacionLayout);
         panelModificacionLayout.setHorizontalGroup(
             panelModificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1616, Short.MAX_VALUE)
+            .addGap(0, 1494, Short.MAX_VALUE)
         );
         panelModificacionLayout.setVerticalGroup(
             panelModificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +164,7 @@ public class Principal extends javax.swing.JFrame {
         panelBaja.setLayout(panelBajaLayout);
         panelBajaLayout.setHorizontalGroup(
             panelBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1616, Short.MAX_VALUE)
+            .addGap(0, 1494, Short.MAX_VALUE)
         );
         panelBajaLayout.setVerticalGroup(
             panelBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(panelRect1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelRect1Layout.setVerticalGroup(
@@ -203,24 +204,25 @@ public class Principal extends javax.swing.JFrame {
         panelRect2.setLayout(panelRect2Layout);
         panelRect2Layout.setHorizontalGroup(
             panelRect2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1641, Short.MAX_VALUE)
+            .addGap(0, 1519, Short.MAX_VALUE)
         );
         panelRect2Layout.setVerticalGroup(
             panelRect2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1153, Short.MAX_VALUE)
+            .addGap(0, 1038, Short.MAX_VALUE)
         );
 
         tabbedPaneRound1.addTab("   Ventas", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Barcodes-icon 16px.png")), panelRect2, ""); // NOI18N
 
         panelRect3.setColorPrimario(new java.awt.Color(0, 153, 153));
         panelRect3.setColorSecundario(new java.awt.Color(51, 255, 255));
-        panelRect3.setLayout(new java.awt.GridLayout());
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
         jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.BorderLayout(100, 10));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
-        metroTableUI2.setModel(new javax.swing.table.DefaultTableModel(
+        metroTableUI1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -250,47 +252,43 @@ public class Principal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        metroTableUI2.setFont(new java.awt.Font("Maiandra GD", 0, 18)); // NOI18N
-        jScrollPane2.setViewportView(metroTableUI2);
+        jScrollPane1.setViewportView(metroTableUI1);
 
-        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jScrollPane1);
 
-        jLabel1.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
-        jLabel1.setText("Ventas");
-        jLabel1.setAlignmentY(2.0F);
-        jPanel2.add(jLabel1, java.awt.BorderLayout.PAGE_START);
-
-        panelRect3.add(jPanel2);
-
-        jPanel3.setOpaque(false);
-        jPanel3.setLayout(new java.awt.GridLayout(5, 0, 0, 100));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtrar Ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
+            .addGap(0, 435, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 373, Short.MAX_VALUE)
+            .addGap(0, 723, Short.MAX_VALUE)
         );
 
-        jPanel3.add(jPanel4);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setMaximumSize(new java.awt.Dimension(56, 20));
-        jComboBox1.setName(""); // NOI18N
-        jPanel3.add(jComboBox1);
-        jPanel3.add(jYearChooser1);
-
-        jDayChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDayChooser1.setDecorationBackgroundColor(new java.awt.Color(102, 255, 204));
-        jDayChooser1.setOpaque(false);
-        jPanel3.add(jDayChooser1);
-        jPanel3.add(jMonthChooser1);
-
-        panelRect3.add(jPanel3);
+        javax.swing.GroupLayout panelRect3Layout = new javax.swing.GroupLayout(panelRect3);
+        panelRect3.setLayout(panelRect3Layout);
+        panelRect3Layout.setHorizontalGroup(
+            panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRect3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
+        );
+        panelRect3Layout.setVerticalGroup(
+            panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRect3Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(172, Short.MAX_VALUE))
+        );
 
         tabbedPaneRound1.addTab("   Consulta Ventas", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cash-icon 16 px.png")), panelRect3); // NOI18N
         panelRect3.getAccessibleContext().setAccessibleName("");
@@ -327,7 +325,7 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -342,31 +340,6 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDayChooser jDayChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private com.toedter.calendar.JMonthChooser jMonthChooser1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
-    private win8.swin.MetroTableUI metroTableUI2;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         panelModificacion.setVisible(false);
@@ -394,14 +367,34 @@ public class Principal extends javax.swing.JFrame {
        labelCantClientes.setText(Integer.toString(cant));
     }
 
+    //-------------------------------------------------------Consulta Ventas---------------------------------------------------------------//
+    
+    public void cargarTablaVentas(){
+         ConexionBD bd = ConexionBD.getInstance();
+         bd.Select("*", "ventas ,ticket", "ventas.vcod=ticket.vcod");
+         try{
+             //llenar tabla
+         }catch(Exception e){
+             e.getMessage();
+         }
+         
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.action.ActionManager actionManager1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelCantClientes;
+    private win8.swin.MetroTableUI metroTableUI1;
     private org.edisoncor.gui.panel.PanelRect panelAlta;
     private org.edisoncor.gui.panel.PanelRect panelBaja;
     private org.edisoncor.gui.panel.PanelRect panelModificacion;
@@ -411,4 +404,5 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.tabbedPane.TabbedPaneRound tabbedPaneRound1;
     private org.edisoncor.gui.util.UnsharpMaskFilter unsharpMaskFilter1;
     // End of variables declaration//GEN-END:variables
+
 }
