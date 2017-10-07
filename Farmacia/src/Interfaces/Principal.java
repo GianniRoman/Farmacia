@@ -4,20 +4,29 @@
  * and open the template in the editor.
  */
 package Interfaces;
-
+import Conexion.ConexionBD;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import javax.swing.UIManager;
 import Modelos.Cliente;
 import Modelos.Usuario;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+
 
 /**
  *
  * @author glupi
  */
 public class Principal extends javax.swing.JFrame {
-
+    DefaultListModel lm = new DefaultListModel();
     Usuario user;
+    
     public Principal(Usuario user) {
         this.user = user;
         initComponents();
+        RelativeLayout ly =new RelativeLayout(this.getWidth(), this.getHeight());
+        jPanel3.setLayout(ly);
+        metroTableUI1.setRowHeight(30);
         panelAlta.setVisible(false);
         panelModificacion.setVisible(false);
         panelBaja.setVisible(false);
@@ -47,6 +56,10 @@ public class Principal extends javax.swing.JFrame {
         panelBaja = new org.edisoncor.gui.panel.PanelRect();
         panelRect2 = new org.edisoncor.gui.panel.PanelRect();
         panelRect3 = new org.edisoncor.gui.panel.PanelRect();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        metroTableUI1 = new win8.swin.MetroTableUI();
+        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
@@ -108,7 +121,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(510, Short.MAX_VALUE))
+                .addContainerGap(395, Short.MAX_VALUE))
         );
 
         panelAlta.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,7 +132,7 @@ public class Principal extends javax.swing.JFrame {
         panelAlta.setLayout(panelAltaLayout);
         panelAltaLayout.setHorizontalGroup(
             panelAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1616, Short.MAX_VALUE)
+            .addGap(0, 1494, Short.MAX_VALUE)
         );
         panelAltaLayout.setVerticalGroup(
             panelAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +148,7 @@ public class Principal extends javax.swing.JFrame {
         panelModificacion.setLayout(panelModificacionLayout);
         panelModificacionLayout.setHorizontalGroup(
             panelModificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1616, Short.MAX_VALUE)
+            .addGap(0, 1494, Short.MAX_VALUE)
         );
         panelModificacionLayout.setVerticalGroup(
             panelModificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +164,7 @@ public class Principal extends javax.swing.JFrame {
         panelBaja.setLayout(panelBajaLayout);
         panelBajaLayout.setHorizontalGroup(
             panelBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1616, Short.MAX_VALUE)
+            .addGap(0, 1494, Short.MAX_VALUE)
         );
         panelBajaLayout.setVerticalGroup(
             panelBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +184,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(panelRect1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelRect1Layout.setVerticalGroup(
@@ -191,24 +204,90 @@ public class Principal extends javax.swing.JFrame {
         panelRect2.setLayout(panelRect2Layout);
         panelRect2Layout.setHorizontalGroup(
             panelRect2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1641, Short.MAX_VALUE)
+            .addGap(0, 1519, Short.MAX_VALUE)
         );
         panelRect2Layout.setVerticalGroup(
             panelRect2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1153, Short.MAX_VALUE)
+            .addGap(0, 1038, Short.MAX_VALUE)
         );
 
         tabbedPaneRound1.addTab("   Ventas", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Barcodes-icon 16px.png")), panelRect2, ""); // NOI18N
+
+        panelRect3.setColorPrimario(new java.awt.Color(0, 153, 153));
+        panelRect3.setColorSecundario(new java.awt.Color(51, 255, 255));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+
+        metroTableUI1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(metroTableUI1);
+
+        jPanel2.add(jScrollPane1);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtrar Ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 435, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 723, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout panelRect3Layout = new javax.swing.GroupLayout(panelRect3);
         panelRect3.setLayout(panelRect3Layout);
         panelRect3Layout.setHorizontalGroup(
             panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1641, Short.MAX_VALUE)
+            .addGroup(panelRect3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
         );
         panelRect3Layout.setVerticalGroup(
             panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1153, Short.MAX_VALUE)
+            .addGroup(panelRect3Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         tabbedPaneRound1.addTab("   Consulta Ventas", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cash-icon 16 px.png")), panelRect3); // NOI18N
@@ -218,6 +297,49 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try{
+                UIManager.setLookAndFeel(new WindowsLookAndFeel());
+                }catch(Exception e){
+
+                }
+                //new Principal().setVisible(true);
+
+            }
+        });
+    }
+
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         panelModificacion.setVisible(false);
@@ -237,7 +359,7 @@ public class Principal extends javax.swing.JFrame {
         panelModificacion.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    
+
     public void CargarPestaña()
     {
        Cliente cManager = new Cliente(null,null,0);
@@ -245,6 +367,19 @@ public class Principal extends javax.swing.JFrame {
        labelCantClientes.setText(Integer.toString(cant));
     }
 
+    //-------------------------------------------------------Consulta Ventas---------------------------------------------------------------//
+    
+    public void cargarTablaVentas(){
+         ConexionBD bd = ConexionBD.getInstance();
+         bd.Select("*", "ventas ,ticket", "ventas.vcod=ticket.vcod");
+         try{
+             //llenar tabla
+         }catch(Exception e){
+             e.getMessage();
+         }
+         
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.action.ActionManager actionManager1;
     private javax.swing.JButton jButton1;
@@ -253,9 +388,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelCantClientes;
+    private win8.swin.MetroTableUI metroTableUI1;
     private org.edisoncor.gui.panel.PanelRect panelAlta;
     private org.edisoncor.gui.panel.PanelRect panelBaja;
     private org.edisoncor.gui.panel.PanelRect panelModificacion;
@@ -265,4 +404,5 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.tabbedPane.TabbedPaneRound tabbedPaneRound1;
     private org.edisoncor.gui.util.UnsharpMaskFilter unsharpMaskFilter1;
     // End of variables declaration//GEN-END:variables
+
 }
