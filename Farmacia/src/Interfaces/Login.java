@@ -150,6 +150,9 @@ public class Login extends javax.swing.JFrame {
         if(verif == 0)
         {
             labelContraseñaIncorrecta.setVisible(true);
+        }else{
+            this.setVisible(false);
+            new Principal(user).setVisible(true);
         }
     }//GEN-LAST:event_ClickBotonIniciarSesion
 

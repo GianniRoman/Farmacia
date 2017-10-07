@@ -1,7 +1,6 @@
 package Modelos;
 
 import Conexion.ConexionBD;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Usuario {
@@ -33,8 +32,8 @@ public class Usuario {
     public int IniciarSesion(String nombre, String pw) {
         
         ConexionBD bd = ConexionBD.getInstance();          
-            try{
-                bd.setRs(bd.getS().executeQuery("SELECT * FROM Usuario Where nombre = '"+nombre+"';"));
+        bd.Select("*","Usuario","nombre = '"+nombre+"'");
+        try{
                 while(bd.getRs().next())
                 {
                      String nbre = bd.getRs().getString("nombre"); 
@@ -44,11 +43,10 @@ public class Usuario {
                      }else{
                             return 0;
                           }
-                }
-                
-                }catch(SQLException ex) {
-            System.out.println(ex);
-            }             
+                }               
+            }catch(SQLException ex) {
+                System.out.println(ex);
+            }     
         
         return 0;
     }

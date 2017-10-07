@@ -38,6 +38,41 @@ public class ConexionBD {
         return db;
     }
     
+    public int Insert(String tabla, String valor)
+    {
+        int exito = 0;
+        try{
+             db.conexion.createStatement();
+             exito = db.s.executeUpdate(("insert into "+tabla+" values ('"+valor+"')"));
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        return exito;
+    }
+    
+    public ResultSet Select(String atributos, String from, String where)
+    {
+        try{
+             db.conexion.createStatement();
+             if("".equals(where))
+             {
+                 db.setRs(db.s.executeQuery("Select "+atributos+" from "+from));
+                 
+             }else{
+                 db.setRs(db.s.executeQuery("Select "+atributos+" from "+from+" where "+where));
+             }
+             return db.rs;
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+
+        
+        
+        return this.rs;
+    }
+    
     public Connection getConexion() {
         
         return conexion;
