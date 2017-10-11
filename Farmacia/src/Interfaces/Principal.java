@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Interfaces;
 import Conexion.ConexionBD;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
@@ -18,6 +13,11 @@ import javax.swing.table.DefaultTableModel;
 import Modelos.VentaViewModel;
 import java.util.ArrayList;
 import win8.swin.MetroTableUI;
+import Paneles.panelAlta;
+import Paneles.panelBaja;
+import Paneles.panelModificacion;
+import java.awt.BorderLayout;
+import javax.swing.DefaultListModel;
 
 
 /**
@@ -63,6 +63,8 @@ public class Principal extends javax.swing.JFrame {
         CargarPestaña();
         cargarTablaVentas(vm.iniciarTablaVentas());
         cargarFarmaceuticos(vm.cargarFarmaceuticos());
+        //jPanel3.setLayout(ly);
+        PanelABM.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -74,17 +76,31 @@ public class Principal extends javax.swing.JFrame {
         tabbedPaneRound1 = new org.edisoncor.gui.tabbedPane.TabbedPaneRound();
         panelRect1 = new org.edisoncor.gui.panel.PanelRect();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         labelCantClientes = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        labelCustom8 = new org.edisoncor.gui.label.LabelCustom();
+        PanelABM = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        panelAlta = new org.edisoncor.gui.panel.PanelRect();
-        panelModificacion = new org.edisoncor.gui.panel.PanelRect();
-        panelBaja = new org.edisoncor.gui.panel.PanelRect();
+        labelCustom1 = new org.edisoncor.gui.label.LabelCustom();
+        labelListadoEmpleados = new org.edisoncor.gui.label.LabelCustom();
+        labelCustom3 = new org.edisoncor.gui.label.LabelCustom();
+        labelCustom4 = new org.edisoncor.gui.label.LabelCustom();
+        labelCustom5 = new org.edisoncor.gui.label.LabelCustom();
+        labelCustom6 = new org.edisoncor.gui.label.LabelCustom();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaClientes = new win8.swin.MetroTableUI();
+        jXLabel1 = new org.jdesktop.swingx.JXLabel();
+        jXLabel3 = new org.jdesktop.swingx.JXLabel();
+        jXLabel4 = new org.jdesktop.swingx.JXLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        metroTableUI3 = new win8.swin.MetroTableUI();
+        labelCustom7 = new org.edisoncor.gui.label.LabelCustom();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
         panelRect2 = new org.edisoncor.gui.panel.PanelRect();
         panelRect3 = new org.edisoncor.gui.panel.PanelRect();
         jPanel2 = new javax.swing.JPanel();
@@ -106,114 +122,437 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
+        tabbedPaneRound1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabbedPaneRound1MouseClicked(evt);
+            }
+        });
+
         panelRect1.setColorPrimario(new java.awt.Color(0, 153, 153));
         panelRect1.setColorSecundario(new java.awt.Color(51, 255, 255));
 
+        jPanel1.setOpaque(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel1.setText("Cantidad de clientes :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 200, 30));
 
         labelCantClientes.setFont(new java.awt.Font("Yu Gothic UI", 0, 48)); // NOI18N
         labelCantClientes.setForeground(new java.awt.Color(0, 204, 255));
-        jPanel1.add(labelCantClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 80, 40));
+        jPanel1.add(labelCantClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 80, 40));
 
         jButton1.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         jButton1.setText("Modificacion cliente");
+        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 40, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 40, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         jButton2.setText("Nuevo cliente");
+        jButton2.setOpaque(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         jButton3.setText("Eliminar cliente");
+        jButton3.setOpaque(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 40, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 40, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Yu Gothic UI", 0, 80)); // NOI18N
-        jLabel2.setText("Cosas extras que estan por verse");
+        labelCustom8.setBackground(new java.awt.Color(0, 204, 0));
+        labelCustom8.setText("Cantidad de clientes :");
+        labelCustom8.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        jPanel1.add(labelCustom8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 213, 38));
+
+        PanelABM.setOpaque(false);
+
+        javax.swing.GroupLayout PanelABMLayout = new javax.swing.GroupLayout(PanelABM);
+        PanelABM.setLayout(PanelABMLayout);
+        PanelABMLayout.setHorizontalGroup(
+            PanelABMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1653, Short.MAX_VALUE)
+        );
+        PanelABMLayout.setVerticalGroup(
+            PanelABMLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 431, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+        jPanel3.setOpaque(false);
+
+        labelCustom1.setBackground(new java.awt.Color(0, 204, 0));
+        labelCustom1.setText("Obras sociales");
+        labelCustom1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        labelListadoEmpleados.setBackground(new java.awt.Color(0, 204, 0));
+        labelListadoEmpleados.setText("Listado de clientes");
+        labelListadoEmpleados.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        labelCustom3.setBackground(new java.awt.Color(0, 204, 0));
+        labelCustom3.setText("Fecha ingreso al sistema");
+        labelCustom3.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        labelCustom4.setBackground(new java.awt.Color(0, 204, 0));
+        labelCustom4.setText("Numero de cliente");
+        labelCustom4.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        labelCustom5.setBackground(new java.awt.Color(0, 204, 0));
+        labelCustom5.setText("Historial de ventas");
+        labelCustom5.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        labelCustom6.setBackground(new java.awt.Color(0, 204, 0));
+        labelCustom6.setText("Recetas");
+        labelCustom6.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        tablaClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Nombre y Apellido"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaClientes.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        tablaClientes.setGridColor(new java.awt.Color(51, 204, 0));
+        jScrollPane2.setViewportView(tablaClientes);
+
+        jXLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+
+        jXLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+
+        jXLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+
+        metroTableUI3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        metroTableUI3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Monto", "Fecha"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Float.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        metroTableUI3.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        metroTableUI3.setGridColor(new java.awt.Color(51, 204, 0));
+        jScrollPane3.setViewportView(metroTableUI3);
+
+        labelCustom7.setBackground(new java.awt.Color(0, 204, 0));
+        labelCustom7.setText("Medicamentos");
+        labelCustom7.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(jList1);
+
+        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(jList2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(labelListadoEmpleados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jXLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jXLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCustom4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jXLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCustom3, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                .addGap(69, 69, 69)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(labelCustom5, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelCustom6, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelCustom7, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(395, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelListadoEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustom4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustom6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelCustom7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(labelCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jXLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jXLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)))
+                .addGap(356, 356, 356))
         );
-
-        panelAlta.setForeground(new java.awt.Color(255, 255, 255));
-        panelAlta.setColorPrimario(new java.awt.Color(255, 255, 255));
-        panelAlta.setColorSecundario(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panelAltaLayout = new javax.swing.GroupLayout(panelAlta);
-        panelAlta.setLayout(panelAltaLayout);
-        panelAltaLayout.setHorizontalGroup(
-            panelAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1494, Short.MAX_VALUE)
-        );
-        panelAltaLayout.setVerticalGroup(
-            panelAltaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Nuevo cliente", panelAlta);
-
-        panelModificacion.setColorPrimario(new java.awt.Color(255, 255, 255));
-        panelModificacion.setColorSecundario(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panelModificacionLayout = new javax.swing.GroupLayout(panelModificacion);
-        panelModificacion.setLayout(panelModificacionLayout);
-        panelModificacionLayout.setHorizontalGroup(
-            panelModificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1494, Short.MAX_VALUE)
-        );
-        panelModificacionLayout.setVerticalGroup(
-            panelModificacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Modificacion cliente", panelModificacion);
-
-        panelBaja.setColorPrimario(new java.awt.Color(255, 255, 255));
-        panelBaja.setColorSecundario(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panelBajaLayout = new javax.swing.GroupLayout(panelBaja);
-        panelBaja.setLayout(panelBajaLayout);
-        panelBajaLayout.setHorizontalGroup(
-            panelBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1494, Short.MAX_VALUE)
-        );
-        panelBajaLayout.setVerticalGroup(
-            panelBajaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Eliminar cliente", panelBaja);
 
         javax.swing.GroupLayout panelRect1Layout = new javax.swing.GroupLayout(panelRect1);
         panelRect1.setLayout(panelRect1Layout);
@@ -222,22 +561,21 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelRect1Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(panelRect1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(panelRect1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(PanelABM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1653, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelRect1Layout.setVerticalGroup(
             panelRect1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRect1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PanelABM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tabbedPaneRound1.addTab("   Clientes", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Users-icon 16px.png")), panelRect1, ""); // NOI18N
@@ -246,11 +584,11 @@ public class Principal extends javax.swing.JFrame {
         panelRect2.setLayout(panelRect2Layout);
         panelRect2Layout.setHorizontalGroup(
             panelRect2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1519, Short.MAX_VALUE)
+            .addGap(0, 1673, Short.MAX_VALUE)
         );
         panelRect2Layout.setVerticalGroup(
             panelRect2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1038, Short.MAX_VALUE)
+            .addGap(0, 1333, Short.MAX_VALUE)
         );
 
         tabbedPaneRound1.addTab("   Ventas", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Barcodes-icon 16px.png")), panelRect2, ""); // NOI18N
@@ -297,6 +635,11 @@ public class Principal extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(metroTableUI1);
+        if (metroTableUI1.getColumnModel().getColumnCount() > 0) {
+            metroTableUI1.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+            metroTableUI1.getColumnModel().getColumn(2).setHeaderValue("Title 3");
+            metroTableUI1.getColumnModel().getColumn(3).setHeaderValue("Title 4");
+        }
 
         jPanel2.add(jScrollPane1);
 
@@ -417,6 +760,26 @@ public class Principal extends javax.swing.JFrame {
         );
 
         panelRect3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 100, 270, 630));
+        javax.swing.GroupLayout panelRect3Layout = new javax.swing.GroupLayout(panelRect3);
+        panelRect3.setLayout(panelRect3Layout);
+        panelRect3Layout.setHorizontalGroup(
+            panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRect3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 793, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 288, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
+        );
+        panelRect3Layout.setVerticalGroup(
+            panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRect3Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(panelRect3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 771, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(467, Short.MAX_VALUE))
+        );
 
         tabbedPaneRound1.addTab("   Consulta Ventas", new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cash-icon 16 px.png")), panelRect3); // NOI18N
         panelRect3.getAccessibleContext().setAccessibleName("");
@@ -425,6 +788,44 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        PanelABM.setVisible(true);
+        panelBaja  pBaja = new panelBaja();
+        pBaja .setSize(1200,600);
+        pBaja .setLocation(300,10);
+        PanelABM.removeAll();
+        PanelABM.add(pBaja ,BorderLayout.CENTER);
+        PanelABM.revalidate();
+        PanelABM.repaint();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        PanelABM.setVisible(true);
+        panelAlta pAlta = new panelAlta();
+        pAlta.setSize(1200,600);
+        pAlta.setLocation(300,10);
+        PanelABM.removeAll();
+        PanelABM.add(pAlta,BorderLayout.CENTER);
+        PanelABM.revalidate();
+        PanelABM.repaint();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PanelABM.setVisible(true);
+        panelModificacion pModif = new panelModificacion();
+        pModif.setSize(1200,600);
+        pModif.setLocation(300,10);
+        PanelABM.removeAll();
+        PanelABM.add(pModif,BorderLayout.CENTER);
+        PanelABM.revalidate();
+        PanelABM.repaint();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tabbedPaneRound1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabbedPaneRound1MouseClicked
+        
+    }//GEN-LAST:event_tabbedPaneRound1MouseClicked
 
 
     /**
@@ -462,30 +863,11 @@ public class Principal extends javax.swing.JFrame {
                 }catch(Exception e){
 
                 }
-                //new Principal().setVisible(true);
 
             }
         });
     }
 
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        panelModificacion.setVisible(false);
-        panelBaja.setVisible(false);
-        panelAlta.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        panelBaja.setVisible(true);
-        panelAlta.setVisible(false);
-        panelModificacion.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        panelBaja.setVisible(false);
-        panelAlta.setVisible(false);
-        panelModificacion.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void botonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFiltrarActionPerformed
         VentaViewModel vmaux = new VentaViewModel();
@@ -546,13 +928,18 @@ public class Principal extends javax.swing.JFrame {
         año= añoCheckBox.isSelected();
     }//GEN-LAST:event_diaCheckBoxItemStateChanged
 
+    //-------------------------------------------------------ABM cliente---------------------------------------------------------------//
 
     public void CargarPestaña()
     {
        Cliente cManager = new Cliente(null,null,"0");
        int cant = cManager.ObtenerCantClientes();
        labelCantClientes.setText(Integer.toString(cant));
+       //CargarTablaClientes();
     }
+    
+    
+    
 
     //-------------------------------------------------------Consulta Ventas---------------------------------------------------------------//
     
@@ -594,7 +981,13 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
+    public void asd(){
+        int asd = Integer.parseInt(labelCantClientes.getText())+1;
+        labelCantClientes.setText(""+asd+"");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelABM;
     private org.jdesktop.swingx.action.ActionManager actionManager1;
     private javax.swing.JCheckBox añoCheckBox;
     private com.toedter.calendar.JYearChooser añoPick;
@@ -606,15 +999,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JCalendar jCalendar1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JLabel labelCantClientes;
     private javax.swing.JCheckBox mesCheckBox;
     private com.toedter.calendar.JMonthChooser mesChoser;
     private win8.swin.MetroTableUI metroTableUI1;
@@ -623,10 +1015,28 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.panel.PanelRect panelAlta;
     private org.edisoncor.gui.panel.PanelRect panelBaja;
     private org.edisoncor.gui.panel.PanelRect panelModificacion;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private org.jdesktop.swingx.JXLabel jXLabel1;
+    private org.jdesktop.swingx.JXLabel jXLabel3;
+    private org.jdesktop.swingx.JXLabel jXLabel4;
+    public javax.swing.JLabel labelCantClientes;
+    private org.edisoncor.gui.label.LabelCustom labelCustom1;
+    private org.edisoncor.gui.label.LabelCustom labelCustom3;
+    private org.edisoncor.gui.label.LabelCustom labelCustom4;
+    private org.edisoncor.gui.label.LabelCustom labelCustom5;
+    private org.edisoncor.gui.label.LabelCustom labelCustom6;
+    private org.edisoncor.gui.label.LabelCustom labelCustom7;
+    private org.edisoncor.gui.label.LabelCustom labelCustom8;
+    private org.edisoncor.gui.label.LabelCustom labelListadoEmpleados;
+    private win8.swin.MetroTableUI metroTableUI3;
     private org.edisoncor.gui.panel.PanelRect panelRect1;
     private org.edisoncor.gui.panel.PanelRect panelRect2;
     private org.edisoncor.gui.panel.PanelRect panelRect3;
     private org.edisoncor.gui.tabbedPane.TabbedPaneRound tabbedPaneRound1;
+    private win8.swin.MetroTableUI tablaClientes;
     private org.edisoncor.gui.util.UnsharpMaskFilter unsharpMaskFilter1;
     // End of variables declaration//GEN-END:variables
 
