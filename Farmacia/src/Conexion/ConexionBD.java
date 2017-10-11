@@ -16,7 +16,7 @@ public class ConexionBD {
         rs = null;
         s = null; 
         String url = "jdbc:postgresql://localhost:5432/Farmacia";
-        String password = "postgres";
+        String password = "warcraft1";
         String user = "postgres";
         try{
             Class.forName("org.postgresql.Driver");
@@ -43,7 +43,7 @@ public class ConexionBD {
         int exito = 0;
         try{
              db.conexion.createStatement();
-             exito = db.s.executeUpdate(("insert into "+tabla+" values ('"+valor+"')"));
+             exito = db.s.executeUpdate(("insert into "+tabla+" values ("+valor+")"));
         }catch(SQLException ex)
         {
             System.out.println(ex);
@@ -62,15 +62,25 @@ public class ConexionBD {
              }else{
                  db.setRs(db.s.executeQuery("Select "+atributos+" from "+from+" where "+where));
              }
-             return db.rs;
         }catch(SQLException ex)
         {
             System.out.println(ex);
         }
-
-        
         
         return this.rs;
+    }
+    
+    public int Delete(String from, String where)
+    {
+        int exito = 0;
+        try{
+             db.conexion.createStatement();
+             exito = db.s.executeUpdate(("Delete from "+from+" where "+where));             
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        return exito;
     }
     
     public Connection getConexion() {
