@@ -10,5 +10,10 @@ public class Farmaceutico extends Persona{
         super(nombre, apellido, dni);
         this.nroLegajo = nroLegajo;
     }
+
+    public String getNroLegajo() {
+        return nroLegajo;
+    }
+    
     
 }
