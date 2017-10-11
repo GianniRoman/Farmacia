@@ -73,6 +73,19 @@ public class ConexionBD {
         return this.rs;
     }
     
+    public int Delete(String from, String where)
+    {
+        int exito = 0;
+        try{
+             db.conexion.createStatement();
+             exito = db.s.executeUpdate(("Delete from "+from+" where "+where));             
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        return exito;
+    }
+     
     public Connection getConexion() {
         
         return conexion;

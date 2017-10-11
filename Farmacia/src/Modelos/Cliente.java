@@ -10,7 +10,7 @@ public class Cliente extends Persona{
     Receta[] recetas;
     Venta[] ventas;
 
-    public Cliente(int NumeroCliente, ObraSocial[] obrasSociales, Receta[] recetas, Venta[] ventas, String nombre, String apellido, int dni) {
+    public Cliente(int NumeroCliente, ObraSocial[] obrasSociales, Receta[] recetas, Venta[] ventas, String nombre, String apellido, String dni) {
         super(nombre, apellido, dni);
         this.NumeroCliente = NumeroCliente;
         this.obrasSociales = obrasSociales;
@@ -18,7 +18,7 @@ public class Cliente extends Persona{
         this.ventas = ventas;
     }
 
-    public Cliente(String nombre, String apellido, int dni) {
+    public Cliente(String nombre, String apellido, String dni) {
         super(nombre, apellido, dni);
     }
     
@@ -72,11 +72,11 @@ public class Cliente extends Persona{
         this.apellido = apellido;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
