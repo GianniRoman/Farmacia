@@ -159,7 +159,7 @@ public class panelBaja extends javax.swing.JPanel {
 
     private void textBusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBusquedaKeyReleased
         String stringABuscar = textBusqueda.getText();
-        Cliente cAEliminar = new Cliente(null,null,0);
+        Cliente cAEliminar = new Cliente(null,null,"");
         cAEliminar = cAEliminar.Buscar(stringABuscar);
         if(cAEliminar != null)
         {
@@ -185,7 +185,7 @@ public class panelBaja extends javax.swing.JPanel {
 
     private void buttonAeroLeft1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAeroLeft1ActionPerformed
      String dni = labelDni.getText();
-     Cliente baja = new Cliente(Integer.parseInt(dni));
+     Cliente baja = new Cliente(dni);
      int exito = baja.Baja(baja);
      if(exito == 1)
      {

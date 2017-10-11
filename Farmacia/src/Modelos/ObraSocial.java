@@ -153,7 +153,7 @@ public class ObraSocial {
         return obCod;
     }
 
-    public void AltaCobertura(int dni, String[] obs, String[] pObs) {
+    public void AltaCobertura(String dni, String[] obs, String[] pObs) {
         
         ConexionBD db = ConexionBD.getInstance();  
         db.Select("ccod","cliente","cdni = '"+dni+"'");

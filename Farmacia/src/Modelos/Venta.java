@@ -7,6 +7,7 @@ public class Venta {
     Medicamento[] medicamentos;
     Farmaceutico farmaceutico;
     Cliente cliente;
+    int dia, mes, año;
     
     
 }

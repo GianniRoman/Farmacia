@@ -390,7 +390,7 @@ public class panelAlta extends javax.swing.JPanel {
         //-----Get atributos cliente--//
         String nombre = textNombre.getText();
         String apellido = textApellido.getText();
-        int dni = Integer.parseInt(textDni.getText());
+        String dni = textDni.getText();
         Object s = comboSexo.getSelectedItem();
         String sexo = String.valueOf(s);
         //-----Get fecha ingreso--//
