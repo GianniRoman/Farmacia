@@ -882,6 +882,10 @@ public class Principal extends javax.swing.JFrame {
         if(año){
             vmaux.filtrarAño(añoPick.getYear());
         }
+        if(farmaceutico){
+            Farmaceutico aux = (Farmaceutico) farmaceuticoCB.getSelectedItem();
+            vmaux.filtrarFarmaceutico(aux.getNroLegajo());
+        }
         resetTable(metroTableUI1);
         cargarTablaVentas(vmaux.getVtas());
         

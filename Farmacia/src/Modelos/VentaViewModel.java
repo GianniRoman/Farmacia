@@ -18,9 +18,9 @@ import Interfaces.Principal;
  * @author glupi
  */
 public class VentaViewModel {
-   int dia, mes, año, fcod, mcod, vcant;
+   int dia, mes, año, mcod, vcant;
    Medicamento med;
-   String fnbre, fapll, lote, mnbre, vcod;
+   String fnbre, fapll, lote, mnbre, vcod, fcod;
    float monto, mprecio;
    
    ArrayList<VentaViewModel> vtas = new ArrayList<>();
@@ -36,7 +36,7 @@ public class VentaViewModel {
                aux.año = bd.getRs().getInt("año");
                aux.fnbre = bd.getRs().getString("fnbre");
                aux.fapll = bd.getRs().getString("fapll");
-               aux.fcod = bd.getRs().getInt("fcod");
+               aux.fcod = bd.getRs().getString("fcod");
                aux.vcant = bd.getRs().getInt("vcant");
                aux.vcod = bd.getRs().getString("vcod");
                aux.lote = bd.getRs().getString("lote");
@@ -87,6 +87,20 @@ public class VentaViewModel {
        for(i = cant-1; i>=0; i--){
            aux= (VentaViewModel) vtas.get(i);
            if(aux.año != faño){
+               vtas.remove(i);
+           }
+       }
+   }
+   
+   public void filtrarFarmaceutico(String farcod){
+       String ftrcod = farcod;
+       System.out.println(ftrcod);
+       int cant = this.vtas.size();
+       int i;
+       VentaViewModel aux;
+       for(i=cant-1; i>=0; i--){
+           aux = (VentaViewModel) vtas.get(i);
+           if(!(aux.fcod.equals(ftrcod))){
                vtas.remove(i);
            }
        }
