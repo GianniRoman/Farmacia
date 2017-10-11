@@ -9,10 +9,22 @@ public class Cliente extends Persona{
     ObraSocial[] obrasSociales;
     Receta[] recetas;
     Venta[] ventas;
+    String fechaIngreso;
 
-    public Cliente(int NumeroCliente, ObraSocial[] obrasSociales, Receta[] recetas, Venta[] ventas, String nombre, String apellido, int dni) {
+    public Cliente(int dni) {
+        super(null,null,dni);
+    }
+
+    public String getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(String fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Cliente(ObraSocial[] obrasSociales, Receta[] recetas, Venta[] ventas, String nombre, String apellido, int dni) {
         super(nombre, apellido, dni);
-        this.NumeroCliente = NumeroCliente;
         this.obrasSociales = obrasSociales;
         this.recetas = recetas;
         this.ventas = ventas;
@@ -22,7 +34,11 @@ public class Cliente extends Persona{
         super(nombre, apellido, dni);
     }
     
-    
+    public Cliente(String nombre, String apellido, int dni,String fecha)
+    {
+        super(nombre,apellido,dni);
+        this.fechaIngreso = fecha;
+    }
 
     public int getNumeroCliente() {
         return NumeroCliente;
@@ -98,7 +114,65 @@ public class Cliente extends Persona{
             
       return 0;
     }
+
+
+    public int Alta(String nombre, String apellido,String sexo, int dni, String fIng, String[] obs, String[] pObs) {
+        ConexionBD db = ConexionBD.getInstance();
+        int exito = 0;
+        String valores = " '"+dni+"','"+sexo+"','"+nombre+"','"+apellido+"','"+fIng+"'";
+        exito = db.Insert("cliente (cdni,csexo,cnbre,capll,ingreso)",valores);
+        if(exito == 1)
+        {
+            ObraSocial ob = new ObraSocial();
+            ob.AltaCobertura(dni,obs,pObs);
+        }
+        return exito;
+       
+    }
+
+    public Cliente Buscar(String stringABuscar) {
+       ConexionBD db = ConexionBD.getInstance();
+       if("".equals(stringABuscar))
+       {
+             System.out.println("vacio");
+             return null;
+       }
+       stringABuscar = "%"+stringABuscar+"%";
+       Cliente buscado = null;
+           db.Select("*","cliente","cnbre like '"+stringABuscar+"' or capll like '"+stringABuscar+"' ");
+           try{
+               if(db.getRs().next()){
+               String nombre = db.getRs().getString("cnbre");
+               String apellido = db.getRs().getString("capll");
+               int dni = Integer.parseInt(db.getRs().getString("cdni"));
+               String fecha = db.getRs().getString("ingreso");
+               buscado = new Cliente(nombre,apellido,dni,fecha);
+               }
+               }catch(SQLException ex){
+                 System.out.println(ex);
+                }   
+        return buscado;
+
+    }
     
+    public int Baja(Cliente baja)
+    {
+        int exito = 0;
+        ConexionBD db = ConexionBD.getInstance();
+        db.Select("ccod","cliente","cdni ='"+this.dni+"'");
+        try{
+            if(db.getRs().next())
+            {
+                db.Delete("cobertura_cliente","ccod ='"+db.getRs().getString("ccod")+"'");
+                exito = db.Delete("cliente","cdni ='"+this.dni+"'");
+            }
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        
+        return exito;
+    }
 
    
 
