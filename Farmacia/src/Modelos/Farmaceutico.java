@@ -3,13 +3,17 @@ package Modelos;
 
 public class Farmaceutico extends Persona{
     
-    int nroLegajo;
+    String nroLegajo;
     Venta ventas[];
 
-    public Farmaceutico(String nombre, String apellido, int dni,int nroLegajo,Venta[] ventas) {
+    public Farmaceutico(String nombre, String apellido, String dni,String nroLegajo) {
         super(nombre, apellido, dni);
         this.nroLegajo = nroLegajo;
-        this.ventas = ventas;
     }
+
+    public String getNroLegajo() {
+        return nroLegajo;
+    }
+    
     
 }

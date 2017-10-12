@@ -11,7 +11,8 @@ public class Cliente extends Persona{
     Venta[] ventas;
     String fechaIngreso;
 
-    public Cliente(int dni) {
+
+    public Cliente(String dni) {
         super(null,null,dni);
     }
 
@@ -23,18 +24,18 @@ public class Cliente extends Persona{
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Cliente(ObraSocial[] obrasSociales, Receta[] recetas, Venta[] ventas, String nombre, String apellido, int dni) {
+    public Cliente(ObraSocial[] obrasSociales, Receta[] recetas, Venta[] ventas, String nombre, String apellido, String dni) {
         super(nombre, apellido, dni);
         this.obrasSociales = obrasSociales;
         this.recetas = recetas;
         this.ventas = ventas;
     }
 
-    public Cliente(String nombre, String apellido, int dni) {
+    public Cliente(String nombre, String apellido, String dni) {
         super(nombre, apellido, dni);
     }
     
-    public Cliente(String nombre, String apellido, int dni,String fecha)
+    public Cliente(String nombre, String apellido, String dni,String fecha)
     {
         super(nombre,apellido,dni);
         this.fechaIngreso = fecha;
@@ -88,11 +89,11 @@ public class Cliente extends Persona{
         this.apellido = apellido;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -116,7 +117,7 @@ public class Cliente extends Persona{
     }
 
 
-    public int Alta(String nombre, String apellido,String sexo, int dni, String fIng, String[] obs, String[] pObs) {
+    public int Alta(String nombre, String apellido,String sexo, String dni, String fIng, String[] obs, String[] pObs) {
         ConexionBD db = ConexionBD.getInstance();
         int exito = 0;
         String valores = " '"+dni+"','"+sexo+"','"+nombre+"','"+apellido+"','"+fIng+"'";
@@ -144,7 +145,7 @@ public class Cliente extends Persona{
                if(db.getRs().next()){
                String nombre = db.getRs().getString("cnbre");
                String apellido = db.getRs().getString("capll");
-               int dni = Integer.parseInt(db.getRs().getString("cdni"));
+               String dni = db.getRs().getString("cdni");
                String fecha = db.getRs().getString("ingreso");
                buscado = new Cliente(nombre,apellido,dni,fecha);
                }
