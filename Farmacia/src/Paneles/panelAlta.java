@@ -12,11 +12,22 @@ import Modelos.Usuario;
 
 public class panelAlta extends javax.swing.JPanel {
 
-    public panelAlta() {
+    boolean ob1,ob2,ob3;
+    boolean pob1,pob2,pob3;
+    Principal p;
+    public panelAlta(Principal pPrin) {
+        ob1 = false;
+        ob2 = false;
+        ob3 = false;
+        pob1 = false;
+        pob2 = false;
+        pob3 = false;      
         initComponents();
         CargarObrasSociales();
+        ApagarComboBox();
         comboSexo.addItem("Masculino");
         comboSexo.addItem("Femenino");
+        p = pPrin;
     }
 
     @SuppressWarnings("unchecked")
@@ -47,6 +58,9 @@ public class panelAlta extends javax.swing.JPanel {
         labelCustom6 = new org.edisoncor.gui.label.LabelCustom();
         labelCustom1 = new org.edisoncor.gui.label.LabelCustom();
         comboSexo = new org.edisoncor.gui.comboBox.ComboBoxRect();
+        checkOB1 = new javax.swing.JCheckBox();
+        checkOB2 = new javax.swing.JCheckBox();
+        checkOB3 = new javax.swing.JCheckBox();
 
         metroTableUI2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         metroTableUI2.setModel(new javax.swing.table.DefaultTableModel(
@@ -265,6 +279,27 @@ public class panelAlta extends javax.swing.JPanel {
         labelCustom1.setText("Para registrar un nuevo cliente debe registrar sus datos personales");
         labelCustom1.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
 
+        checkOB1.setOpaque(false);
+        checkOB1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkOB1ItemStateChanged(evt);
+            }
+        });
+        checkOB1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkOB1ActionPerformed(evt);
+            }
+        });
+
+        checkOB2.setOpaque(false);
+        checkOB2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                checkOB2ItemStateChanged(evt);
+            }
+        });
+
+        checkOB3.setOpaque(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -281,11 +316,16 @@ public class panelAlta extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(ComboOB1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                                    .addComponent(comboOB2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboOB3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelCustom6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(checkOB1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(checkOB2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(checkOB3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(comboOB2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(ComboOB1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelCustom6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboOB3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(comboPlanOB2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
@@ -303,7 +343,7 @@ public class panelAlta extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(233, 233, 233)
                         .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,35 +358,50 @@ public class panelAlta extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(labelCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelCustom6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(comboPlanOB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ComboOB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCustom6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboPlanOB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboOB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboPlanOB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComboOB1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkOB1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(comboPlanOB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboOB2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(checkOB2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(textDni, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboPlanOB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboOB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(checkOB3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboOB3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textDni, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
    
+   public void ApagarComboBox()
+   {
+       ComboOB1.setEnabled(false);
+       comboPlanOB1.setEnabled(false);
+       comboOB2.setEnabled(false);
+       comboPlanOB2.setEnabled(false);
+       comboOB3.setEnabled(false);
+       comboPlanOB3.setEnabled(false);
+   }
   public void CargarObrasSociales()
   {
       ObraSocial ob = new ObraSocial();
@@ -361,32 +416,48 @@ public class panelAlta extends javax.swing.JPanel {
       
   }
     private void buttonRound1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound1ActionPerformed
-        //Usuario user = null;
-        //Principal asd = new Principal(user);
-        //asd.asd();
+        
         String[] obs = new String[3];
         String[] pObs = new String[3];
         //-----Primer Obra social--//
-        Object ob1 = ComboOB1.getSelectedItem();
-        String nombreOb1 = String.valueOf(ob1);
-        Object pob1 = comboPlanOB1.getSelectedItem();
-        String planOb1 = String.valueOf(pob1);
-        obs[0] = nombreOb1;
-        pObs[0] = planOb1;
-        //-----segunda Obra social--//
-        Object ob2 = comboOB2.getSelectedItem();
-        String nombreOb2 = String.valueOf(ob2);
-        Object pob2 = comboPlanOB2.getSelectedItem();
-        String planOb2 = String.valueOf(pob2);
-        obs[1] = nombreOb2;
-        pObs[1] = planOb2;
-        //-----tercer Obra social--//
-        Object ob3 = comboOB3.getSelectedItem();
-        String nombreOb3 = String.valueOf(ob3);
-        Object pob3 = comboPlanOB3.getSelectedItem();
-        String planOb3 = String.valueOf(pob3);
-        obs[2] = nombreOb3;
-        pObs[2] = planOb3;
+        if(ob1 = checkOB1.isSelected())
+        {
+            Object ob1 = ComboOB1.getSelectedItem();
+            String nombreOb1 = String.valueOf(ob1);
+            Object pob1 = comboPlanOB1.getSelectedItem();
+            String planOb1 = String.valueOf(pob1);
+            obs[0] = nombreOb1;
+            pObs[0] = planOb1;    
+        }else{
+            obs[0] = null;
+            pObs[0] = null; 
+        }
+                //-----segunda Obra social--//
+        if(ob2 = checkOB2.isSelected())
+        {
+            Object ob2 = comboOB2.getSelectedItem();
+            String nombreOb2 = String.valueOf(ob2);
+            Object pob2 = comboPlanOB2.getSelectedItem();
+            String planOb2 = String.valueOf(pob2);
+            obs[1] = nombreOb2;
+            pObs[1] = planOb2;      
+        }else{
+            obs[1] = null;
+            pObs[1] = null; 
+        }
+
+                //-----tercer Obra social--//
+        if(ob3 = checkOB3.isSelected()){
+            Object ob3 = comboOB3.getSelectedItem();
+            String nombreOb3 = String.valueOf(ob3);
+            Object pob3 = comboPlanOB3.getSelectedItem();
+            String planOb3 = String.valueOf(pob3);
+            obs[2] = nombreOb3;
+            pObs[2] = planOb3;
+        }else{
+            obs[2] = null;
+            pObs[2] = null; 
+        }
         //-----Get atributos cliente--//
         String nombre = textNombre.getText();
         String apellido = textApellido.getText();
@@ -399,31 +470,19 @@ public class panelAlta extends javax.swing.JPanel {
 	String fIng = fechaHora.format(dia);
         //-----Creo arreglo obrasocial--//
         Cliente nuevo = new Cliente(nombre,apellido,dni);
-        nuevo.Alta(nombre,apellido,sexo,dni,fIng,obs,pObs);
-        
+        int exito = nuevo.Alta(nombre,apellido,sexo,dni,fIng,obs,pObs);
+        if(exito == 1)
+        {
+            textNombre.setText("");
+            textApellido.setText("");
+            textDni.setText("");
+            p.ActualizarNumerosDeClientes();;
+            
+        }
         
         
         
     }//GEN-LAST:event_buttonRound1ActionPerformed
-
-    private void ComboOB1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboOB1FocusLost
-         comboPlanOB1.removeAllItems();
-         Object ob1 = ComboOB1.getSelectedItem();
-         String nombreOb1 = String.valueOf(ob1);
-         ObraSocial ob = new ObraSocial();
-         ob.Cargar(0);
-         ob = ob.CargarPlanes(nombreOb1);
-         int i = 0;
-         String[] planes;
-         planes = ob.getPlan();
-         int tam = ob.getPlan().length;
-         while(tam > 0)
-         {
-            comboPlanOB1.addItem(ob.getPlan()[i]);
-            tam--;
-            i++;
-         }
-    }//GEN-LAST:event_ComboOB1FocusLost
 
     private void comboOB2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboOB2FocusLost
          comboPlanOB2.removeAllItems();
@@ -466,7 +525,7 @@ public class panelAlta extends javax.swing.JPanel {
     private void comboOB2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboOB2MouseClicked
       ObraSocial ob = new ObraSocial();
       comboOB2.removeAllItems();
-      int cant = ob.contarObrasSociales();
+      int cant = ob.contarObrasSociales()-1;
       while(cant > 0)
       {
           ob = ob.Cargar(cant);
@@ -478,7 +537,7 @@ public class panelAlta extends javax.swing.JPanel {
     private void comboOB3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboOB3MouseClicked
        ObraSocial ob = new ObraSocial();
       comboOB3.removeAllItems();
-      int cant = ob.contarObrasSociales();
+      int cant = ob.contarObrasSociales()-2;
       while(cant > 0)
       {
           ob = ob.Cargar(cant);
@@ -487,11 +546,60 @@ public class panelAlta extends javax.swing.JPanel {
       }
     }//GEN-LAST:event_comboOB3MouseClicked
 
+    private void checkOB1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkOB1ItemStateChanged
+        if(ob1 = checkOB1.isSelected()){
+            ComboOB1.setEnabled(true);
+            comboPlanOB1.setEnabled(true);
+
+        }else{
+            ComboOB1.setEnabled(false);
+            comboPlanOB1.setEnabled(false);
+        }
+        
+       
+    }//GEN-LAST:event_checkOB1ItemStateChanged
+
+    private void ComboOB1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboOB1FocusLost
+        comboPlanOB1.removeAllItems();
+        Object ob1 = ComboOB1.getSelectedItem();
+        String nombreOb1 = String.valueOf(ob1);
+        ObraSocial ob = new ObraSocial();
+        ob.Cargar(0);
+        ob = ob.CargarPlanes(nombreOb1);
+        int i = 0;
+        String[] planes;
+        planes = ob.getPlan();
+        int tam = ob.getPlan().length;
+        while(tam > 0)
+        {
+            comboPlanOB1.addItem(ob.getPlan()[i]);
+            tam--;
+            i++;
+        }
+    }//GEN-LAST:event_ComboOB1FocusLost
+
+    private void checkOB2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkOB2ItemStateChanged
+        if(ob2 = checkOB2.isSelected()){
+            comboOB2.setEnabled(true);
+            comboPlanOB2.setEnabled(true);
+        }else{
+            comboOB2.setEnabled(false);
+            comboPlanOB2.setEnabled(false);
+        }
+    }//GEN-LAST:event_checkOB2ItemStateChanged
+
+    private void checkOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOB1ActionPerformed
+        
+    }//GEN-LAST:event_checkOB1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.comboBox.ComboBoxRect ComboOB1;
     private org.jdesktop.swingx.plaf.basic.BasicHyperlinkUI basicHyperlinkUI1;
     private org.edisoncor.gui.button.ButtonRound buttonRound1;
+    private javax.swing.JCheckBox checkOB1;
+    private javax.swing.JCheckBox checkOB2;
+    private javax.swing.JCheckBox checkOB3;
     private org.edisoncor.gui.comboBox.ComboBoxRect comboOB2;
     private org.edisoncor.gui.comboBox.ComboBoxRect comboOB3;
     private org.edisoncor.gui.comboBox.ComboBoxRect comboPlanOB1;
