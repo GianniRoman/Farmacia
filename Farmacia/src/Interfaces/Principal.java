@@ -3,6 +3,7 @@ import Conexion.ConexionBD;
 import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import javax.swing.UIManager;
 import Modelos.Cliente;
+import Modelos.ClienteViewModel;
 import Modelos.Farmaceutico;
 import Modelos.Usuario;
 import java.awt.GridLayout;
@@ -20,15 +21,13 @@ import java.awt.BorderLayout;
 import javax.swing.DefaultListModel;
 
 
-/**
- *
- * @author glupi
- */
 public class Principal extends javax.swing.JFrame {
     DefaultTableModel tm = new DefaultTableModel();
+    DefaultTableModel tc = new DefaultTableModel();
     Usuario user;
     boolean dia, mes, año, farmaceutico, monto;
     VentaViewModel vm = new VentaViewModel();
+    ClienteViewModel cl = new ClienteViewModel();
     
     
     
@@ -40,6 +39,7 @@ public class Principal extends javax.swing.JFrame {
         farmaceutico = false;
         monto = false;
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
         jCalendar1.setEnabled(dia);
         mesChoser.setEnabled(mes);
         añoPick.setEnabled(año);
@@ -48,6 +48,7 @@ public class Principal extends javax.swing.JFrame {
         RelativeLayout ly =new RelativeLayout(this.getWidth(), this.getHeight());
         panelRect3.setLayout(ly);
         metroTableUI1.setRowHeight(30);
+        tablaClientes.setRowHeight(30);
         tm.addColumn("Venta");
         tm.addColumn("Lote");
         tm.addColumn("Medicamento");
@@ -56,14 +57,11 @@ public class Principal extends javax.swing.JFrame {
         tm.addColumn("Precio Unitario");
         tm.addColumn("Precio Total");
         metroTableUI1.setModel(tm);
-        panelAlta.setVisible(false);
-        panelModificacion.setVisible(false);
-        panelBaja.setVisible(false);
-        //this.setExtendedState(MAXIMIZED_BOTH);
-        CargarPestaña();
+        tc.addColumn("Nombre y Apellido del cliente");
+        tablaClientes.setModel(tc);
+        CargarPestaña(cl.iniciarTablaClientes());
         cargarTablaVentas(vm.iniciarTablaVentas());
         cargarFarmaceuticos(vm.cargarFarmaceuticos());
-        //jPanel3.setLayout(ly);
         PanelABM.setVisible(false);
     }
 
@@ -92,8 +90,8 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaClientes = new win8.swin.MetroTableUI();
         jXLabel1 = new org.jdesktop.swingx.JXLabel();
-        jXLabel3 = new org.jdesktop.swingx.JXLabel();
-        jXLabel4 = new org.jdesktop.swingx.JXLabel();
+        labelNumeroCliente = new org.jdesktop.swingx.JXLabel();
+        labelFechaIngreso = new org.jdesktop.swingx.JXLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         metroTableUI3 = new win8.swin.MetroTableUI();
         labelCustom7 = new org.edisoncor.gui.label.LabelCustom();
@@ -338,13 +336,18 @@ public class Principal extends javax.swing.JFrame {
         });
         tablaClientes.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         tablaClientes.setGridColor(new java.awt.Color(51, 204, 0));
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaClientes);
 
         jXLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
 
-        jXLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+        labelNumeroCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
 
-        jXLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+        labelFechaIngreso.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
 
         metroTableUI3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         metroTableUI3.setModel(new javax.swing.table.DefaultTableModel(
@@ -504,9 +507,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jXLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jXLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelCustom4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jXLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelNumeroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelCustom3, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
                 .addGap(69, 69, 69)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -535,11 +538,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jXLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelNumeroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(labelCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jXLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -595,7 +598,6 @@ public class Principal extends javax.swing.JFrame {
 
         panelRect3.setColorPrimario(new java.awt.Color(0, 153, 153));
         panelRect3.setColorSecundario(new java.awt.Color(51, 255, 255));
-        panelRect3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
@@ -642,8 +644,6 @@ public class Principal extends javax.swing.JFrame {
         }
 
         jPanel2.add(jScrollPane1);
-
-        panelRect3.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 793, 510));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtrar Ventas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Maiandra GD", 1, 24))); // NOI18N
         jPanel4.setOpaque(false);
@@ -759,7 +759,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelRect3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 100, 270, 630));
         javax.swing.GroupLayout panelRect3Layout = new javax.swing.GroupLayout(panelRect3);
         panelRect3.setLayout(panelRect3Layout);
         panelRect3Layout.setHorizontalGroup(
@@ -791,9 +790,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         PanelABM.setVisible(true);
-        panelBaja  pBaja = new panelBaja();
-        pBaja .setSize(1200,600);
-        pBaja .setLocation(300,10);
+        panelBaja  pBaja = new panelBaja(this);
+        pBaja .setSize(1500,700);
+        pBaja .setLocation(200,10);
         PanelABM.removeAll();
         PanelABM.add(pBaja ,BorderLayout.CENTER);
         PanelABM.revalidate();
@@ -802,9 +801,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         PanelABM.setVisible(true);
-        panelAlta pAlta = new panelAlta();
-        pAlta.setSize(1200,600);
-        pAlta.setLocation(300,10);
+        panelAlta pAlta = new panelAlta(this);
+        pAlta.setSize(1500,600);
+        pAlta.setLocation(200,10);
         PanelABM.removeAll();
         PanelABM.add(pAlta,BorderLayout.CENTER);
         PanelABM.revalidate();
@@ -815,8 +814,8 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PanelABM.setVisible(true);
         panelModificacion pModif = new panelModificacion();
-        pModif.setSize(1200,600);
-        pModif.setLocation(300,10);
+        pModif.setSize(1500,600);
+        pModif.setLocation(200,10);
         PanelABM.removeAll();
         PanelABM.add(pModif,BorderLayout.CENTER);
         PanelABM.revalidate();
@@ -928,14 +927,31 @@ public class Principal extends javax.swing.JFrame {
         año= añoCheckBox.isSelected();
     }//GEN-LAST:event_diaCheckBoxItemStateChanged
 
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+      int row = tablaClientes.getSelectedRow();
+      Cliente cliente = new Cliente(null,null,"0");
+      cliente = (Cliente) tablaClientes.getValueAt(row,0);
+      labelNumeroCliente.setText(cliente.getNumeroCliente());
+      labelFechaIngreso.setText(cliente.getFechaIngreso());
+      
+      
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
     //-------------------------------------------------------ABM cliente---------------------------------------------------------------//
 
-    public void CargarPestaña()
-    {
-       Cliente cManager = new Cliente(null,null,"0");
-       int cant = cManager.ObtenerCantClientes();
-       labelCantClientes.setText(Integer.toString(cant));
-       //CargarTablaClientes();
+    public void CargarPestaña(ArrayList arrayClientes)
+    {     
+        int cantClientes = arrayClientes.size();
+        int i;
+        for(i=0; i<cantClientes;i++){
+            Cliente aux = new Cliente(null,null,"0");
+            Object[] fila = new Object[1];
+            aux = (Cliente) arrayClientes.get(i);
+            fila[0] = aux;
+            tc.addRow(fila);
+            }
+             tablaClientes.updateUI();
+       
     }
     
     
@@ -982,8 +998,7 @@ public class Principal extends javax.swing.JFrame {
     }
     
     public void asd(){
-        int asd = Integer.parseInt(labelCantClientes.getText())+1;
-        labelCantClientes.setText(""+asd+"");
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1006,22 +1021,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JCheckBox mesCheckBox;
-    private com.toedter.calendar.JMonthChooser mesChoser;
-    private win8.swin.MetroTableUI metroTableUI1;
-    private javax.swing.JCheckBox montoCheckBox;
-    private javax.swing.JTextField montoTF;
-    private org.edisoncor.gui.panel.PanelRect panelAlta;
-    private org.edisoncor.gui.panel.PanelRect panelBaja;
-    private org.edisoncor.gui.panel.PanelRect panelModificacion;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private org.jdesktop.swingx.JXLabel jXLabel1;
-    private org.jdesktop.swingx.JXLabel jXLabel3;
-    private org.jdesktop.swingx.JXLabel jXLabel4;
     public javax.swing.JLabel labelCantClientes;
     private org.edisoncor.gui.label.LabelCustom labelCustom1;
     private org.edisoncor.gui.label.LabelCustom labelCustom3;
@@ -1030,8 +1034,15 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelCustom labelCustom6;
     private org.edisoncor.gui.label.LabelCustom labelCustom7;
     private org.edisoncor.gui.label.LabelCustom labelCustom8;
+    private org.jdesktop.swingx.JXLabel labelFechaIngreso;
     private org.edisoncor.gui.label.LabelCustom labelListadoEmpleados;
+    private org.jdesktop.swingx.JXLabel labelNumeroCliente;
+    private javax.swing.JCheckBox mesCheckBox;
+    private com.toedter.calendar.JMonthChooser mesChoser;
+    private win8.swin.MetroTableUI metroTableUI1;
     private win8.swin.MetroTableUI metroTableUI3;
+    private javax.swing.JCheckBox montoCheckBox;
+    private javax.swing.JTextField montoTF;
     private org.edisoncor.gui.panel.PanelRect panelRect1;
     private org.edisoncor.gui.panel.PanelRect panelRect2;
     private org.edisoncor.gui.panel.PanelRect panelRect3;
@@ -1039,5 +1050,11 @@ public class Principal extends javax.swing.JFrame {
     private win8.swin.MetroTableUI tablaClientes;
     private org.edisoncor.gui.util.UnsharpMaskFilter unsharpMaskFilter1;
     // End of variables declaration//GEN-END:variables
+
+    public void ActualizarNumerosDeClientes() {
+       Cliente cManager = new Cliente(null,null,"0");
+       int cant = cManager.ObtenerCantClientes();
+       labelCantClientes.setText(Integer.toString(cant));
+    }
 
 }

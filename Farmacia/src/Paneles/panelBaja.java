@@ -1,11 +1,14 @@
 package Paneles;
 
+import Interfaces.Principal;
 import Modelos.Cliente;
 
 public class panelBaja extends javax.swing.JPanel {
 
-    public panelBaja() {
+    Principal p;
+    public panelBaja(Principal pPrin) {
         initComponents();
+        p = pPrin;
         labelNoSeEncontro.setVisible(false);
     }
 
