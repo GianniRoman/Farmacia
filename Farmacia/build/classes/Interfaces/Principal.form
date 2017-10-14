@@ -225,9 +225,9 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jXLabel1" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelCustom1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jXLabel4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="labelFechaIngreso" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelCustom4" max="32767" attributes="0"/>
-                              <Component id="jXLabel3" max="32767" attributes="0"/>
+                              <Component id="labelNumeroCliente" max="32767" attributes="0"/>
                               <Component id="labelCustom3" alignment="0" pref="213" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
@@ -263,11 +263,11 @@
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jXLabel3" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="labelNumeroCliente" min="-2" pref="39" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   <Component id="labelCustom3" min="-2" pref="38" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jXLabel4" min="-2" pref="39" max="-2" attributes="0"/>
+                                  <Component id="labelFechaIngreso" min="-2" pref="39" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Component id="labelCustom1" min="-2" pref="38" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -393,6 +393,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tablaClientesMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -407,7 +410,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.jdesktop.swingx.JXLabel" name="jXLabel3">
+                <Component class="org.jdesktop.swingx.JXLabel" name="labelNumeroCliente">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -418,7 +421,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="org.jdesktop.swingx.JXLabel" name="jXLabel4">
+                <Component class="org.jdesktop.swingx.JXLabel" name="labelFechaIngreso">
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">

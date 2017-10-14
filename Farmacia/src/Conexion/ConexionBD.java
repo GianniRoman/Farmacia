@@ -70,6 +70,18 @@ public class ConexionBD {
         return this.rs;
     }
     
+    public int Update(String from, String columValue, String where)
+    {
+        try{
+            db.conexion.createStatement();
+            db.s.executeUpdate("Update "+from+" set "+columValue+"where "+where);
+        }catch(SQLException ex)
+        {
+            System.out.println("Update :"+ex);
+        }
+        return 0;
+    }
+    
     public int Delete(String from, String where)
     {
         int exito = 0;

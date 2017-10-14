@@ -2,10 +2,11 @@ package Modelos;
 
 import Conexion.ConexionBD;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 public class Cliente extends Persona{
-    int NumeroCliente;
+    String NumeroCliente;
     ObraSocial[] obrasSociales;
     Receta[] recetas;
     Venta[] ventas;
@@ -41,11 +42,11 @@ public class Cliente extends Persona{
         this.fechaIngreso = fecha;
     }
 
-    public int getNumeroCliente() {
+    public String getNumeroCliente() {
         return NumeroCliente;
     }
 
-    public void setNumeroCliente(int NumeroCliente) {
+    public void setNumeroCliente(String NumeroCliente) {
         this.NumeroCliente = NumeroCliente;
     }
 
@@ -175,6 +176,41 @@ public class Cliente extends Persona{
         return exito;
     }
 
+    public void Modificar() {
+        ConexionBD db = ConexionBD.getInstance();
+        try{
+            db.Select("ccod","cliente","cdni ='"+this.dni+"'");
+            if(db.getRs().next())
+            {
+                String ccod = db.getRs().getString("ccod");
+                db.Update("cliente","cdni ='"+this.dni+"',cnbre ='"+this.nombre+"',capll ='"+this.apellido+"'","ccod ='"+ccod+"'");              
+            }
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        
+    }
+    
+    public ArrayList iniciarTablaClientes(){
+       ArrayList <Cliente> clientes = new ArrayList<>();
+       ConexionBD bd = ConexionBD.getInstance();
+       bd.Select("nombre, apellido", "cliente","");
+       int i = 0;
+       try {
+           while(bd.getRs().next()){
+               Cliente cl = new Cliente(bd.getRs().getString("nombre"),bd.getRs().getString("apellido"),bd.getRs().getString("dni"));
+               clientes.add(cl);              
+           }
+       } catch (SQLException ex) {
+           System.out.println(ex);
+       }
+       return clientes;
+   }
+
+    
+    
+    
    
 
     
