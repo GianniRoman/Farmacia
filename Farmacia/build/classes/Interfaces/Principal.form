@@ -1162,13 +1162,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="labelRound5" min="-2" pref="419" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="labelRound6" min="-2" pref="420" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="labelRound7" min="-2" pref="420" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="labelRound8" min="-2" pref="420" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="387" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="312" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1184,22 +1184,34 @@
               <SubComponents>
                 <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="labelRound5"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="cc" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="1. Seleccionar Productos"/>
                   </Properties>
                 </Component>
                 <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="labelRound6"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="7b" green="7b" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="2. Forma de Pago"/>
                   </Properties>
                 </Component>
                 <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound7">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="labelRound7"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="7b" green="7b" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="3. Datos Obra Social"/>
                   </Properties>
                 </Component>
                 <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="labelRound8"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="7b" green="7b" red="33" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="4. Facturacion"/>
                   </Properties>
                 </Component>
               </SubComponents>

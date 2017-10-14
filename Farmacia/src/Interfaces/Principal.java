@@ -953,13 +953,17 @@ public class Principal extends javax.swing.JFrame {
 
         prodBuscado.getAccessibleContext().setAccessibleName("");
 
-        labelRound5.setText("labelRound5");
+        labelRound5.setBackground(new java.awt.Color(0, 204, 51));
+        labelRound5.setText("1. Seleccionar Productos");
 
-        labelRound6.setText("labelRound6");
+        labelRound6.setBackground(new java.awt.Color(51, 123, 123));
+        labelRound6.setText("2. Forma de Pago");
 
-        labelRound7.setText("labelRound7");
+        labelRound7.setBackground(new java.awt.Color(51, 123, 123));
+        labelRound7.setText("3. Datos Obra Social");
 
-        labelRound8.setText("labelRound8");
+        labelRound8.setBackground(new java.awt.Color(51, 123, 123));
+        labelRound8.setText("4. Facturacion");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -967,13 +971,13 @@ public class Principal extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(labelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(50, 50, 50)
                 .addComponent(labelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(50, 50, 50)
                 .addComponent(labelRound7, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(50, 50, 50)
                 .addComponent(labelRound8, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 387, Short.MAX_VALUE))
+                .addGap(0, 312, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1339,7 +1343,9 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.label.LabelCustom labelCustom7;
     private org.edisoncor.gui.label.LabelCustom labelCustom8;
     private org.edisoncor.gui.label.LabelCustom labelCustom9;
+    private org.jdesktop.swingx.JXLabel labelFechaIngreso;
     private org.edisoncor.gui.label.LabelCustom labelListadoEmpleados;
+    private org.jdesktop.swingx.JXLabel labelNumeroCliente;
     private org.edisoncor.gui.label.LabelRound labelRound5;
     private org.edisoncor.gui.label.LabelRound labelRound6;
     private org.edisoncor.gui.label.LabelRound labelRound7;
@@ -1350,8 +1356,6 @@ public class Principal extends javax.swing.JFrame {
     private win8.swin.MetroTableUI metroTableUI2;
     private win8.swin.MetroTableUI metroTableUI3;
     private win8.swin.MetroTableUI metroTableUI4;
-    private org.jdesktop.swingx.JXLabel labelFechaIngreso;
-    private org.jdesktop.swingx.JXLabel labelNumeroCliente;;
     private javax.swing.JCheckBox montoCheckBox;
     private javax.swing.JTextField montoTF;
     private org.edisoncor.gui.panel.PanelRect panelRect1;
