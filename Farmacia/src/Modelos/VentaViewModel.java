@@ -94,13 +94,25 @@ public class VentaViewModel {
    
    public void filtrarFarmaceutico(String farcod){
        String ftrcod = farcod;
-       System.out.println(ftrcod);
        int cant = this.vtas.size();
        int i;
        VentaViewModel aux;
        for(i=cant-1; i>=0; i--){
            aux = (VentaViewModel) vtas.get(i);
            if(!(aux.fcod.equals(ftrcod))){
+               vtas.remove(i);
+           }
+       }
+   }
+   
+   public void feltrarMonto(float mto){
+       float fmto = mto;
+       int cant = this.vtas.size();
+       int i;
+       VentaViewModel aux;
+       for(i=cant-1; i>=0 ; i--){
+           aux = (VentaViewModel) vtas.get(i);
+           if(fmto > aux.monto){
                vtas.remove(i);
            }
        }
