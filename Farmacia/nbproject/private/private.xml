@@ -5,13 +5,11 @@
         <group>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelFacturacion.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelObraSocial.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Conexion/ConexionBD.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/Stock.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Interfaces/Login.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Interfaces/Principal.java</file>
+            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelSeleccionProducto.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/VentaViewModel.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelModificacion.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelFormaPago.java</file>
+            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Interfaces/Principal.java</file>
         </group>
     </open-files>
 </project-private>
