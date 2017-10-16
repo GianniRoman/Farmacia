@@ -172,7 +172,7 @@ public class eliminarObra extends javax.swing.JPanel {
 
     private void buttonElim2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonElim2ActionPerformed
         ObraSocial ob = new ObraSocial();
-       ob.bajaOb(pModif.traerDni(),labelOB2.getText());
+        ob.bajaOb(pModif.traerDni(),labelOB2.getText());
     }//GEN-LAST:event_buttonElim2ActionPerformed
 
     private void buttonElim3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonElim3ActionPerformed
@@ -205,15 +205,15 @@ public class eliminarObra extends javax.swing.JPanel {
         ObraSocial ob = new ObraSocial();
         ObraSocial[] obs = new ObraSocial[cant];
         obs = ob.traerObrasDeUnCliente(pModif.traerDni(),cant);
-        if(cant == 1)
-        {
+            if(cant == 1)
+            {
             labelOB1.setVisible(true);
             labelOB1.setText(obs[cant-1].getNombre());
             labelOB1p.setVisible(true);
             labelOB1p.setText(obs[cant-1].getPlan(0));
-        }else{
-            if(cant == 2)
-            {
+            }else{
+                if(cant == 2)
+                {
                 labelOB1.setVisible(true);
                 labelOB1.setText(obs[cant-1].getNombre());
                 labelOB1p.setVisible(true);
@@ -222,7 +222,7 @@ public class eliminarObra extends javax.swing.JPanel {
                 labelOB2.setText(obs[cant-2].getNombre());
                 labelOB2p.setVisible(true);
                 labelOB2p.setText(obs[cant-2].getPlan(0));
-            }else{
+             }else{
                 labelOB1.setVisible(true);
                 labelOB1.setText(obs[cant-1].getNombre());
                 labelOB1p.setVisible(true);
@@ -235,7 +235,9 @@ public class eliminarObra extends javax.swing.JPanel {
                 labelOB3.setText(obs[cant-3].getNombre());
                 labelOB3p.setVisible(true);
                 labelOB3p.setText(obs[cant-3].getPlan(0));
-            }
+                }
+                }
         }
-    }
+        
+    
 }
