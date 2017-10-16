@@ -1715,7 +1715,8 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void CargarSeleccionProducto() { 
-        panelSeleccionProducto pSeleccion = new panelSeleccionProducto();
+        Venta venta = new Venta();
+        panelSeleccionProducto pSeleccion = new panelSeleccionProducto(venta);
         pSeleccion.setSize(2239, 1309);
         pSeleccion.setLocation(0,0);
         panelRect2.removeAll();

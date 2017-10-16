@@ -2,14 +2,17 @@ package Modelos;
 
 import Conexion.ConexionBD;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Venta {
     float descuento;
     String formaDePago;
+    String tarjetaCredito, nbreTitularCred, direccionCred, cgoPostalCred, cgoSeguridadCred, nroTjtaCred;
+    String tarjetaDebito, dniTitularDeb, nroTarjetaDeb, cgoSeguridadDeb;
     float monto;
-    Medicamento[] medicamentos;
+    ArrayList<Medicamento> medicamentos = new ArrayList<>();
     Farmaceutico farmaceutico;
     Cliente cliente;
     int dia, mes, año;
@@ -38,11 +41,11 @@ public class Venta {
         this.monto = monto;
     }
 
-    public Medicamento[] getMedicamentos() {
+    public ArrayList<Medicamento> getMedicamentos() {
         return medicamentos;
     }
 
-    public void setMedicamentos(Medicamento[] medicamentos) {
+    public void setMedicamentos(ArrayList<Medicamento> medicamentos) {
         this.medicamentos = medicamentos;
     }
 
@@ -84,6 +87,86 @@ public class Venta {
 
     public void setAño(int año) {
         this.año = año;
+    }
+
+    public String getTarjetaCredito() {
+        return tarjetaCredito;
+    }
+
+    public void setTarjetaCredito(String tarjetaCredito) {
+        this.tarjetaCredito = tarjetaCredito;
+    }
+
+    public String getNbreTitularCred() {
+        return nbreTitularCred;
+    }
+
+    public void setNbreTitularCred(String nbreTitularCred) {
+        this.nbreTitularCred = nbreTitularCred;
+    }
+
+    public String getDireccionCred() {
+        return direccionCred;
+    }
+
+    public void setDireccionCred(String direccionCred) {
+        this.direccionCred = direccionCred;
+    }
+
+    public String getCgoPostalCred() {
+        return cgoPostalCred;
+    }
+
+    public void setCgoPostalCred(String cgoPostalCred) {
+        this.cgoPostalCred = cgoPostalCred;
+    }
+
+    public String getCgoSeguridadCred() {
+        return cgoSeguridadCred;
+    }
+
+    public void setCgoSeguridadCred(String cgoSeguridadCred) {
+        this.cgoSeguridadCred = cgoSeguridadCred;
+    }
+
+    public String getNroTjtaCred() {
+        return nroTjtaCred;
+    }
+
+    public void setNroTjtaCred(String nroTjtaCred) {
+        this.nroTjtaCred = nroTjtaCred;
+    }
+
+    public String getTarjetaDebito() {
+        return tarjetaDebito;
+    }
+
+    public void setTarjetaDebito(String tarjetaDebito) {
+        this.tarjetaDebito = tarjetaDebito;
+    }
+
+    public String getDniTitularDeb() {
+        return dniTitularDeb;
+    }
+
+    public void setDniTitularDeb(String dniTitularDeb) {
+        this.dniTitularDeb = dniTitularDeb;
+    }
+
+    public String getNroTarjetaDeb() {
+        return nroTarjetaDeb;
+    }
+
+    public void setNroTarjetaDeb(String nroTarjetaDeb) {
+        this.nroTarjetaDeb = nroTarjetaDeb;
+    }
+
+    public String getCgoSeguridadDeb() {
+        return cgoSeguridadDeb;
+    }
+
+    public void setCgoSeguridadDeb(String cgoSeguridadDeb) {
+        this.cgoSeguridadDeb = cgoSeguridadDeb;
     }
 
     

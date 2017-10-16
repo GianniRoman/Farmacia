@@ -5,6 +5,8 @@
  */
 package Paneles;
 
+import Modelos.Venta;
+
 /**
  *
  * @author glupi
@@ -14,8 +16,11 @@ public class panelFacturacion extends javax.swing.JPanel {
     /**
      * Creates new form panelFacturacion
      */
-    public panelFacturacion() {
+    Venta vta;
+    public panelFacturacion(Venta vta) {
+        this.vta = vta;
         initComponents();
+        
     }
 
     /**
@@ -253,7 +258,7 @@ public class panelFacturacion extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void PasarASeleccionProductos() {
-        panelSeleccionProducto pSeleccion = new panelSeleccionProducto();
+        panelSeleccionProducto pSeleccion = new panelSeleccionProducto(vta);
         pSeleccion.setSize(2239, 1309);
         pSeleccion.setLocation(0,0);
         this.removeAll();
