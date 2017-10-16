@@ -6,12 +6,17 @@
 package Paneles;
 
 import Interfaces.Principal;
+import Modelos.Medicamento;
 import Modelos.MedicamentoViewModel;
+import Modelos.Venta;
+import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import win8.swin.MetroTableUI;
 
@@ -23,8 +28,26 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
 
     DefaultTableModel tablaMedic = new DefaultTableModel();
     DefaultTableModel tablaCompra = new DefaultTableModel();
-    public panelSeleccionProducto() {
+    Venta vta;
+    ArrayList<Medicamento> meds = new ArrayList<>(); 
+    public panelSeleccionProducto(Venta vta) {
         initComponents();
+        this.vta = vta;
+        metroTableUI4.setRowHeight(30);
+        metroTableUI2.setRowHeight(30);
+        tablaMedic.addColumn("Nombre");
+        tablaMedic.addColumn("Marca");
+        tablaMedic.addColumn("Generico");
+        tablaMedic.addColumn("Forma Farmaceutica");
+        tablaMedic.addColumn("Presentacion");
+        tablaMedic.addColumn("Precio");
+        tablaMedic.addColumn("Stock");
+        tablaCompra.addColumn("Producto");
+        tablaCompra.addColumn("Forma Farmaceutica");
+        tablaCompra.addColumn("Presentacion");
+        tablaCompra.addColumn("Precio Unitario");
+        metroTableUI2.setModel(tablaMedic);
+        metroTableUI4.setModel(tablaCompra);
     }
 
     /**
@@ -36,7 +59,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelRound5 = new org.edisoncor.gui.label.LabelRound();
+        selecProdLbl = new org.edisoncor.gui.label.LabelRound();
         labelRound6 = new org.edisoncor.gui.label.LabelRound();
         labelRound7 = new org.edisoncor.gui.label.LabelRound();
         labelRound8 = new org.edisoncor.gui.label.LabelRound();
@@ -44,20 +67,20 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         prodBuscado = new javax.swing.JTextField();
         buscarMedicamento = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        metroTableUI4 = new win8.swin.MetroTableUI();
-        jScrollPane6 = new javax.swing.JScrollPane();
         metroTableUI2 = new win8.swin.MetroTableUI();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        metroTableUI4 = new win8.swin.MetroTableUI();
+        QuitarProducto = new javax.swing.JButton();
+        finalizarCargaProductos = new javax.swing.JButton();
         AgregarProd = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        cancelarVenta = new javax.swing.JButton();
         totalCompra = new javax.swing.JTextField();
         labelCustom9 = new org.edisoncor.gui.label.LabelCustom();
 
         setOpaque(false);
 
-        labelRound5.setBackground(new java.awt.Color(0, 204, 51));
-        labelRound5.setText("1. Seleccionar Productos");
+        selecProdLbl.setBackground(new java.awt.Color(0, 204, 51));
+        selecProdLbl.setText("1. Seleccionar Productos");
 
         labelRound6.setBackground(new java.awt.Color(51, 123, 123));
         labelRound6.setText("2. Forma de Pago");
@@ -91,19 +114,6 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             }
         });
 
-        metroTableUI4.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane7.setViewportView(metroTableUI4);
-
         metroTableUI2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -115,16 +125,34 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(metroTableUI2);
+        jScrollPane7.setViewportView(metroTableUI2);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/QuitarProd 48px.png"))); // NOI18N
-        jButton7.setText("Quitar");
+        metroTableUI4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(metroTableUI4);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CompletarVta 48px.png"))); // NOI18N
-        jButton8.setText("Completar");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        QuitarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/QuitarProd 48px.png"))); // NOI18N
+        QuitarProducto.setText("Quitar");
+        QuitarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                QuitarProductoActionPerformed(evt);
+            }
+        });
+
+        finalizarCargaProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CompletarVta 48px.png"))); // NOI18N
+        finalizarCargaProductos.setText("Completar");
+        finalizarCargaProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarCargaProductosActionPerformed(evt);
             }
         });
 
@@ -137,8 +165,13 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CancelarVta.png"))); // NOI18N
-        jButton6.setText("Cancelar");
+        cancelarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CancelarVta.png"))); // NOI18N
+        cancelarVenta.setText("Cancelar");
+        cancelarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarVentaActionPerformed(evt);
+            }
+        });
 
         totalCompra.setEditable(false);
         totalCompra.setFont(new java.awt.Font("Maiandra GD", 1, 36)); // NOI18N
@@ -165,7 +198,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
                                 .addComponent(labelCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(prodBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelRound5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(selecProdLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
@@ -189,11 +222,11 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
                                 .addComponent(totalCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton6)
+                                .addComponent(cancelarVenta)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton7)
+                                .addComponent(QuitarProducto)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton8)))
+                                .addComponent(finalizarCargaProductos)))
                         .addGap(388, 388, 388))))
         );
         layout.setVerticalGroup(
@@ -202,37 +235,31 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelRound8, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelRound7, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                        .addComponent(labelRound5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelRound6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(labelRound7, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                    .addComponent(selecProdLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelRound6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(prodBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(AgregarProd)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton6)
-                            .addComponent(jButton7)
-                            .addComponent(jButton8)))
+                    .addComponent(AgregarProd)
                     .addComponent(labelCustom9, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(totalCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelarVenta)
+                    .addComponent(QuitarProducto)
+                    .addComponent(finalizarCargaProductos))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void labelRound6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRound6MouseClicked
-
-    }//GEN-LAST:event_labelRound6MouseClicked
 
     private void buscarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMedicamentoActionPerformed
         MedicamentoViewModel aux = new MedicamentoViewModel();
@@ -240,15 +267,38 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         cargarTablaMedicamentos(aux.buscarMedicamento(buscado));
     }//GEN-LAST:event_buscarMedicamentoActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        PasarAFormaDePago();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void finalizarCargaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarCargaProductosActionPerformed
+        if(tablaCompra.getRowCount()>0){
+            DecimalFormat df = new DecimalFormat("0.00");
+            try {
+                vta.setMonto(df.parse(this.totalCompra.getText()).floatValue()); //guardo el monto de la venta
+            } catch (ParseException ex) {
+                Logger.getLogger(panelSeleccionProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int cant = tablaCompra.getRowCount()-1;
+            int i =0;
+            while(i<cant){
+                Medicamento auxm;
+                MedicamentoViewModel aux;
+                aux = (MedicamentoViewModel) metroTableUI4.getValueAt(i, 0);
+                auxm= aux.getMedic();
+                meds.add(auxm); 
+                cant--;
+            }
+            vta.setMedicamentos(meds);//lleno el arreglo de medicamentos de la venta
+            PasarAFormaDePago();
+        }
+        else{
+            selecProdLbl.setBackground(Color.red);
+            JOptionPane.showMessageDialog(null, "Debe ingresar productos a la venta antes de continuar", "Ningun elemento seleccionado", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_finalizarCargaProductosActionPerformed
 
     private void AgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProdActionPerformed
-        MedicamentoViewModel med =(MedicamentoViewModel) metroTableUI4.getValueAt(metroTableUI4.getSelectedRow(),0);
-        med.setExistencias(med.getExistencias() -1);
-        metroTableUI4.setValueAt(med.getExistencias(), metroTableUI4.getSelectedRow(), 6);
-        metroTableUI4.updateUI();
+        MedicamentoViewModel med =(MedicamentoViewModel) metroTableUI2.getValueAt(metroTableUI2.getSelectedRow(),0);
+        med.actualizarExistencias(med.getExistencias() -1,med.getMcod());
+        metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);
+        metroTableUI2.updateUI();
         DecimalFormat df = new DecimalFormat("0.00");
         float total = 0;
         try {
@@ -264,11 +314,44 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         fila[2] = med.getmPresentacion();
         fila[3] = med.getMprecio();
         tablaCompra.addRow(fila);
-        metroTableUI2.updateUI();
+        metroTableUI4.updateUI();
     }//GEN-LAST:event_AgregarProdActionPerformed
 
+    private void labelRound6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRound6MouseClicked
+
+    }//GEN-LAST:event_labelRound6MouseClicked
+
+    private void QuitarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarProductoActionPerformed
+       int i = metroTableUI4.getSelectedRow();
+       MedicamentoViewModel med = (MedicamentoViewModel) metroTableUI4.getValueAt(i, 0);
+       med.actualizarExistencias(med.getExistencias()+1,med.getMcod());
+       float total=0;
+       DecimalFormat df = new DecimalFormat();
+       try {
+            total= (float) df.parse(totalCompra.getText()).floatValue() - med.getMprecio();
+        } catch (ParseException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       totalCompra.setText(df.format(total));
+       tablaCompra.removeRow(i);
+       metroTableUI4.updateUI();
+    }//GEN-LAST:event_QuitarProductoActionPerformed
+
+    private void cancelarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarVentaActionPerformed
+        int cantFilas = tablaCompra.getRowCount()-1;
+        while(cantFilas >=0){
+            MedicamentoViewModel med = (MedicamentoViewModel) metroTableUI4.getValueAt(cantFilas, 0);
+            med.actualizarExistencias(med.getExistencias()+1,med.getMcod());
+            tablaCompra.removeRow(cantFilas);
+            cantFilas--;
+        }
+        metroTableUI4.updateUI();
+        resetTable(metroTableUI2);
+        totalCompra.setText("0");
+    }//GEN-LAST:event_cancelarVentaActionPerformed
+
      public void cargarTablaMedicamentos (ArrayList medicamentos){
-        resetTable(metroTableUI4);
+        resetTable(metroTableUI2);
         int cant = medicamentos.size();
         int i;
         for(i=0; i<cant; i++){
@@ -284,7 +367,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             fila[6] = aux.getExistencias();
             tablaMedic.addRow(fila);
         }
-        metroTableUI4.updateUI();
+        metroTableUI2.updateUI();
     }
     
     public void resetTable(MetroTableUI mt){
@@ -297,26 +380,26 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarProd;
+    private javax.swing.JButton QuitarProducto;
     private javax.swing.JButton buscarMedicamento;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton cancelarVenta;
+    private javax.swing.JButton finalizarCargaProductos;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private org.edisoncor.gui.label.LabelCustom labelCustom2;
     private org.edisoncor.gui.label.LabelCustom labelCustom9;
-    private org.edisoncor.gui.label.LabelRound labelRound5;
     private org.edisoncor.gui.label.LabelRound labelRound6;
     private org.edisoncor.gui.label.LabelRound labelRound7;
     private org.edisoncor.gui.label.LabelRound labelRound8;
     private win8.swin.MetroTableUI metroTableUI2;
     private win8.swin.MetroTableUI metroTableUI4;
     private javax.swing.JTextField prodBuscado;
+    private org.edisoncor.gui.label.LabelRound selecProdLbl;
     private javax.swing.JTextField totalCompra;
     // End of variables declaration//GEN-END:variables
 
     private void PasarAFormaDePago() {
-        panelFormaPago pFormaPago = new panelFormaPago();
+        panelFormaPago pFormaPago = new panelFormaPago(vta);
         pFormaPago.setSize(2239, 1309);
         pFormaPago.setLocation(0,0);
         this.removeAll();

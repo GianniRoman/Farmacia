@@ -5,6 +5,8 @@
  */
 package Paneles;
 
+import Modelos.Venta;
+
 /**
  *
  * @author glupi
@@ -14,7 +16,9 @@ public class panelObraSocial extends javax.swing.JPanel {
     /**
      * Creates new form panelObraSocial
      */
-    public panelObraSocial() {
+    Venta vta;
+    public panelObraSocial(Venta vta) {
+        this.vta= vta;
         initComponents();
     }
 
@@ -426,7 +430,7 @@ public class panelObraSocial extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void PasarAFacturacion() {
-        panelFacturacion pFacturacion = new panelFacturacion();
+        panelFacturacion pFacturacion = new panelFacturacion(vta);
         pFacturacion.setSize(2239, 1309);
         pFacturacion.setLocation(0,0);
         this.removeAll();
