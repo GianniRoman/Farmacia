@@ -32,17 +32,67 @@ public class ConexionBD {
         }    
     }
     
-    public static ConexionBD getInstance(){
-        
+    public static ConexionBD getInstance(){    
         if(db == null)
-        {
             db = new ConexionBD();
-            System.out.println("No habia conexion todavia, ella fue creada");
-            return db;
-        }else{
-            System.out.println("Ya hay una instancia de conexion a la base");
-        }
         return db;
+    }
+    
+    public int Insert(String tabla, String valor)
+    {
+        int exito = 0;
+        try{
+             db.conexion.createStatement();
+             exito = db.s.executeUpdate(("insert into "+tabla+" values ("+valor+")"));
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        return exito;
+    }
+    
+    public ResultSet Select(String atributos, String from, String where)
+    {
+        try{
+             db.conexion.createStatement();
+             if("".equals(where))
+             {
+                 db.setRs(db.s.executeQuery("Select "+atributos+" from "+from));
+                 
+             }else{
+                 db.setRs(db.s.executeQuery("Select "+atributos+" from "+from+" where "+where));
+             }
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        
+        return this.rs;
+    }
+    
+    public int Update(String from, String columValue, String where)
+    {
+        try{
+            db.conexion.createStatement();
+            db.s.executeUpdate("Update "+from+" set "+columValue+"where "+where);
+        }catch(SQLException ex)
+        {
+            System.out.println("Update :"+ex);
+        }
+        return 0;
+    }
+    
+    public int Delete(String from, String where)
+    {
+        int exito = 0;
+        try{
+             db.conexion.createStatement();
+             exito = db.s.executeUpdate(("Delete from "+from+" where "+where));             
+        }catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        return exito;
     }
     
     public Connection getConexion() {

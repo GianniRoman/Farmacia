@@ -1,7 +1,6 @@
 package Modelos;
 
 import Conexion.ConexionBD;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Usuario {
@@ -29,37 +28,29 @@ public class Usuario {
         this.contraseña = contraseña;
     }
     
-    /*
-    public static int IniciarSesion(String cargo, String pw) {
+    
+    public int IniciarSesion(String nombre, String pw) {
         
-        if("Gerente".equals(cargo))
-        {
-            //ConexionBD bd = ConexionBD.getConexion();
-            //ConexionBD bd = new ConexionBD();
-            
-            try{
-                //bd.setRs(bd.getS().executeQuery("SELECT * FROM Usuario Where nombre = '"+cargo+"';"));
-                if(true)
+        ConexionBD bd = ConexionBD.getInstance();          
+        bd.Select("*","Usuario","nombre = '"+nombre+"'");
+        try{
+                while(bd.getRs().next())
                 {
-                     //String nombre = bd.getRs().getString("nombre"); 
-                     //String contra = bd.getRs().getString("contraseña");
-                     if(nombre.equals(cargo) && contra.equals(pw))
-                         return 1;
-                     
-                }else{
-                    return 0;
-                }
-                
+                     String nbre = bd.getRs().getString("nombre"); 
+                     String contra = bd.getRs().getString("contraseña");
+                     if(nbre.equals(nombre) && contra.equals(pw)){
+                            return 1;    
+                     }else{
+                            return 0;
+                          }
+                }               
             }catch(SQLException ex) {
-            System.out.println(ex);
-        } 
-            
-        }else{
-            return 1;
-        }
+                System.out.println(ex);
+            }     
+        
         return 0;
     }
-*/
+
     
     
     
