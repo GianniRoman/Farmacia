@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Interfaces.Principal;
 
 /**
  *
@@ -22,6 +21,30 @@ public class VentaViewModel {
    Medicamento med;
    String fnbre, fapll, lote, mnbre, vcod, fcod;
    float monto, mprecio;
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getAño() {
+        return año;
+    }
+
+    public void setAño(int año) {
+        this.año = año;
+    }
    
    ArrayList<VentaViewModel> vtas = new ArrayList<>();
    ConexionBD bd = ConexionBD.getInstance();
@@ -159,6 +182,27 @@ public class VentaViewModel {
         }
         return frm;
    }
+   
+   public ArrayList TraerValoresDeHistorialDeVentas(String numeroCliente) {
+       ArrayList <VentaViewModel> aux = new ArrayList<>();
+       bd.Select("vcod,vtotal,dia,mes,año","venta","ccod ='"+numeroCliente+"'");
+        try {
+            while(bd.getRs().next())
+            {
+               VentaViewModel auxvm = new VentaViewModel();
+               auxvm.vcod = bd.getRs().getString("vcod");
+               auxvm.monto = bd.getRs().getFloat("vtotal");
+               auxvm.dia = bd.getRs().getInt("dia");
+               auxvm.mes = bd.getRs().getInt("mes");
+               auxvm.año = bd.getRs().getInt("año");
+               aux.add(auxvm);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return aux;
+    }
 
     public int getVcant() {
         return vcant;
@@ -199,7 +243,7 @@ public class VentaViewModel {
     
     @Override
     public String toString() {
-        return "VentaViewModel{" + "vcod=" + vcod + ", lote=" + lote + '}';
+        return monto+"";
     }
    
    
