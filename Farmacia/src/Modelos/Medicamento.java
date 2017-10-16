@@ -8,8 +8,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Medicamento {
+    String codigo;
     String marca;
     String nombre;
+    String frmaFarmaceutica;
     float precio;
     String presentacion;
     Date vencimiento;
@@ -26,6 +28,14 @@ public class Medicamento {
 
     public void setPresentacion(String presentacion) {
         this.presentacion = presentacion;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Medicamento() {
@@ -53,6 +63,14 @@ public class Medicamento {
 
     public void setPrecio(float precio) {
         this.precio = precio;
+    }
+
+    public String getFrmaFarmaceutica() {
+        return frmaFarmaceutica;
+    }
+
+    public void setFrmaFarmaceutica(String frmaFarmaceutica) {
+        this.frmaFarmaceutica = frmaFarmaceutica;
     }
 
     

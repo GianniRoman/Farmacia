@@ -16,10 +16,11 @@ import java.util.logging.Logger;
  * @author glupi
  */
 public class MedicamentoViewModel {
-    String lote, mNbre, mMarca, mLab, mGenerico, mFormFarmac, mPresentacion;
-    int mcod, existencias;
+    String lote, mNbre, mMarca, mLab, mGenerico, mFormFarmac, mPresentacion, mcod;
+    int existencias;
     float mprecio;
     boolean mBajoReceta;
+    Medicamento medic = new Medicamento();
     ArrayList <MedicamentoViewModel> med = new ArrayList<>();
     ConexionBD bd = ConexionBD.getInstance();
     
@@ -30,6 +31,7 @@ public class MedicamentoViewModel {
         try{
             while(bd.getRs().next() && cont<5){
                 MedicamentoViewModel aux = new MedicamentoViewModel();
+                aux.mcod = bd.getRs().getString("mcod");
                 aux.mNbre = bd.getRs().getString("mnbre");
                 aux.mGenerico = bd.getRs().getString("mgen");
                 aux.mprecio = bd.getRs().getFloat("mprecio");
@@ -37,6 +39,13 @@ public class MedicamentoViewModel {
                 aux.mFormFarmac = bd.getRs().getString("mfmafarmc");
                 aux.mPresentacion = bd.getRs().getString("mpres");
                 aux.existencias = bd.getRs().getInt("cant");
+                aux.medic.setNombre(mNbre);
+                aux.medic.setPrecio(mprecio);
+                aux.medic.setMarca(mMarca);
+                aux.medic.setPrecio(mprecio);
+                aux.medic.setPresentacion(mPresentacion);
+                aux.medic.setFrmaFarmaceutica(mFormFarmac);
+                aux.medic.setCodigo(mcod);
                 this.med.add(aux);
                 cont ++;
             }
@@ -44,6 +53,10 @@ public class MedicamentoViewModel {
             Logger.getLogger(MedicamentoViewModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return med;
+    }
+
+    public Medicamento getMedic() {
+        return medic;
     }
 
     public String getmNbre() {
@@ -74,8 +87,17 @@ public class MedicamentoViewModel {
         return existencias;
     }
 
+    public String getMcod() {
+        return mcod;
+    }
+
     public void setExistencias(int existencias) {
         this.existencias = existencias;
+    }
+    
+    public void actualizarExistencias(int existencias, String mcod) {
+        this.existencias = existencias;
+        bd.Update("stock","cant = '"+existencias+"'" , "mcod = '"+mcod+"'");
     }
     
     
