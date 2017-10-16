@@ -953,6 +953,8 @@ public class Principal extends javax.swing.JFrame {
 
         prodBuscado.getAccessibleContext().setAccessibleName("");
 
+        jPanel8.setOpaque(false);
+
         labelRound5.setBackground(new java.awt.Color(0, 204, 51));
         labelRound5.setText("1. Seleccionar Productos");
 
