@@ -11,6 +11,15 @@ public class ObraSocial {
     String[] plan;
     Cliente[] clientes;
     Receta[] recetas;
+    int obcod;
+
+    public int getObcod() {
+        return obcod;
+    }
+
+    public void setObcod(int obcod) {
+        this.obcod = obcod;
+    }
 
     ObraSocial(String ob) {
        this.nombre = ob;
@@ -239,6 +248,7 @@ public class ObraSocial {
               String[] plan = new String[1]; 
               plan[0] = db.getRs().getString("plan");
               ObraSocial ob1 = new ObraSocial(db.getRs().getString("nombre"),plan);
+              ob1.setObcod(db.getRs().getInt("oscod"));
               obs[i-1] = ob1;
               i--;
            }

@@ -46,12 +46,12 @@ public class Login extends javax.swing.JFrame {
         FechaInicio = new javax.swing.JLabel();
         Hora = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        nombreUsuario = new javax.swing.JComboBox<>();
         labelContraseña = new javax.swing.JLabel();
         panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         campoContraseña = new org.edisoncor.gui.passwordField.PasswordFieldRectIcon();
         jButton1 = new javax.swing.JButton();
         labelContraseñaIncorrecta = new javax.swing.JLabel();
+        nombreUsuario = new org.edisoncor.gui.comboBox.ComboBoxRect();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,11 +79,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         jLabel3.setText("Nombre de usuario :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 230, 30));
-
-        nombreUsuario.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        nombreUsuario.setForeground(new java.awt.Color(51, 51, 51));
-        nombreUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
-        jPanel1.add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 160, -1));
 
         labelContraseña.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
         labelContraseña.setText("Contraseña  :");
@@ -117,6 +112,7 @@ public class Login extends javax.swing.JFrame {
         labelContraseñaIncorrecta.setFont(new java.awt.Font("Yu Gothic UI", 0, 23)); // NOI18N
         labelContraseñaIncorrecta.setText("Contraseña incorrecta, vuelva a intentarlo. ");
         jPanel1.add(labelContraseñaIncorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 440, 40));
+        jPanel1.add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 160, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,7 +135,8 @@ public class Login extends javax.swing.JFrame {
                 db.setRs(db.getS().executeQuery("select * FROM usuario"));
                 while(db.getRs().next())
                 {
-                    nombreUsuario.addItem(db.getRs().getString("nombre"));    
+                    Usuario user = new Usuario(db.getRs().getString("nombre"),db.getRs().getString("contraseña"),db.getRs().getString("cargo"),db.getRs().getString("fcod"));
+                    nombreUsuario.addItem(user);    
                 }
             }catch(SQLException ex){
                 System.out.println(ex);
@@ -147,10 +144,10 @@ public class Login extends javax.swing.JFrame {
     }
     
     private void ClickBotonIniciarSesion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClickBotonIniciarSesion
-        Object e = nombreUsuario.getSelectedItem();
-        String nombre = String.valueOf(e);
+        Usuario e = (Usuario) nombreUsuario.getSelectedItem();
+        String nombre = e.getNombre();
         String pw = campoContraseña.getText();
-        Usuario user = new Usuario(nombre,pw);
+        Usuario user = new Usuario(nombre,pw,e.getCargo(),e.getFcod());
         int verif = user.IniciarSesion(nombre, pw);
         if(verif == 0)
         {
@@ -181,7 +178,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelContraseña;
     private javax.swing.JLabel labelContraseñaIncorrecta;
-    private javax.swing.JComboBox<String> nombreUsuario;
+    private org.edisoncor.gui.comboBox.ComboBoxRect nombreUsuario;
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     // End of variables declaration//GEN-END:variables
 }
