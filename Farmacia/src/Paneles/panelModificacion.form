@@ -190,6 +190,7 @@
         <Property name="descripcion" type="java.lang.String" value="Busqueda por Nombre , Apellido"/>
       </Properties>
       <Events>
+        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="textBusquedaInputMethodTextChanged"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textBusquedaKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textBusquedaKeyReleased"/>
       </Events>

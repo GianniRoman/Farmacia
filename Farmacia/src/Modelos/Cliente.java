@@ -157,6 +157,23 @@ public class Cliente extends Persona{
 
     }
     
+    public Cliente BuscarPorDni(String dni) {
+       ConexionBD db = ConexionBD.getInstance();
+       Cliente buscado = null;
+           db.Select("*","cliente","cdni ='"+dni+"'");
+           try{
+               if(db.getRs().next()){
+               String nombre = db.getRs().getString("cnbre");
+               String apellido = db.getRs().getString("capll");
+               buscado = new Cliente(nombre,apellido,db.getRs().getString("cdni"));
+               }
+               }catch(SQLException ex){
+                 System.out.println(ex);
+               }   
+        return buscado;
+
+    }
+    
     public int Baja(Cliente baja)
     {
         int exito = 0;

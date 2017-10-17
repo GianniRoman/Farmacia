@@ -233,6 +233,11 @@ public class panelAlta extends javax.swing.JPanel {
 
         ComboOB1.setColorDeBorde(new java.awt.Color(0, 153, 0));
         ComboOB1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        ComboOB1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboOB1ItemStateChanged(evt);
+            }
+        });
         ComboOB1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ComboOB1FocusLost(evt);
@@ -244,6 +249,11 @@ public class panelAlta extends javax.swing.JPanel {
         comboPlanOB2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
 
         comboOB2.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        comboOB2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboOB2ItemStateChanged(evt);
+            }
+        });
         comboOB2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 comboOB2FocusLost(evt);
@@ -256,6 +266,11 @@ public class panelAlta extends javax.swing.JPanel {
         });
 
         comboOB3.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        comboOB3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboOB3ItemStateChanged(evt);
+            }
+        });
         comboOB3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 comboOB3FocusLost(evt);
@@ -485,41 +500,11 @@ public class panelAlta extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonRound1ActionPerformed
 
     private void comboOB2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboOB2FocusLost
-         comboPlanOB2.removeAllItems();
-         Object ob1 = comboOB2.getSelectedItem();
-         String nombreOb1 = String.valueOf(ob1);
-         ObraSocial ob = new ObraSocial();
-         ob.Cargar(0);
-         ob = ob.CargarPlanes(nombreOb1);
-         int i = 0;
-         String[] planes;
-         planes = ob.getPlan();
-         int tam = ob.getPlan().length;
-         while(tam > 0)
-         {
-            comboPlanOB2.addItem(ob.getPlan()[i]);
-            tam--;
-            i++;
-         }
+         
     }//GEN-LAST:event_comboOB2FocusLost
 
     private void comboOB3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboOB3FocusLost
-         comboPlanOB3.removeAllItems();
-         Object ob1 = comboOB3.getSelectedItem();
-         String nombreOb1 = String.valueOf(ob1);
-         ObraSocial ob = new ObraSocial();
-         ob.Cargar(0);
-         ob = ob.CargarPlanes(nombreOb1);
-         int i = 0;
-         String[] planes;
-         planes = ob.getPlan();
-         int tam = ob.getPlan().length;
-         while(tam > 0)
-         {
-            comboPlanOB3.addItem(ob.getPlan()[i]);
-            tam--;
-            i++;
-         }
+         
     }//GEN-LAST:event_comboOB3FocusLost
 
     private void comboOB2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboOB2MouseClicked
@@ -560,6 +545,24 @@ public class panelAlta extends javax.swing.JPanel {
     }//GEN-LAST:event_checkOB1ItemStateChanged
 
     private void ComboOB1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboOB1FocusLost
+        
+    }//GEN-LAST:event_ComboOB1FocusLost
+
+    private void checkOB2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkOB2ItemStateChanged
+        if(ob2 = checkOB2.isSelected()){
+            comboOB2.setEnabled(true);
+            comboPlanOB2.setEnabled(true);
+        }else{
+            comboOB2.setEnabled(false);
+            comboPlanOB2.setEnabled(false);
+        }
+    }//GEN-LAST:event_checkOB2ItemStateChanged
+
+    private void checkOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOB1ActionPerformed
+        
+    }//GEN-LAST:event_checkOB1ActionPerformed
+
+    private void ComboOB1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboOB1ItemStateChanged
         comboPlanOB1.removeAllItems();
         Object ob1 = ComboOB1.getSelectedItem();
         String nombreOb1 = String.valueOf(ob1);
@@ -576,21 +579,45 @@ public class panelAlta extends javax.swing.JPanel {
             tam--;
             i++;
         }
-    }//GEN-LAST:event_ComboOB1FocusLost
+    }//GEN-LAST:event_ComboOB1ItemStateChanged
 
-    private void checkOB2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_checkOB2ItemStateChanged
-        if(ob2 = checkOB2.isSelected()){
-            comboOB2.setEnabled(true);
-            comboPlanOB2.setEnabled(true);
-        }else{
-            comboOB2.setEnabled(false);
-            comboPlanOB2.setEnabled(false);
-        }
-    }//GEN-LAST:event_checkOB2ItemStateChanged
+    private void comboOB2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboOB2ItemStateChanged
+        comboPlanOB2.removeAllItems();
+         Object ob1 = comboOB2.getSelectedItem();
+         String nombreOb1 = String.valueOf(ob1);
+         ObraSocial ob = new ObraSocial();
+         ob.Cargar(0);
+         ob = ob.CargarPlanes(nombreOb1);
+         int i = 0;
+         String[] planes;
+         planes = ob.getPlan();
+         int tam = ob.getPlan().length;
+         while(tam > 0)
+         {
+            comboPlanOB2.addItem(ob.getPlan()[i]);
+            tam--;
+            i++;
+         }
+    }//GEN-LAST:event_comboOB2ItemStateChanged
 
-    private void checkOB1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOB1ActionPerformed
-        
-    }//GEN-LAST:event_checkOB1ActionPerformed
+    private void comboOB3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboOB3ItemStateChanged
+        comboPlanOB3.removeAllItems();
+         Object ob1 = comboOB3.getSelectedItem();
+         String nombreOb1 = String.valueOf(ob1);
+         ObraSocial ob = new ObraSocial();
+         ob.Cargar(0);
+         ob = ob.CargarPlanes(nombreOb1);
+         int i = 0;
+         String[] planes;
+         planes = ob.getPlan();
+         int tam = ob.getPlan().length;
+         while(tam > 0)
+         {
+            comboPlanOB3.addItem(ob.getPlan()[i]);
+            tam--;
+            i++;
+         }
+    }//GEN-LAST:event_comboOB3ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
