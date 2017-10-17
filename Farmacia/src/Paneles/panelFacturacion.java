@@ -28,7 +28,7 @@ public class panelFacturacion extends javax.swing.JPanel {
         tf.addColumn("Medicamento");
         tf.addColumn("Forma farmaceutica");
         tf.addColumn("Presentacion");
-        tf.addColumn("Vencimiento");
+        tf.addColumn("Precio unitario");
         
         tablaFacturacion.setModel(tf);
         tablaFacturacion.setRowHeight(30);
@@ -251,6 +251,7 @@ public class panelFacturacion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cerrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarVentaActionPerformed
+        vta.registrarVenta();
         PasarASeleccionProductos();
     }//GEN-LAST:event_cerrarVentaActionPerformed
 
@@ -312,7 +313,7 @@ public class panelFacturacion extends javax.swing.JPanel {
             fila[0] = aux.getNombre();
             fila[1] = aux.getFrmaFarmaceutica();
             fila[2] = aux.getPresentacion();
-            fila[3] = aux.getVencimiento();
+            fila[3] = aux.getPrecio();
             tf.addRow(fila);
             i++;
             cant--;

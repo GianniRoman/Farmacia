@@ -6,12 +6,20 @@ import java.sql.SQLException;
 public class Usuario {
     String nombre;
     String contraseña;
+    String cargo;
+    String fcod;
 
-    public Usuario(String nombre, String contraseña) {
+    public Usuario(String nombre, String contraseña,String cargo, String fcod) {
         this.nombre = nombre;
         this.contraseña = contraseña;
+        this.cargo = cargo;
+        this.fcod = fcod;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -26,6 +34,19 @@ public class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    public Usuario(String fcod) {
+        this.fcod = fcod;
+    }
+
+    public String getFcod() {
+        return fcod;
     }
     
     

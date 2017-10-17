@@ -25,7 +25,7 @@ public class panelObraSocial extends javax.swing.JPanel {
         ob = false;
         labelNoSeEncuentra.setVisible(false);
         textPlanOB.setVisible(false);
-        //buttonAgregarOb.setEnabled(false);
+        buttonAgregarOb.setEnabled(false);
     }
 
     /**
@@ -431,7 +431,17 @@ public class panelObraSocial extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(!"".equals(textFieldNmbre.getText()))
         {
+            ObraSocial o = new ObraSocial();
             vta.setCliente(cABuscar);
+            Object ob1 = comboOB.getSelectedItem();
+            String nombreOb1 = String.valueOf(ob1);
+            int oscod = o.ObtenerCcod(nombreOb1);
+            if(!"".equals(nombreOb1)){
+                vta.setOscod(oscod); 
+                
+            }
+               
+                      
             PasarAFacturacion();
         }else{
             //cartel
@@ -461,7 +471,6 @@ public class panelObraSocial extends javax.swing.JPanel {
             int cant = ob.ObtenerCantobDeUnCliente(cABuscar.getDni());
             obs = ob.traerObrasDeUnCliente(cABuscar.getDni(), cant);
             textPlanOB.setVisible(false);
-            System.out.println(cant +"obras sociales");
             if(cant != 0)
             {    
                 if(cant == 1)

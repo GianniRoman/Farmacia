@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -263,7 +264,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
 
     private void buscarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMedicamentoActionPerformed
         MedicamentoViewModel aux = new MedicamentoViewModel();
-        String buscado = prodBuscado.getText();
+        String buscado = prodBuscado.getText().toUpperCase();
         cargarTablaMedicamentos(aux.buscarMedicamento(buscado));
     }//GEN-LAST:event_buscarMedicamentoActionPerformed
 
@@ -280,13 +281,25 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             while(i<cant){
                 Medicamento auxm = new Medicamento();
                 MedicamentoViewModel aux = new MedicamentoViewModel();
-                auxm = (Medicamento) metroTableUI4.getValueAt(i, 0);
-                //auxm= aux.getMedic();
-                System.out.println("nombre med  "+aux.getMedic().getNombre());
+                aux = (MedicamentoViewModel) metroTableUI4.getValueAt(i, 0);
+                System.out.println("nombre med  "+aux.getmNbre());
+                auxm.setCodigo(aux.getMcod());
+                auxm.setNombre(aux.getmNbre());
+                auxm.setMarca(aux.getmMarca());
+                auxm.setFrmaFarmaceutica(aux.getmFormFarmac());
+                auxm.setPresentacion(aux.getmPresentacion());
+                auxm.setPrecio(aux.getMprecio());
+                
                 meds.add(auxm); 
-                cant--;
+                i++;
             }
             vta.setMedicamentos(meds);//lleno el arreglo de medicamentos de la venta
+            Date fecha = new Date();
+            
+            vta.setDia(fecha.getDate());
+            vta.setMes(fecha.getMonth()+1);
+            vta.setAño(fecha.getYear()+1900);
+            System.out.println(vta.getDia()+"/"+vta.getMes()+"/"+vta.getAño());
             PasarAFormaDePago();
         }
         else{
