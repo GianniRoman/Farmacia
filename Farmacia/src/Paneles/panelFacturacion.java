@@ -5,7 +5,10 @@
  */
 package Paneles;
 
+import Modelos.Medicamento;
 import Modelos.Venta;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,13 +16,26 @@ import Modelos.Venta;
  */
 public class panelFacturacion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form panelFacturacion
-     */
+    DefaultTableModel tf = new DefaultTableModel();
     Venta vta;
     public panelFacturacion(Venta vta) {
         this.vta = vta;
         initComponents();
+       
+        textDescuento.setEnabled(false);
+        textSubtotal.setEnabled(false);
+        textTotal.setEnabled(false);
+        tf.addColumn("Medicamento");
+        tf.addColumn("Forma farmaceutica");
+        tf.addColumn("Presentacion");
+        tf.addColumn("Vencimiento");
+        
+        tablaFacturacion.setModel(tf);
+        tablaFacturacion.setRowHeight(30);
+        CargarTablaFacturacion(vta);
+        textSubtotal.setText(""+vta.getMonto());
+        textDescuento.setText(""+CalcularDescuento());
+        textTotal.setText(""+CalcularTotal());
         
     }
 
@@ -38,15 +54,15 @@ public class panelFacturacion extends javax.swing.JPanel {
         labelRound7 = new org.edisoncor.gui.label.LabelRound();
         labelRound8 = new org.edisoncor.gui.label.LabelRound();
         jScrollPane1 = new javax.swing.JScrollPane();
-        metroTableUI1 = new win8.swin.MetroTableUI();
+        tablaFacturacion = new win8.swin.MetroTableUI();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        textSubtotal = new javax.swing.JTextField();
         labelCustom1 = new org.edisoncor.gui.label.LabelCustom();
         jPanel2 = new javax.swing.JPanel();
         labelCustom2 = new org.edisoncor.gui.label.LabelCustom();
-        jTextField2 = new javax.swing.JTextField();
+        textDescuento = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        textTotal = new javax.swing.JTextField();
         labelCustom3 = new org.edisoncor.gui.label.LabelCustom();
         jPanel4 = new javax.swing.JPanel();
         cerrarVenta = new javax.swing.JButton();
@@ -89,7 +105,7 @@ public class panelFacturacion extends javax.swing.JPanel {
             .addComponent(labelRound5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        metroTableUI1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaFacturacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -100,11 +116,12 @@ public class panelFacturacion extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(metroTableUI1);
+        jScrollPane1.setViewportView(tablaFacturacion);
 
         jPanel1.setOpaque(false);
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
+        textSubtotal.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        textSubtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
 
         labelCustom1.setBackground(new java.awt.Color(0, 204, 0));
         labelCustom1.setText("Subtotal");
@@ -117,11 +134,11 @@ public class panelFacturacion extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(labelCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(textSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+            .addComponent(textSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
             .addComponent(labelCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -130,7 +147,8 @@ public class panelFacturacion extends javax.swing.JPanel {
         labelCustom2.setBackground(new java.awt.Color(0, 204, 0));
         labelCustom2.setText("Descuento");
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
+        textDescuento.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        textDescuento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -140,17 +158,18 @@ public class panelFacturacion extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(textDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+            .addComponent(textDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
         );
 
         jPanel3.setOpaque(false);
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
+        textTotal.setFont(new java.awt.Font("Yu Gothic UI", 0, 24)); // NOI18N
+        textTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
 
         labelCustom3.setBackground(new java.awt.Color(0, 204, 0));
         labelCustom3.setText("Total");
@@ -163,11 +182,11 @@ public class panelFacturacion extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(labelCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+            .addComponent(textTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
             .addComponent(labelCustom3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -244,9 +263,6 @@ public class panelFacturacion extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private org.edisoncor.gui.label.LabelCustom labelCustom1;
     private org.edisoncor.gui.label.LabelCustom labelCustom2;
     private org.edisoncor.gui.label.LabelCustom labelCustom3;
@@ -254,7 +270,10 @@ public class panelFacturacion extends javax.swing.JPanel {
     private org.edisoncor.gui.label.LabelRound labelRound6;
     private org.edisoncor.gui.label.LabelRound labelRound7;
     private org.edisoncor.gui.label.LabelRound labelRound8;
-    private win8.swin.MetroTableUI metroTableUI1;
+    private win8.swin.MetroTableUI tablaFacturacion;
+    private javax.swing.JTextField textDescuento;
+    private javax.swing.JTextField textSubtotal;
+    private javax.swing.JTextField textTotal;
     // End of variables declaration//GEN-END:variables
 
     private void PasarASeleccionProductos() {
@@ -265,5 +284,39 @@ public class panelFacturacion extends javax.swing.JPanel {
         this.add(pSeleccion);
         this.revalidate();
         this.repaint();
+    }
+
+    private float CalcularDescuento() {
+        float subtotal = vta.getMonto();
+        float descuento = vta.getDescuento(); // porcentaje
+        float total = subtotal / descuento;
+        return total;
+    }
+
+    private float CalcularTotal() {
+        float descuento = CalcularDescuento();
+        float subtotal = vta.getMonto();
+        return subtotal - descuento;
+    }
+
+    private void CargarTablaFacturacion(Venta venta) {
+       ArrayList<Medicamento> meds = venta.getMedicamentos();
+       int cant = meds.size();
+       int i=0;
+       while(cant>0)
+       {
+            Medicamento aux = new Medicamento();
+            Object[] fila = new Object[4];
+            aux = (Medicamento) meds.get(i);
+            System.out.println(aux.getNombre()+" "+aux.getFrmaFarmaceutica());
+            fila[0] = aux.getNombre();
+            fila[1] = aux.getFrmaFarmaceutica();
+            fila[2] = aux.getPresentacion();
+            fila[3] = aux.getVencimiento();
+            tf.addRow(fila);
+            i++;
+            cant--;
+       }
+       tablaFacturacion.updateUI();
     }
 }

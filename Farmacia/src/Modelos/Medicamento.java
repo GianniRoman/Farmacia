@@ -38,8 +38,6 @@ public class Medicamento {
         this.codigo = codigo;
     }
 
-    public Medicamento() {
-    }
 
     public String getMarca() {
         return marca;

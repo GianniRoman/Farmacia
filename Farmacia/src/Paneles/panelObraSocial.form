@@ -23,10 +23,10 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel8" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanel1" max="32767" attributes="0"/>
                               <Component id="jPanel2" max="32767" attributes="0"/>
                               <Component id="jPanel3" max="32767" attributes="0"/>
@@ -35,13 +35,18 @@
                               <Component id="jPanel6" max="32767" attributes="0"/>
                               <Component id="jPanel7" max="32767" attributes="0"/>
                               <Component id="jPanel9" max="32767" attributes="0"/>
-                              <Component id="jPanel10" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="labelNoSeEncuentra" alignment="0" min="-2" pref="476" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,7 +63,7 @@
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
@@ -66,11 +71,13 @@
               <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Component id="labelNoSeEncuentra" min="-2" pref="57" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="323" max="32767" attributes="0"/>
+              <EmptySpace pref="284" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -176,7 +183,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="labelCustom2" min="-2" pref="235" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="226" max="-2" attributes="0"/>
+                  <Component id="textFieldDni" min="-2" pref="226" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="labelCustom5" max="32767" attributes="0"/>
               </Group>
@@ -184,7 +191,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jTextField1" alignment="0" pref="32" max="32767" attributes="0"/>
+              <Component id="textFieldDni" alignment="0" pref="32" max="32767" attributes="0"/>
               <Component id="labelCustom2" alignment="0" max="32767" attributes="0"/>
               <Component id="labelCustom5" alignment="1" max="32767" attributes="0"/>
           </Group>
@@ -199,7 +206,7 @@
             <Property name="text" type="java.lang.String" value="DNI"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="textFieldDni">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -210,7 +217,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="textFieldDniKeyReleased"/>
           </Events>
         </Component>
         <Component class="org.edisoncor.gui.label.LabelCustom" name="labelCustom5">
@@ -232,9 +239,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="labelCustom3" min="-2" pref="235" max="-2" attributes="0"/>
+                  <Component id="labelNombre" min="-2" pref="235" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" pref="226" max="-2" attributes="0"/>
+                  <Component id="textFieldNmbre" min="-2" pref="226" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="labelCustom6" min="-2" pref="638" max="-2" attributes="0"/>
                   <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -246,8 +253,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelCustom3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jTextField2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="labelNombre" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="textFieldNmbre" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
@@ -260,7 +267,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="org.edisoncor.gui.label.LabelCustom" name="labelCustom3">
+        <Component class="org.edisoncor.gui.label.LabelCustom" name="labelNombre">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="cc" red="0" type="rgb"/>
@@ -268,7 +275,7 @@
             <Property name="text" type="java.lang.String" value="Nombre de Cliente"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="textFieldNmbre">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -306,30 +313,30 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="labelCustom4" min="-2" pref="234" max="-2" attributes="0"/>
+                  <Component id="labelApellido" min="-2" pref="234" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jTextField3" min="-2" pref="227" max="-2" attributes="0"/>
+                  <Component id="textFieldApellido" min="-2" pref="227" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" min="-2" pref="639" max="-2" attributes="0"/>
+                  <Component id="comboOB" min="-2" pref="639" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="jTextField4" max="32767" attributes="0"/>
+                  <Component id="textPlanOB" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="textFieldApellido" alignment="0" max="32767" attributes="0"/>
+              <Component id="comboOB" alignment="1" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
-                  <Component id="labelCustom4" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="labelApellido" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
-              <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
-              <Component id="jComboBox1" alignment="1" max="32767" attributes="0"/>
-              <Component id="jTextField4" alignment="1" max="32767" attributes="0"/>
+              <Component id="textPlanOB" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="org.edisoncor.gui.label.LabelCustom" name="labelCustom4">
+        <Component class="org.edisoncor.gui.label.LabelCustom" name="labelApellido">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="cc" red="0" type="rgb"/>
@@ -337,7 +344,7 @@
             <Property name="text" type="java.lang.String" value="Apellido del Cliente"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField3">
+        <Component class="javax.swing.JTextField" name="textFieldApellido">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -347,34 +354,28 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="comboOB">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboOBItemStateChanged"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="comboOBFocusLost"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comboOBMouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="org.edisoncor.gui.label.LabelCustom" name="textPlanOB">
           <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder thickness="2">
-                  <Color PropertyName="color" blue="0" green="66" red="0" type="rgb"/>
-                </LineBorder>
-              </Border>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="labelCustom3"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -457,49 +458,58 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jComboBox2" min="-2" pref="890" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="jComboBox3" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="checkOb" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="comboNOB" min="-2" pref="866" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="comboPNOB" min="-2" pref="888" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jComboBox2" pref="33" max="32767" attributes="0"/>
-              <Component id="jComboBox3" alignment="0" max="32767" attributes="0"/>
+              <Component id="comboNOB" max="32767" attributes="0"/>
+              <Component id="comboPNOB" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="checkOb" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="comboNOB">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboNOBItemStateChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="comboPNOB">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox3">
+        <Component class="javax.swing.JCheckBox" name="checkOb">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="checkObItemStateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -512,25 +522,28 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="buttonAgregarOb" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+              <Component id="buttonAgregarOb" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="buttonAgregarOb">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Agregarusuario 48px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAgregarObActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -562,6 +575,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="org.edisoncor.gui.label.LabelCustom" name="labelNoSeEncuentra">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="El cliente no se encuentra en el sistema. Ingrese sus datos."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

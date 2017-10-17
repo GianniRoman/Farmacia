@@ -23,6 +23,7 @@ public class panelFormaPago extends javax.swing.JPanel {
     public panelFormaPago(Venta vta) {
         this.vta = vta;
         initComponents();
+        
         importeTF.setText(""+vta.getMonto());
     }
 
@@ -83,6 +84,7 @@ public class panelFormaPago extends javax.swing.JPanel {
         codSegTjtDebLbl = new org.edisoncor.gui.label.LabelCustom();
         codSegTjtaDebTF = new javax.swing.JTextField();
         cargarFormaPago = new javax.swing.JButton();
+        checkob = new javax.swing.JCheckBox();
 
         setOpaque(false);
 
@@ -456,6 +458,9 @@ public class panelFormaPago extends javax.swing.JPanel {
             }
         });
 
+        checkob.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
+        checkob.setText("Obra Social");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -496,7 +501,9 @@ public class panelFormaPago extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cargarFormaPago)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(checkob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cargarFormaPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(363, 363, 363))
         );
         layout.setVerticalGroup(
@@ -530,7 +537,9 @@ public class panelFormaPago extends javax.swing.JPanel {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85)
+                .addGap(29, 29, 29)
+                .addComponent(checkob, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(cargarFormaPago)
                 .addContainerGap(236, Short.MAX_VALUE))
         );
@@ -573,12 +582,19 @@ public class panelFormaPago extends javax.swing.JPanel {
     }//GEN-LAST:event_labelRound7MouseClicked
 
     private void cargarFormaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarFormaPagoActionPerformed
-        if(efectivoRB.isSelected()||tjtaCredRB.isSelected()||tjtaDebRB.isSelected()){
+         if(efectivoRB.isSelected()||tjtaCredRB.isSelected()||tjtaDebRB.isSelected()){
             formaPagoLbl.setBackground(new java.awt.Color(0, 204, 0));
             tipoPagoLbl.setBackground(new java.awt.Color(0, 204, 0));
             if(efectivoRB.isSelected()){
                 vta.setFormaDePago("EFECTIVO");
-                PasarAObraSocial();
+                vta.setDescuento(15);
+                if(checkob.isSelected())
+                {
+                    PasarAObraSocial();
+                }else{
+                    pasarAFacturacion();
+                }
+                
             }
             
             if(tjtaCredRB.isSelected()){
@@ -680,6 +696,7 @@ public class panelFormaPago extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton cargarFormaPago;
+    private javax.swing.JCheckBox checkob;
     private javax.swing.JTextField codPostTjtaCredTF;
     private org.edisoncor.gui.label.LabelCustom codPostalTjtCredLbl;
     private org.edisoncor.gui.label.LabelCustom codSegTjtCredLbl;
@@ -732,6 +749,17 @@ public class panelFormaPago extends javax.swing.JPanel {
         pObraSocial.setLocation(0,0);
         this.removeAll();
         this.add(pObraSocial);
+        this.revalidate();
+        this.repaint();
+    }
+
+    private void pasarAFacturacion() {
+        System.out.println(vta.getMedicamentos().get(0).getNombre());
+        panelFacturacion pFacturacion = new panelFacturacion(vta);
+        pFacturacion.setSize(2239, 1309);
+        pFacturacion.setLocation(0,0);
+        this.removeAll();
+        this.add(pFacturacion);
         this.revalidate();
         this.repaint();
     }

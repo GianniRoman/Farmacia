@@ -61,6 +61,13 @@ public class panelModificacion extends javax.swing.JPanel {
         labelNoSeEncontro.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
 
         textBusqueda.setDescripcion("Busqueda por Nombre , Apellido");
+        textBusqueda.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                textBusquedaInputMethodTextChanged(evt);
+            }
+        });
         textBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 textBusquedaKeyPressed(evt);
@@ -240,13 +247,17 @@ public class panelModificacion extends javax.swing.JPanel {
             textApellido.setText("");
             textDni.setText("");
             labelNoSeEncontro.setVisible(true);
+            panelModificacionOb.setVisible(false);
         }
         
         
     }//GEN-LAST:event_textBusquedaKeyReleased
 
     private void textBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textBusquedaKeyPressed
-        
+      if(evt.getKeyCode() == 8)
+       {
+                   panelModificacionOb.setVisible(false);
+       }
     }//GEN-LAST:event_textBusquedaKeyPressed
 
     private void textNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textNombreKeyPressed
@@ -314,6 +325,10 @@ public class panelModificacion extends javax.swing.JPanel {
         panelModificacionOb.revalidate();
         panelModificacionOb.repaint();
     }//GEN-LAST:event_buttonColoredAction2ActionPerformed
+
+    private void textBusquedaInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_textBusquedaInputMethodTextChanged
+        
+    }//GEN-LAST:event_textBusquedaInputMethodTextChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

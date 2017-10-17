@@ -275,13 +275,14 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             } catch (ParseException ex) {
                 Logger.getLogger(panelSeleccionProducto.class.getName()).log(Level.SEVERE, null, ex);
             }
-            int cant = tablaCompra.getRowCount()-1;
+            int cant = tablaCompra.getRowCount();
             int i =0;
             while(i<cant){
-                Medicamento auxm;
-                MedicamentoViewModel aux;
-                aux = (MedicamentoViewModel) metroTableUI4.getValueAt(i, 0);
-                auxm= aux.getMedic();
+                Medicamento auxm = new Medicamento();
+                MedicamentoViewModel aux = new MedicamentoViewModel();
+                auxm = (Medicamento) metroTableUI4.getValueAt(i, 0);
+                //auxm= aux.getMedic();
+                System.out.println("nombre med  "+aux.getMedic().getNombre());
                 meds.add(auxm); 
                 cant--;
             }
@@ -365,6 +366,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             fila[4] = aux.getmPresentacion();
             fila[5] = aux.getMprecio();
             fila[6] = aux.getExistencias();
+            System.out.println(aux.getmNbre());
             tablaMedic.addRow(fila);
         }
         metroTableUI2.updateUI();

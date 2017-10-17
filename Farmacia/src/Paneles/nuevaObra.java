@@ -38,6 +38,11 @@ public class nuevaObra extends javax.swing.JPanel {
 
         ComboOB1.setColorDeBorde(new java.awt.Color(0, 153, 0));
         ComboOB1.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        ComboOB1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboOB1ItemStateChanged(evt);
+            }
+        });
         ComboOB1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ComboOB1FocusLost(evt);
@@ -150,6 +155,22 @@ public void CargarObrasSociales()
       
   }
     private void ComboOB1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ComboOB1FocusLost
+        
+    }//GEN-LAST:event_ComboOB1FocusLost
+
+    private void buttonAgregarObActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarObActionPerformed
+        Object ob1 = ComboOB1.getSelectedItem();
+        String obs = String.valueOf(ob1);
+        Object pob1 = comboPlanOB1.getSelectedItem();
+        String pObs = String.valueOf(pob1);     
+        String dni = pModif.traerDni();
+        ObraSocial ob = new ObraSocial();
+        System.out.println(obs);
+        ob.AltaCobertura(dni, obs, pObs);
+        
+    }//GEN-LAST:event_buttonAgregarObActionPerformed
+
+    private void ComboOB1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboOB1ItemStateChanged
         comboPlanOB1.removeAllItems();
         Object ob1 = ComboOB1.getSelectedItem();
         String nombreOb1 = String.valueOf(ob1);
@@ -166,19 +187,7 @@ public void CargarObrasSociales()
             tam--;
             i++;
         }
-    }//GEN-LAST:event_ComboOB1FocusLost
-
-    private void buttonAgregarObActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarObActionPerformed
-        Object ob1 = ComboOB1.getSelectedItem();
-        String obs = String.valueOf(ob1);
-        Object pob1 = comboPlanOB1.getSelectedItem();
-        String pObs = String.valueOf(pob1);     
-        String dni = pModif.traerDni();
-        ObraSocial ob = new ObraSocial();
-        System.out.println(obs);
-        ob.AltaCobertura(dni, obs, pObs);
-        
-    }//GEN-LAST:event_buttonAgregarObActionPerformed
+    }//GEN-LAST:event_ComboOB1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

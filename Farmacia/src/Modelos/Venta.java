@@ -17,6 +17,11 @@ public class Venta {
     Cliente cliente;
     int dia, mes, año;
 
+    @Override
+    public String toString() {
+        return ""+medicamentos.get(0).nombre + '}';
+    }
+
     public float getDescuento() {
         return descuento;
     }
