@@ -460,6 +460,7 @@ public class panelFormaPago extends javax.swing.JPanel {
 
         checkob.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         checkob.setText("Obra Social");
+        checkob.setOpaque(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -8,15 +8,40 @@ import java.util.logging.Logger;
 
 public class Venta {
     float descuento;
+    int oscod;
     String formaDePago;
     String tarjetaCredito, nbreTitularCred, direccionCred, cgoPostalCred, cgoSeguridadCred, nroTjtaCred;
     String tarjetaDebito, dniTitularDeb, nroTarjetaDeb, cgoSeguridadDeb;
     float monto;
+    int fcod;
     ArrayList<Medicamento> medicamentos = new ArrayList<>();
-    Farmaceutico farmaceutico;
+    Farmaceutico farmaceutico = new Farmaceutico(null,null,null,null);
     Cliente cliente;
     int dia, mes, año;
 
+    
+public void registrarVenta(){
+    int i = this.medicamentos.size()-1;
+    Medicamento med;
+    ConexionBD bd = ConexionBD.getInstance();
+    //bd.Select("", formaDePago, nroTjtaCred)
+    bd.Insert("venta(vtotal,vfrmpgo,vdesc,fcod,dia,mes,año)","'"+monto+"','"+formaDePago+"','"+descuento+"','"+fcod+"',"+dia+","+mes+""+","+año+"" );
+        if(this.cliente == null){
+        while(i>=0){
+             med= medicamentos.get(i);
+             //bd.Insert("ticket", formaDePago)
+             medicamentos.remove(i);
+             i--;
+        }
+    }else{
+            while(i>=0){
+             med= medicamentos.get(i);
+             bd.Insert("venta(vtotal,vfrmpgo,vdesc,fcod,ccod,oscod,dia,mes,año)","'"+monto+"',"+"'"+formaDePago+"',"+"'"+descuento+"',"+farmaceutico.getNroLegajo()+"',"+"'"+cliente.getNumeroCliente()+"','"+oscod+"','"+dia+"',"+mes+"'"+"',"+año+"'" );
+             medicamentos.remove(i);
+             i--;
+        }
+        }
+}
     @Override
     public String toString() {
         return ""+medicamentos.get(0).nombre + '}';
@@ -24,6 +49,10 @@ public class Venta {
 
     public float getDescuento() {
         return descuento;
+    }
+
+    public void setFcod(int fcod) {
+        this.fcod = fcod;
     }
 
     public void setDescuento(float descuento) {
@@ -172,6 +201,10 @@ public class Venta {
 
     public void setCgoSeguridadDeb(String cgoSeguridadDeb) {
         this.cgoSeguridadDeb = cgoSeguridadDeb;
+    }
+
+    public void setOscod(int oscod) {
+        this.oscod = oscod;
     }
 
     
