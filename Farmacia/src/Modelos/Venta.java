@@ -24,19 +24,39 @@ public void registrarVenta(){
     int i = this.medicamentos.size()-1;
     Medicamento med;
     ConexionBD bd = ConexionBD.getInstance();
-    //bd.Select("", formaDePago, nroTjtaCred)
-    bd.Insert("venta(vtotal,vfrmpgo,vdesc,fcod,dia,mes,año)","'"+monto+"','"+formaDePago+"','"+descuento+"','"+fcod+"',"+dia+","+mes+""+","+año+"" );
+    bd.Select("vcod","venta","");
+    String lote = null;
+    int cantVentas = 0;
+        try {
+            
+            while(bd.getRs().next())
+            {
+               cantVentas++; 
+            }
+            System.out.println("cantidad de ventas "+cantVentas);
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
         if(this.cliente == null){
+        bd.Insert("venta(vcod,vtotal,vfrmpgo,vdesc,fcod,dia,mes,año)","'"+cantVentas+"','"+monto+"','"+formaDePago+"','"+descuento+"','"+fcod+"',"+dia+","+mes+""+","+año+"" );
         while(i>=0){
-             med= medicamentos.get(i);
-             //bd.Insert("ticket", formaDePago)
+             med = medicamentos.get(i);
+             int mcod = Integer.parseInt(med.codigo);
+             lote = med.ObtenerLoteDeMedicamento(mcod);
+             System.out.println(cantVentas + "  " + lote);
+             bd.Insert("ticket (vcod, lote, vcant)",""+cantVentas+",'"+lote+"',"+1+"");
              medicamentos.remove(i);
              i--;
         }
     }else{
+            System.out.println("codigo cliete"+ cliente.getNumeroCliente());
+            bd.Insert("venta(vcod,vtotal,vfrmpgo,vdesc,fcod,ccod,oscod,dia,mes,año)","'"+cantVentas+"','"+monto+"','"+formaDePago+"','"+descuento+"','"+fcod+"','"+cliente.getNumeroCliente()+"',"+oscod+","+dia+","+mes+","+año+"" );
             while(i>=0){
-             med= medicamentos.get(i);
-             bd.Insert("venta(vtotal,vfrmpgo,vdesc,fcod,ccod,oscod,dia,mes,año)","'"+monto+"',"+"'"+formaDePago+"',"+"'"+descuento+"',"+farmaceutico.getNroLegajo()+"',"+"'"+cliente.getNumeroCliente()+"','"+oscod+"','"+dia+"',"+mes+"'"+"',"+año+"'" );
+             med = medicamentos.get(i);
+             int mcod = Integer.parseInt(med.codigo);
+             lote = med.ObtenerLoteDeMedicamento(mcod);
+             bd.Insert("ticket (vcod, lote, vcant)",""+cantVentas+",'"+lote+"',"+1+"");
              medicamentos.remove(i);
              i--;
         }

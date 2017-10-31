@@ -77,22 +77,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="labelCustom3" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="labelNombre" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="labelCustom7" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="labelCustom7" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labelCustom4" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="labelApellido" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="labelApellido" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labelCustom5" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
-                          <Component id="labelDni" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="labelDni" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
@@ -101,7 +101,7 @@
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="labelCustom1" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="labelFecha" alignment="0" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>

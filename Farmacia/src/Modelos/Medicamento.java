@@ -179,6 +179,19 @@ public class Medicamento {
     public String toString() {
         return nombre+"";
     }
+
+    public String ObtenerLoteDeMedicamento(int mcod) {
+       ConexionBD db = ConexionBD.getInstance();
+       db.Select("lote","stock","mcod ="+mcod+""); 
+       String lote = null;
+        try {
+            db.getRs().next();
+            lote= db.getRs().getString("lote");
+        } catch (SQLException ex) {
+            Logger.getLogger(Medicamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lote;
+    }
    
     
 }

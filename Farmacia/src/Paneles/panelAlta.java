@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import Interfaces.Principal;
+import Modelos.ClienteViewModel;
 import Modelos.Usuario;
 
 public class panelAlta extends javax.swing.JPanel {
@@ -15,6 +16,7 @@ public class panelAlta extends javax.swing.JPanel {
     boolean ob1,ob2,ob3;
     boolean pob1,pob2,pob3;
     Principal p;
+    ClienteViewModel cl = new ClienteViewModel();
     public panelAlta(Principal pPrin) {
         ob1 = false;
         ob2 = false;
@@ -491,7 +493,8 @@ public class panelAlta extends javax.swing.JPanel {
             textNombre.setText("");
             textApellido.setText("");
             textDni.setText("");
-            p.ActualizarNumerosDeClientes();;
+            p.ActualizarNumerosDeClientes();
+            p.CargarPestaña(cl.iniciarTablaClientes());
             
         }
         
