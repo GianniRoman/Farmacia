@@ -1,12 +1,16 @@
 package Paneles;
 
+import Interfaces.Principal;
 import Modelos.Cliente;
+import Modelos.ClienteViewModel;
 import java.awt.BorderLayout;
 
 public class panelModificacion extends javax.swing.JPanel {
-
-    public panelModificacion() {
+    ClienteViewModel cl = new ClienteViewModel();
+    Principal p;
+    public panelModificacion(Principal p) {
         initComponents();
+        p = p;
         labelNoSeEncontro.setVisible(false);
         panelModificacionOb.setVisible(false);
     }
@@ -313,6 +317,9 @@ public class panelModificacion extends javax.swing.JPanel {
     private void buttonRound1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRound1ActionPerformed
        Cliente cAEliminar = new Cliente(textNombre.getText(),textApellido.getText(),textDni.getText());
        cAEliminar.Modificar();
+       p.CargarPestaña(cl.iniciarTablaClientes());
+       p.ActualizarNumerosDeClientes();
+       
     }//GEN-LAST:event_buttonRound1ActionPerformed
 
     private void buttonColoredAction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonColoredAction2ActionPerformed

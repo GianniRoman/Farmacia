@@ -437,8 +437,7 @@ public class panelObraSocial extends javax.swing.JPanel {
             String nombreOb1 = String.valueOf(ob1);
             int oscod = o.ObtenerCcod(nombreOb1);
             if(!"".equals(nombreOb1)){
-                vta.setOscod(oscod); 
-                
+                vta.setOscod(oscod);    
             }
                
                       
