@@ -31,6 +31,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     DefaultTableModel tablaCompra = new DefaultTableModel();
     Venta vta;
     ArrayList<Medicamento> meds = new ArrayList<>(); 
+    //String[] lotes = new String[5];
     public panelSeleccionProducto(Venta vta) {
         initComponents();
         this.vta = vta;
@@ -289,7 +290,6 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
                 auxm.setFrmaFarmaceutica(aux.getmFormFarmac());
                 auxm.setPresentacion(aux.getmPresentacion());
                 auxm.setPrecio(aux.getMprecio());
-                
                 meds.add(auxm); 
                 i++;
             }

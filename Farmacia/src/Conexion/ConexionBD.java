@@ -16,7 +16,7 @@ public class ConexionBD {
         rs = null;
         s = null; 
         String url = "jdbc:postgresql://localhost:5432/Farmacia";
-        String password = "postgres";
+        String password = "warcraft1";
         String user = "postgres";
         try{
             Class.forName("org.postgresql.Driver");

@@ -54,6 +54,7 @@ public class Principal extends javax.swing.JFrame {
             tabbedPaneRound1.setEnabledAt(2, false);
         }
         panelSeleccionProducto.setVisible(false);
+        System.out.println("codigo de farmaceutico"+user.getFcod());
         fm = new Farmaceutico(user.getNombre(),null,null,user.getFcod());
         CargarSeleccionProducto();
         
@@ -1285,7 +1286,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         PanelABM.setVisible(true);
-        panelModificacion pModif = new panelModificacion();
+        panelModificacion pModif = new panelModificacion(this);
         pModif.setSize(1500,600);
         pModif.setLocation(200,10);
         PanelABM.removeAll();
@@ -1497,6 +1498,7 @@ public class Principal extends javax.swing.JFrame {
 
     public void CargarPestaña(ArrayList arrayClientes)
     {
+        resetTable(tablaClientes);
         int cantClientes = arrayClientes.size();
         int i;
         for(i=0; i<cantClientes;i++){
@@ -1735,4 +1737,6 @@ public class Principal extends javax.swing.JFrame {
     {
         return panelRect2;
     }
+
+    
 }
