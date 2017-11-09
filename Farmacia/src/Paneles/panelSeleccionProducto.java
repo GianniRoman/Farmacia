@@ -30,6 +30,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     DefaultTableModel tablaMedic = new DefaultTableModel();
     DefaultTableModel tablaCompra = new DefaultTableModel();
     Venta vta;
+    String buscado;
     ArrayList<Medicamento> meds = new ArrayList<>(); 
     //String[] lotes = new String[5];
     public panelSeleccionProducto(Venta vta) {
@@ -107,7 +108,6 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         prodBuscado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
         prodBuscado.setOpaque(false);
 
-        buscarMedicamento.setBackground(new java.awt.Color(0, 102, 51));
         buscarMedicamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BuscarProd 48px.png"))); // NOI18N
         buscarMedicamento.setText("Buscar");
         buscarMedicamento.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +158,6 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             }
         });
 
-        AgregarProd.setBackground(new java.awt.Color(0, 102, 51));
         AgregarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/AgregarProd 48px.png"))); // NOI18N
         AgregarProd.setText("Agregar");
         AgregarProd.addActionListener(new java.awt.event.ActionListener() {
@@ -265,7 +264,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
 
     private void buscarMedicamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarMedicamentoActionPerformed
         MedicamentoViewModel aux = new MedicamentoViewModel();
-        String buscado = prodBuscado.getText().toUpperCase();
+        buscado = prodBuscado.getText().toUpperCase();
         cargarTablaMedicamentos(aux.buscarMedicamento(buscado));
     }//GEN-LAST:event_buscarMedicamentoActionPerformed
 
@@ -310,25 +309,32 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
 
     private void AgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProdActionPerformed
         MedicamentoViewModel med =(MedicamentoViewModel) metroTableUI2.getValueAt(metroTableUI2.getSelectedRow(),0);
-        med.actualizarExistencias(med.getExistencias() -1,med.getMcod());
-        metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);
-        metroTableUI2.updateUI();
-        DecimalFormat df = new DecimalFormat("0.00");
-        float total = 0;
-        try {
-            total= (float) df.parse(totalCompra.getText()).floatValue() + med.getMprecio();
-        } catch (ParseException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        float mostrar = total;
-        totalCompra.setText(df.format(mostrar));
-        Object [] fila = new Object [4];
-        fila[0] = med;
-        fila[1] = med.getmFormFarmac();
-        fila[2] = med.getmPresentacion();
-        fila[3] = med.getMprecio();
-        tablaCompra.addRow(fila);
-        metroTableUI4.updateUI();
+        int exist = med.getExistencias()-1;
+        if(exist>=0){
+            med.actualizarExistencias(med.getExistencias() -1,med.getLote());
+            metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);
+            metroTableUI2.updateUI();
+            DecimalFormat df = new DecimalFormat("0.00");
+            float total = 0;
+            try {
+                total= (float) df.parse(totalCompra.getText()).floatValue() + med.getMprecio();
+            } catch (ParseException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            float mostrar = total;
+            totalCompra.setText(df.format(mostrar));
+            Object [] fila = new Object [4];
+            fila[0] = med;
+            fila[1] = med.getmFormFarmac();
+            fila[2] = med.getmPresentacion();
+            fila[3] = med.getMprecio();
+            tablaCompra.addRow(fila);
+            metroTableUI4.updateUI();
+        }else{
+              MedicamentoViewModel aux = new MedicamentoViewModel();
+              buscado = prodBuscado.getText().toUpperCase();
+              cargarTablaMedicamentos(aux.buscarMedicamento(buscado));
+           }
     }//GEN-LAST:event_AgregarProdActionPerformed
 
     private void labelRound6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRound6MouseClicked
@@ -338,7 +344,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     private void QuitarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarProductoActionPerformed
        int i = metroTableUI4.getSelectedRow();
        MedicamentoViewModel med = (MedicamentoViewModel) metroTableUI4.getValueAt(i, 0);
-       med.actualizarExistencias(med.getExistencias()+1,med.getMcod());
+       med.actualizarExistencias(med.getExistencias()+1,med.getLote());
        float total=0;
        DecimalFormat df = new DecimalFormat();
        try {
@@ -355,7 +361,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         int cantFilas = tablaCompra.getRowCount()-1;
         while(cantFilas >=0){
             MedicamentoViewModel med = (MedicamentoViewModel) metroTableUI4.getValueAt(cantFilas, 0);
-            med.actualizarExistencias(med.getExistencias()+1,med.getMcod());
+            med.actualizarExistencias(med.getExistencias()+1,med.getLote());
             tablaCompra.removeRow(cantFilas);
             cantFilas--;
         }
