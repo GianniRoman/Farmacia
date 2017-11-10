@@ -6,6 +6,7 @@
 package Paneles;
 
 import Interfaces.Principal;
+import Modelos.Conserje;
 import Modelos.Medicamento;
 import Modelos.MedicamentoViewModel;
 import Modelos.Venta;
@@ -31,7 +32,9 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     DefaultTableModel tablaCompra = new DefaultTableModel();
     Venta vta;
     String buscado;
+    Medicamento medicVendid = new Medicamento();
     ArrayList<Medicamento> meds = new ArrayList<>(); 
+    Conserje conserje = new Conserje(); // conserje que llevara los estados de todos los pasos de las ventas.
     //String[] lotes = new String[5];
     public panelSeleccionProducto(Venta vta) {
         initComponents();
@@ -51,6 +54,30 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         tablaCompra.addColumn("Precio Unitario");
         metroTableUI2.setModel(tablaMedic);
         metroTableUI4.setModel(tablaCompra);
+    }
+    
+    public panelSeleccionProducto(Venta vta,Conserje csj) {
+        initComponents();
+        this.vta = vta;
+        this.conserje = csj;
+        metroTableUI4.setRowHeight(30);
+        metroTableUI2.setRowHeight(30);
+        tablaMedic.addColumn("Nombre");
+        tablaMedic.addColumn("Marca");
+        tablaMedic.addColumn("Generico");
+        tablaMedic.addColumn("Forma Farmaceutica");
+        tablaMedic.addColumn("Presentacion");
+        tablaMedic.addColumn("Precio");
+        tablaMedic.addColumn("Stock");
+        tablaCompra.addColumn("Producto");
+        tablaCompra.addColumn("Forma Farmaceutica");
+        tablaCompra.addColumn("Presentacion");
+        tablaCompra.addColumn("Precio Unitario");
+        metroTableUI2.setModel(tablaMedic);
+        metroTableUI4.setModel(tablaCompra);
+        String monto = String.valueOf(csj.getMemento(0).getEstado().getMonto());
+        totalCompra.setText(monto);
+        cargarMedicamentosVendidos(csj.getMemento(0).getEstado().getMedicamentos());
     }
 
     /**
@@ -269,7 +296,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_buscarMedicamentoActionPerformed
 
     private void finalizarCargaProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarCargaProductosActionPerformed
-        if(tablaCompra.getRowCount()>0){
+          if(tablaCompra.getRowCount()>0){
             DecimalFormat df = new DecimalFormat("0.00");
             try {
                 vta.setMonto(df.parse(this.totalCompra.getText()).floatValue()); //guardo el monto de la venta
@@ -280,26 +307,28 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             int i =0;
             while(i<cant){
                 Medicamento auxm = new Medicamento();
-                MedicamentoViewModel aux = new MedicamentoViewModel();
-                aux = (MedicamentoViewModel) metroTableUI4.getValueAt(i, 0);
-                System.out.println("nombre med  "+aux.getmNbre());
-                auxm.setCodigo(aux.getMcod());
-                auxm.setNombre(aux.getmNbre());
-                auxm.setMarca(aux.getmMarca());
-                auxm.setFrmaFarmaceutica(aux.getmFormFarmac());
-                auxm.setPresentacion(aux.getmPresentacion());
-                auxm.setPrecio(aux.getMprecio());
+                auxm = (Medicamento) metroTableUI4.getValueAt(i, 0);
                 meds.add(auxm); 
                 i++;
             }
-            vta.setMedicamentos(meds);//lleno el arreglo de medicamentos de la venta
-            Date fecha = new Date();
-            
+            vta.setMedicamentos(meds);//lleno el arreglo de Medicamento de la venta
+            Date fecha = new Date();           
             vta.setDia(fecha.getDate());
             vta.setMes(fecha.getMonth()+1);
             vta.setAño(fecha.getYear()+1900);
-            System.out.println(vta.getDia()+"/"+vta.getMes()+"/"+vta.getAño());
-            PasarAFormaDePago();
+            
+            if(conserje.getEstadosSalvados().size() == 0)
+            {
+                conserje.setMemento(vta.guardarEstadoToMemento());
+                System.out.println(vta.getDia()+"/"+vta.getMes()+"/"+vta.getAño());
+                PasarAFormaDePago();
+            }else{
+                conserje.ActualizarMomento(0,vta.guardarEstadoToMemento());
+                PasarAFormaDePago();
+            }
+            
+            
+           
         }
         else{
             selecProdLbl.setBackground(Color.red);
@@ -309,11 +338,13 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
 
     private void AgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProdActionPerformed
         MedicamentoViewModel med =(MedicamentoViewModel) metroTableUI2.getValueAt(metroTableUI2.getSelectedRow(),0);
+        medicVendid = med.getMedic();
+        
         int exist = med.getExistencias()-1;
         if(exist>=0){
             med.actualizarExistencias(med.getExistencias() -1,med.getLote());
-            metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);
-            metroTableUI2.updateUI();
+            metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);//resta uno del stock en la primer tabla
+            metroTableUI2.updateUI();//actualiza el estado de la primer tabla
             DecimalFormat df = new DecimalFormat("0.00");
             float total = 0;
             try {
@@ -324,10 +355,10 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             float mostrar = total;
             totalCompra.setText(df.format(mostrar));
             Object [] fila = new Object [4];
-            fila[0] = med;
-            fila[1] = med.getmFormFarmac();
-            fila[2] = med.getmPresentacion();
-            fila[3] = med.getMprecio();
+            fila[0] = medicVendid;
+            fila[1] = medicVendid.getFrmaFarmaceutica();
+            fila[2] = medicVendid.getPresentacion();
+            fila[3] = medicVendid.getPrecio();
             tablaCompra.addRow(fila);
             metroTableUI4.updateUI();
         }else{
@@ -370,6 +401,21 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         totalCompra.setText("0");
     }//GEN-LAST:event_cancelarVentaActionPerformed
 
+    public void cargarMedicamentosVendidos(ArrayList meds){
+        int cant = meds.size();
+        int i;
+        for(i=0; i<cant; i++){
+            Medicamento aux;
+            Object[] fila = new Object[7];
+            aux = (Medicamento) meds.get(i);
+            fila[0] = aux;
+            fila[1] = aux.getFrmaFarmaceutica();
+            fila[2] = aux.getPresentacion();
+            fila[3] = aux.getPrecio();
+            tablaCompra.addRow(fila);
+        } 
+        metroTableUI2.updateUI();
+    }
      public void cargarTablaMedicamentos (ArrayList medicamentos){
         resetTable(metroTableUI2);
         int cant = medicamentos.size();
@@ -378,6 +424,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             MedicamentoViewModel aux;
             Object[] fila = new Object[7];
             aux = (MedicamentoViewModel) medicamentos.get(i);
+            System.out.println(aux.getMedic().getNombre());
             fila[0] = aux;
             fila[1] = aux.getmMarca();
             fila[2] = aux.getmGenerico();
@@ -387,7 +434,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             fila[6] = aux.getExistencias();
             System.out.println(aux.getmNbre());
             tablaMedic.addRow(fila);
-        }
+        } 
         metroTableUI2.updateUI();
     }
     
@@ -420,13 +467,17 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void PasarAFormaDePago() {
-        panelFormaPago pFormaPago = new panelFormaPago(vta);
+        panelFormaPago pFormaPago = new panelFormaPago(vta,conserje);
         pFormaPago.setSize(2239, 1309);
         pFormaPago.setLocation(0,0);
         this.removeAll();
         this.add(pFormaPago);
         this.revalidate();
         this.repaint();
+    }
+
+    private void RecargarMemento() {
+        
     }
 }
 

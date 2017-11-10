@@ -6,6 +6,7 @@
 package Paneles;
 
 import Interfaces.Principal;
+import Modelos.Conserje;
 import Modelos.Venta;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -16,11 +17,11 @@ import javax.swing.JOptionPane;
  */
 public class panelFormaPago extends javax.swing.JPanel {
 
-    /**
-     * Creates new form panelFormaPago
-     */
+    
     Venta vta;
-    public panelFormaPago(Venta vta) {
+    Conserje conserje;
+    public panelFormaPago(Venta vta,Conserje csj) {
+        this.conserje = csj;
         this.vta = vta;
         initComponents();
         
@@ -56,35 +57,33 @@ public class panelFormaPago extends javax.swing.JPanel {
         creditoLbl = new org.edisoncor.gui.label.LabelCustom();
         jPanel4 = new javax.swing.JPanel();
         credVisaRB = new javax.swing.JRadioButton();
-        nroTjtCredLbl = new org.edisoncor.gui.label.LabelCustom();
-        nrotjtaCredTF = new javax.swing.JTextField();
-        codPostalTjtCredLbl = new org.edisoncor.gui.label.LabelCustom();
-        codPostTjtaCredTF = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
         credNjaRB = new javax.swing.JRadioButton();
+        credNvdaRB = new javax.swing.JRadioButton();
+        jPanel5 = new javax.swing.JPanel();
         nbreTitTjtCredLbl = new org.edisoncor.gui.label.LabelCustom();
         titularTjtaCredTF = new javax.swing.JTextField();
         codSegTjtCredLbl = new org.edisoncor.gui.label.LabelCustom();
         codSegTjtaCredTF = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        credNvdaRB = new javax.swing.JRadioButton();
         dirTjtCredLbl = new org.edisoncor.gui.label.LabelCustom();
         dirTitularTjtaCredTF = new javax.swing.JTextField();
+        nroTjtCredLbl = new org.edisoncor.gui.label.LabelCustom();
+        nrotjtaCredTF = new javax.swing.JTextField();
         debitoLbl = new org.edisoncor.gui.label.LabelCustom();
         jPanel9 = new javax.swing.JPanel();
         debVisaRB = new javax.swing.JRadioButton();
+        debSderRB = new javax.swing.JRadioButton();
+        debICBCRB = new javax.swing.JRadioButton();
+        jPanel10 = new javax.swing.JPanel();
         nroTjtDebLbl = new org.edisoncor.gui.label.LabelCustom();
         nroTjtaDebTF = new javax.swing.JTextField();
-        jPanel10 = new javax.swing.JPanel();
-        debSderRB = new javax.swing.JRadioButton();
+        jPanel11 = new javax.swing.JPanel();
         dniTitTjtDebLbl = new org.edisoncor.gui.label.LabelCustom();
         dniTitularTjtaDebTF = new javax.swing.JTextField();
-        jPanel11 = new javax.swing.JPanel();
-        debICBCRB = new javax.swing.JRadioButton();
-        codSegTjtDebLbl = new org.edisoncor.gui.label.LabelCustom();
-        codSegTjtaDebTF = new javax.swing.JTextField();
         cargarFormaPago = new javax.swing.JButton();
         checkob = new javax.swing.JCheckBox();
+        cargarFormaPago1 = new javax.swing.JButton();
+        cargarFormaPago2 = new javax.swing.JButton();
 
         setOpaque(false);
 
@@ -213,6 +212,7 @@ public class panelFormaPago extends javax.swing.JPanel {
         jPanel4.setOpaque(false);
 
         buttonGroup2.add(credVisaRB);
+        credVisaRB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         credVisaRB.setText("Visa");
         credVisaRB.setOpaque(false);
         credVisaRB.addActionListener(new java.awt.event.ActionListener() {
@@ -221,47 +221,8 @@ public class panelFormaPago extends javax.swing.JPanel {
             }
         });
 
-        nroTjtCredLbl.setBackground(new java.awt.Color(0, 204, 0));
-        nroTjtCredLbl.setText("Numero de tarjeta");
-
-        nrotjtaCredTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
-
-        codPostalTjtCredLbl.setBackground(new java.awt.Color(0, 204, 0));
-        codPostalTjtCredLbl.setText("Codigo postal");
-
-        codPostTjtaCredTF.setToolTipText("");
-        codPostTjtaCredTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(credVisaRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nroTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nrotjtaCredTF, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(codPostalTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(codPostTjtaCredTF, javax.swing.GroupLayout.PREFERRED_SIZE, 781, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(credVisaRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(nrotjtaCredTF)
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(codPostalTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(codPostTjtaCredTF, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(nroTjtCredLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel5.setOpaque(false);
-
         buttonGroup2.add(credNjaRB);
+        credNjaRB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         credNjaRB.setText("Naranja");
         credNjaRB.setOpaque(false);
         credNjaRB.addActionListener(new java.awt.event.ActionListener() {
@@ -269,6 +230,39 @@ public class panelFormaPago extends javax.swing.JPanel {
                 credNjaRBActionPerformed(evt);
             }
         });
+
+        buttonGroup2.add(credNvdaRB);
+        credNvdaRB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        credNvdaRB.setText("Nevada");
+        credNvdaRB.setOpaque(false);
+        credNvdaRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                credNvdaRBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(credNvdaRB)
+                .addGap(174, 174, 174)
+                .addComponent(credNjaRB)
+                .addGap(189, 189, 189)
+                .addComponent(credVisaRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(592, 592, 592))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(credVisaRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(credNjaRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(credNvdaRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setOpaque(false);
 
         nbreTitTjtCredLbl.setBackground(new java.awt.Color(0, 204, 0));
         nbreTitTjtCredLbl.setText("Nombre de titular");
@@ -285,10 +279,7 @@ public class panelFormaPago extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(credNjaRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nbreTitTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nbreTitTjtCredLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titularTjtaCredTF, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -298,7 +289,6 @@ public class panelFormaPago extends javax.swing.JPanel {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(credNjaRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(titularTjtaCredTF)
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(codSegTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,38 +298,36 @@ public class panelFormaPago extends javax.swing.JPanel {
 
         jPanel6.setOpaque(false);
 
-        buttonGroup2.add(credNvdaRB);
-        credNvdaRB.setText("Nevada");
-        credNvdaRB.setOpaque(false);
-        credNvdaRB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                credNvdaRBActionPerformed(evt);
-            }
-        });
-
         dirTjtCredLbl.setBackground(new java.awt.Color(0, 204, 0));
         dirTjtCredLbl.setText("Direccion");
 
         dirTitularTjtaCredTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
+
+        nroTjtCredLbl.setBackground(new java.awt.Color(0, 204, 0));
+        nroTjtCredLbl.setText("Numero de tarjeta");
+
+        nrotjtaCredTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(credNvdaRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dirTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dirTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(dirTitularTjtaCredTF, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(nroTjtCredLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(nrotjtaCredTF, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(credNvdaRB, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-            .addComponent(dirTitularTjtaCredTF)
             .addComponent(dirTjtCredLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dirTitularTjtaCredTF, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+            .addComponent(nrotjtaCredTF)
+            .addComponent(nroTjtCredLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         debitoLbl.setBackground(new java.awt.Color(0, 204, 0));
@@ -348,36 +336,12 @@ public class panelFormaPago extends javax.swing.JPanel {
         jPanel9.setOpaque(false);
 
         buttonGroup3.add(debVisaRB);
+        debVisaRB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         debVisaRB.setText("Visa");
         debVisaRB.setOpaque(false);
 
-        nroTjtDebLbl.setBackground(new java.awt.Color(0, 204, 0));
-        nroTjtDebLbl.setText("Numero tarjeta");
-
-        nroTjtaDebTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(debVisaRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nroTjtDebLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(nroTjtaDebTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(debVisaRB, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-            .addComponent(nroTjtaDebTF, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(nroTjtDebLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel10.setOpaque(false);
-
         buttonGroup3.add(debSderRB);
+        debSderRB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         debSderRB.setText("Santander");
         debSderRB.setOpaque(false);
         debSderRB.addActionListener(new java.awt.event.ActionListener() {
@@ -385,6 +349,63 @@ public class panelFormaPago extends javax.swing.JPanel {
                 debSderRBActionPerformed(evt);
             }
         });
+
+        buttonGroup3.add(debICBCRB);
+        debICBCRB.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        debICBCRB.setText("ICBC");
+        debICBCRB.setOpaque(false);
+        debICBCRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                debICBCRBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(660, Short.MAX_VALUE)
+                .addComponent(debICBCRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(182, 182, 182)
+                .addComponent(debSderRB)
+                .addGap(170, 170, 170)
+                .addComponent(debVisaRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(621, 621, 621))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(debVisaRB, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addComponent(debSderRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(debICBCRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel10.setOpaque(false);
+
+        nroTjtDebLbl.setBackground(new java.awt.Color(0, 204, 0));
+        nroTjtDebLbl.setText("Numero tarjeta");
+
+        nroTjtaDebTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(nroTjtDebLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(nroTjtaDebTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(nroTjtDebLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nroTjtaDebTF, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel11.setOpaque(false);
 
         dniTitTjtDebLbl.setBackground(new java.awt.Color(0, 204, 0));
         dniTitTjtDebLbl.setText("DNI del titular");
@@ -396,58 +417,21 @@ public class panelFormaPago extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(debSderRB)
-                .addGap(7, 7, 7)
-                .addComponent(dniTitTjtDebLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(dniTitularTjtaDebTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(debSderRB, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-            .addComponent(dniTitularTjtaDebTF, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(dniTitTjtDebLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jPanel11.setOpaque(false);
-
-        buttonGroup3.add(debICBCRB);
-        debICBCRB.setText("ICBC");
-        debICBCRB.setOpaque(false);
-        debICBCRB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                debICBCRBActionPerformed(evt);
-            }
-        });
-
-        codSegTjtDebLbl.setBackground(new java.awt.Color(0, 204, 0));
-        codSegTjtDebLbl.setText("Codigo de seguridad");
-
-        codSegTjtaDebTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 0), 2));
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addComponent(debICBCRB, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(codSegTjtDebLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(codSegTjtaDebTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(dniTitTjtDebLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(dniTitularTjtaDebTF, javax.swing.GroupLayout.PREFERRED_SIZE, 1601, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(debICBCRB, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-            .addComponent(codSegTjtaDebTF, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(codSegTjtDebLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(dniTitTjtDebLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dniTitularTjtaDebTF, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         cargarFormaPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CompletarVta 48px.png"))); // NOI18N
@@ -461,6 +445,22 @@ public class panelFormaPago extends javax.swing.JPanel {
         checkob.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         checkob.setText("Obra Social");
         checkob.setOpaque(false);
+
+        cargarFormaPago1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CompletarVta 48px.png"))); // NOI18N
+        cargarFormaPago1.setText("Deshacer Venta");
+        cargarFormaPago1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarFormaPago1ActionPerformed(evt);
+            }
+        });
+
+        cargarFormaPago2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CompletarVta 48px.png"))); // NOI18N
+        cargarFormaPago2.setText("Atras");
+        cargarFormaPago2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarFormaPago2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -501,7 +501,11 @@ public class panelFormaPago extends javax.swing.JPanel {
                             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1449, 1449, 1449)
+                .addComponent(cargarFormaPago1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(cargarFormaPago2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(checkob, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cargarFormaPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -541,8 +545,11 @@ public class panelFormaPago extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(checkob, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cargarFormaPago)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cargarFormaPago)
+                    .addComponent(cargarFormaPago1)
+                    .addComponent(cargarFormaPago2))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -589,6 +596,7 @@ public class panelFormaPago extends javax.swing.JPanel {
             if(efectivoRB.isSelected()){
                 vta.setFormaDePago("EFECTIVO");
                 vta.setDescuento(15);
+                conserje.setMemento(vta.guardarEstadoToMemento());
                 if(checkob.isSelected())
                 {
                     PasarAObraSocial();
@@ -603,10 +611,10 @@ public class panelFormaPago extends javax.swing.JPanel {
                     vta.setFormaDePago("TARJETA DE CREDITO");
                     vta.setNroTjtaCred(nrotjtaCredTF.getText());
                     vta.setNbreTitularCred(titularTjtaCredTF.getText());
-                    vta.setCgoPostalCred(codPostTjtaCredTF.getText());
+                    
                     vta.setCgoSeguridadCred(codSegTjtaCredTF.getText());
                     vta.setDireccionCred(dirTitularTjtaCredTF.getText());
-                    if(vta.getDireccionCred().equals("")||vta.getNroTjtaCred().equals("")||vta.getCgoPostalCred().equals("")||vta.getNbreTitularCred().equals("")||vta.getCgoSeguridadCred().equals("")){
+                    if(vta.getDireccionCred().equals("")||vta.getNroTjtaCred().equals("")||vta.getNbreTitularCred().equals("")||vta.getCgoSeguridadCred().equals("")){
                         JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Campos vacios", JOptionPane.ERROR_MESSAGE);
                         if(vta.getNroTjtaCred().equals(""))
                             nroTjtCredLbl.setBackground(Color.red);
@@ -620,10 +628,7 @@ public class panelFormaPago extends javax.swing.JPanel {
                             dirTjtCredLbl.setBackground(Color.red);
                         else
                             dirTjtCredLbl.setBackground(new java.awt.Color(0, 204, 0));
-                        if(vta.getCgoPostalCred().equals(""))
-                            codPostalTjtCredLbl.setBackground(Color.red);
-                        else 
-                            codPostalTjtCredLbl.setBackground(new java.awt.Color(0, 204, 0));
+                        
                         if(vta.getCgoSeguridadCred().equals(""))
                             codSegTjtCredLbl.setBackground(Color.red);
                         else
@@ -638,6 +643,7 @@ public class panelFormaPago extends javax.swing.JPanel {
                         if(credNvdaRB.isSelected()){
                             vta.setTarjetaCredito("NEVADA");
                         }
+                        conserje.setMemento(vta.guardarEstadoToMemento());
                         PasarAObraSocial();
                     }
                 }else{
@@ -649,7 +655,7 @@ public class panelFormaPago extends javax.swing.JPanel {
                 if(debVisaRB.isSelected()||debSderRB.isSelected()||debICBCRB.isSelected()){
                     vta.setDniTitularDeb(dniTitularTjtaDebTF.getText());
                     vta.setNroTarjetaDeb(nroTjtaDebTF.getText());
-                    vta.setCgoSeguridadDeb(codSegTjtaDebTF.getText());
+                    
                     if(vta.getDniTitularDeb().equals("")||vta.getNroTarjetaDeb().equals("")||vta.getCgoSeguridadDeb().equals("")){
                         JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Campos vacios", JOptionPane.ERROR_MESSAGE);
                         if(vta.getDniTitularDeb().equals(""))
@@ -660,10 +666,7 @@ public class panelFormaPago extends javax.swing.JPanel {
                             nroTjtDebLbl.setBackground(Color.red);
                         else
                             nroTjtDebLbl.setBackground(new java.awt.Color(0, 204, 0));
-                        if(vta.getCgoSeguridadDeb().equals(""))
-                            codSegTjtDebLbl.setBackground(Color.red);
-                        else
-                            codSegTjtDebLbl.setBackground(new java.awt.Color(0, 204, 0));
+                        
                         
                     }else{
                         if(debVisaRB.isSelected()){
@@ -675,6 +678,7 @@ public class panelFormaPago extends javax.swing.JPanel {
                         if(debICBCRB.isSelected()){
                             vta.setTarjetaDebito("ICBC");
                         }
+                        conserje.setMemento(vta.guardarEstadoToMemento());
                         PasarAObraSocial();
                     }
                 }else{
@@ -691,19 +695,31 @@ public class panelFormaPago extends javax.swing.JPanel {
         
     }//GEN-LAST:event_cargarFormaPagoActionPerformed
 
+    private void cargarFormaPago1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarFormaPago1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cargarFormaPago1ActionPerformed
+
+    private void cargarFormaPago2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarFormaPago2ActionPerformed
+        panelSeleccionProducto pSeleccion = new panelSeleccionProducto(vta,conserje);        
+        pSeleccion.setSize(2239, 1309);
+        pSeleccion.setLocation(0,0);
+        this.removeAll();
+        this.add(pSeleccion);
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_cargarFormaPago2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JButton cargarFormaPago;
+    private javax.swing.JButton cargarFormaPago1;
+    private javax.swing.JButton cargarFormaPago2;
     private javax.swing.JCheckBox checkob;
-    private javax.swing.JTextField codPostTjtaCredTF;
-    private org.edisoncor.gui.label.LabelCustom codPostalTjtCredLbl;
     private org.edisoncor.gui.label.LabelCustom codSegTjtCredLbl;
-    private org.edisoncor.gui.label.LabelCustom codSegTjtDebLbl;
     private javax.swing.JTextField codSegTjtaCredTF;
-    private javax.swing.JTextField codSegTjtaDebTF;
     private javax.swing.JRadioButton credNjaRB;
     private javax.swing.JRadioButton credNvdaRB;
     private javax.swing.JRadioButton credVisaRB;
