@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Medicamento {
+public class Medicamento{
     String codigo;
     String marca;
     String nombre;
@@ -21,6 +21,31 @@ public class Medicamento {
     Droga[] drogas;
     Drogueria drogueria;
     Venta venta;
+    Date vto;
+    String generico;
+
+    Medicamento(String mNbre, String mGenerico, float mprecio, String mMarca, String mPresentacion, String mFormFarmac, String mcod) {
+       this.nombre = mNbre;
+       this.generico = mGenerico;
+       this.precio = mprecio;
+       this.marca = mMarca;
+       this.presentacion = mPresentacion;
+       this.frmaFarmaceutica = mFormFarmac;
+       this.codigo = mcod;
+    }
+    
+    public Medicamento()
+    {
+        
+    }
+
+    public String getGenerico() {
+        return generico;
+    }
+
+    public void setGenerico(String generico) {
+        this.generico = generico;
+    }
 
     public String getPresentacion() {
         return presentacion;

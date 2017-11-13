@@ -33,6 +33,7 @@ public class MedicamentoViewModel {
         try{
             while(bd.getRs().next() && cont<5){
                 MedicamentoViewModel aux = new MedicamentoViewModel();
+                Medicamento auxm = new Medicamento();
                     if(bd.getRs().getInt("cant")>0){
                         aux.mcod = bd.getRs().getString("mcod");
                         aux.mNbre = bd.getRs().getString("mnbre");
@@ -45,14 +46,26 @@ public class MedicamentoViewModel {
                         aux.existencias = bd.getRs().getInt("cant");
                         aux.lote = bd.getRs().getString("lote");
                         aux.vto = bd.getRs().getDate("mvenc");
+                        auxm.setNombre(aux.mNbre);
+                        auxm.setMarca(aux.mMarca);
+                        auxm.setPrecio(aux.mprecio);
+                        auxm.setPresentacion(aux.mPresentacion);
+                        auxm.setFrmaFarmaceutica(aux.mFormFarmac);
+                        auxm.setCodigo(aux.mcod);
+                        System.out.println("medicamento auxm : "+ auxm.getNombre());
+                        aux.medic = auxm;
+                        /*
                         aux.medic.setNombre(mNbre);
+                        aux.medic.setGenerico(mGenerico);
                         aux.medic.setPrecio(mprecio);
                         aux.medic.setMarca(mMarca);
-                        aux.medic.setPrecio(mprecio);
                         aux.medic.setPresentacion(mPresentacion);
                         aux.medic.setFrmaFarmaceutica(mFormFarmac);
                         aux.medic.setCodigo(mcod);
+                        */
                         this.med.add(aux);
+                        System.out.println("medicamento en aux:"+aux.getMedic().getNombre());
+                        System.out.println("medicamento en array"+med.get(0).getMedic().getNombre());
                         cont ++;
                         for(int i = 0; i<this.med.size(); i++){
                             if(aux.mcod.equals(med.get(i).mcod)){
@@ -185,6 +198,10 @@ public class MedicamentoViewModel {
     @Override
     public String toString() {
         return ""+ mNbre;
+    }
+
+    private void setMedic(Medicamento medic) {
+        this.medic = medic;
     }
     
     
