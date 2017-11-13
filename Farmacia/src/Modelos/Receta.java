@@ -3,7 +3,7 @@ package Modelos;
 import java.sql.Date;
 
 public class Receta {
-    String dia,mes,año;
+    String dia,mes,año,nroafil;
     Medico medico;
     Medicamento[] medicamentos;
     ObraSocial obraSocial;

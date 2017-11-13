@@ -31,20 +31,34 @@
                           </Group>
                           <Component id="selecProdLbl" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="labelRound6" min="-2" pref="419" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="buscarMedicamento" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="bajoReceta" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="labelRound6" alignment="1" min="-2" pref="419" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="labelRound7" min="-2" pref="419" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="labelRound8" min="-2" pref="419" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="buscarMedicamento" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="nroAfLbl" min="-2" pref="167" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="nroAfTf" min="-2" pref="167" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="nroRecLbl" min="-2" pref="167" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="nroRecTf" min="-2" pref="167" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="labelRound8" min="-2" pref="419" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -82,11 +96,32 @@
                   <Component id="selecProdLbl" max="32767" attributes="0"/>
                   <Component id="labelRound6" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelCustom2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="buscarMedicamento" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="prodBuscado" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelCustom2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="buscarMedicamento" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Component id="prodBuscado" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="bajoReceta" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="nroAfLbl" alignment="0" max="32767" attributes="0"/>
+                              <Component id="nroAfTf" alignment="0" pref="41" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="nroRecLbl" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="nroRecTf" alignment="1" min="-2" pref="41" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane7" min="-2" pref="227" max="-2" attributes="0"/>
@@ -125,9 +160,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="2. Forma de Pago"/>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="labelRound6MouseClicked"/>
-      </Events>
     </Component>
     <Component class="org.edisoncor.gui.label.LabelRound" name="labelRound7">
       <Properties>
@@ -323,6 +355,55 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Maiandra GD" size="18" style="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="bajoReceta">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/Receta 48px.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Bajo receta"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bajoRecetaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="org.edisoncor.gui.label.LabelCustom" name="nroAfLbl">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Numero de afiliado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nroAfTf">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder thickness="2">
+              <Color PropertyName="color" blue="33" green="66" red="0" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="org.edisoncor.gui.label.LabelCustom" name="nroRecLbl">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="cc" red="0" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Numero de receta"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nroRecTf">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder thickness="2">
+              <Color PropertyName="color" blue="33" green="66" red="0" type="rgb"/>
+            </LineBorder>
+          </Border>
         </Property>
       </Properties>
     </Component>

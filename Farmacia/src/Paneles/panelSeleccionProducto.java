@@ -9,6 +9,7 @@ import Interfaces.Principal;
 import Modelos.Conserje;
 import Modelos.Medicamento;
 import Modelos.MedicamentoViewModel;
+import Modelos.Receta;
 import Modelos.Venta;
 import java.awt.Color;
 import java.text.DecimalFormat;
@@ -38,6 +39,10 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     //String[] lotes = new String[5];
     public panelSeleccionProducto(Venta vta) {
         initComponents();
+        nroAfLbl.setVisible(false);
+        nroAfTf.setVisible(false);
+        nroRecTf.setVisible(false);
+        nroRecLbl.setVisible(false);
         this.vta = vta;
         metroTableUI4.setRowHeight(30);
         metroTableUI2.setRowHeight(30);
@@ -106,6 +111,11 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         cancelarVenta = new javax.swing.JButton();
         totalCompra = new javax.swing.JTextField();
         labelCustom9 = new org.edisoncor.gui.label.LabelCustom();
+        bajoReceta = new javax.swing.JToggleButton();
+        nroAfLbl = new org.edisoncor.gui.label.LabelCustom();
+        nroAfTf = new javax.swing.JTextField();
+        nroRecLbl = new org.edisoncor.gui.label.LabelCustom();
+        nroRecTf = new javax.swing.JTextField();
 
         setOpaque(false);
 
@@ -114,11 +124,6 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
 
         labelRound6.setBackground(new java.awt.Color(51, 123, 123));
         labelRound6.setText("2. Forma de Pago");
-        labelRound6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelRound6MouseClicked(evt);
-            }
-        });
 
         labelRound7.setBackground(new java.awt.Color(51, 123, 123));
         labelRound7.setText("3. Datos Obra Social");
@@ -213,6 +218,24 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         labelCustom9.setToolTipText("");
         labelCustom9.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
 
+        bajoReceta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Receta 48px.png"))); // NOI18N
+        bajoReceta.setText("Bajo receta");
+        bajoReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajoRecetaActionPerformed(evt);
+            }
+        });
+
+        nroAfLbl.setBackground(new java.awt.Color(0, 204, 0));
+        nroAfLbl.setText("Numero de afiliado");
+
+        nroAfTf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+
+        nroRecLbl.setBackground(new java.awt.Color(0, 204, 0));
+        nroRecLbl.setText("Numero de receta");
+
+        nroRecTf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51), 2));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,17 +250,29 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(prodBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(selecProdLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buscarMedicamento)
+                                .addGap(64, 64, 64)
+                                .addComponent(bajoReceta)
+                                .addGap(139, 139, 139))
+                            .addComponent(labelRound6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(labelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelRound7, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
-                                .addComponent(labelRound7, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(labelRound8, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(buscarMedicamento)))
-                        .addGap(50, 50, 50)
-                        .addComponent(labelRound8, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nroAfLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nroAfTf, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76)
+                                .addComponent(nroRecLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nroRecTf, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -266,11 +301,25 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
                     .addComponent(labelRound7, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                     .addComponent(selecProdLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelRound6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prodBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buscarMedicamento, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(prodBuscado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bajoReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nroAfLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nroAfTf, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nroRecLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nroRecTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -338,6 +387,19 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
 
     private void AgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProdActionPerformed
         MedicamentoViewModel med =(MedicamentoViewModel) metroTableUI2.getValueAt(metroTableUI2.getSelectedRow(),0);
+
+        if(bajoReceta.isSelected()){//si el boton de bajo receta esta seleccionado
+            med.setmBajoReceta(true);//seteo el campo bajo receta del medicamento que se agrego a la venta
+            
+        }else{
+            med.setmBajoReceta(false);
+            
+        }
+        med.actualizarExistencias(med.getExistencias() -1,med.getLote());//actualizo existencias del medicamento que vendo
+        if(med.getExistencias()>0){//si las existencias son mayores a 0 el lote del que vendo es el mismo
+            metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);
+            metroTableUI2.updateUI();
+
         medicVendid = med.getMedic();
         
         int exist = med.getExistencias()-1;
@@ -345,6 +407,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             med.actualizarExistencias(med.getExistencias() -1,med.getLote());
             metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);//resta uno del stock en la primer tabla
             metroTableUI2.updateUI();//actualiza el estado de la primer tabla
+
             DecimalFormat df = new DecimalFormat("0.00");
             float total = 0;
             try {
@@ -355,23 +418,43 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
             float mostrar = total;
             totalCompra.setText(df.format(mostrar));
             Object [] fila = new Object [4];
-            fila[0] = medicVendid;
-            fila[1] = medicVendid.getFrmaFarmaceutica();
-            fila[2] = medicVendid.getPresentacion();
-            fila[3] = medicVendid.getPrecio();
+            fila[0] = med;
+            fila[1] = med.getmFormFarmac();
+            fila[2] = med.getmPresentacion();
+            fila[3] = med.getMprecio();
             tablaCompra.addRow(fila);
             metroTableUI4.updateUI();
-        }else{
-              MedicamentoViewModel aux = new MedicamentoViewModel();
-              buscado = prodBuscado.getText().toUpperCase();
-              cargarTablaMedicamentos(aux.buscarMedicamento(buscado));
+        }else{//sino, cargo el ultimo medicamento del lote anterior y actualizo la tabla con un lote nuevo
+            metroTableUI2.setValueAt(med.getExistencias(), metroTableUI2.getSelectedRow(), 6);
+            metroTableUI2.updateUI();
+            DecimalFormat df = new DecimalFormat("0.00");
+            float total = 0;
+            try {
+                total= (float) df.parse(totalCompra.getText()).floatValue() + med.getMprecio();
+            } catch (ParseException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            float mostrar = total;
+            totalCompra.setText(df.format(mostrar));
+            Object [] fila = new Object [4];
+            fila[0] = med;
+            fila[1] = med.getmFormFarmac();
+            fila[2] = med.getmPresentacion();
+            fila[3] = med.getMprecio();
+            tablaCompra.addRow(fila);
+            metroTableUI4.updateUI();
+            //tomo la fila que fue seleccionada en un principio
+            int SeleccionAntesDeCambiarLote = metroTableUI2.getSelectedRow();
+            //cargo el nuevo lote
+            MedicamentoViewModel aux = new MedicamentoViewModel();
+            buscado = prodBuscado.getText().toUpperCase();
+            cargarTablaMedicamentos(aux.buscarMedicamento(buscado));
+            //selecciono en la nueva tabla la fila que fue seleccionada en un principio
+            metroTableUI2.getSelectionModel().setSelectionInterval(SeleccionAntesDeCambiarLote,SeleccionAntesDeCambiarLote);
            }
     }//GEN-LAST:event_AgregarProdActionPerformed
-
-    private void labelRound6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRound6MouseClicked
-
-    }//GEN-LAST:event_labelRound6MouseClicked
-
+    }
+    
     private void QuitarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarProductoActionPerformed
        int i = metroTableUI4.getSelectedRow();
        MedicamentoViewModel med = (MedicamentoViewModel) metroTableUI4.getValueAt(i, 0);
@@ -401,6 +484,23 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         totalCompra.setText("0");
     }//GEN-LAST:event_cancelarVentaActionPerformed
 
+
+    private void bajoRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajoRecetaActionPerformed
+        if(bajoReceta.isSelected()){
+            nroAfLbl.setVisible(true);
+            nroAfTf.setVisible(true);
+            nroRecTf.setVisible(true);
+            nroRecLbl.setVisible(true);
+            
+        }else{
+            nroAfLbl.setVisible(false);
+            nroAfTf.setVisible(false);
+            nroRecTf.setVisible(false);
+            nroRecLbl.setVisible(false);
+        }
+    }//GEN-LAST:event_bajoRecetaActionPerformed
+
+
     public void cargarMedicamentosVendidos(ArrayList meds){
         int cant = meds.size();
         int i;
@@ -416,6 +516,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         } 
         metroTableUI2.updateUI();
     }
+
      public void cargarTablaMedicamentos (ArrayList medicamentos){
         resetTable(metroTableUI2);
         int cant = medicamentos.size();
@@ -449,6 +550,7 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarProd;
     private javax.swing.JButton QuitarProducto;
+    private javax.swing.JToggleButton bajoReceta;
     private javax.swing.JButton buscarMedicamento;
     private javax.swing.JButton cancelarVenta;
     private javax.swing.JButton finalizarCargaProductos;
@@ -461,6 +563,10 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
     private org.edisoncor.gui.label.LabelRound labelRound8;
     private win8.swin.MetroTableUI metroTableUI2;
     private win8.swin.MetroTableUI metroTableUI4;
+    private org.edisoncor.gui.label.LabelCustom nroAfLbl;
+    private javax.swing.JTextField nroAfTf;
+    private org.edisoncor.gui.label.LabelCustom nroRecLbl;
+    private javax.swing.JTextField nroRecTf;
     private javax.swing.JTextField prodBuscado;
     private org.edisoncor.gui.label.LabelRound selecProdLbl;
     private javax.swing.JTextField totalCompra;
@@ -480,4 +586,3 @@ public class panelSeleccionProducto extends javax.swing.JPanel {
         
     }
 }
-
