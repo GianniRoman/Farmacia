@@ -25,13 +25,14 @@ public class MedicamentoViewModel {
     Medicamento medic = new Medicamento();
     ArrayList <MedicamentoViewModel> med = new ArrayList<>();
     ConexionBD bd = ConexionBD.getInstance();
+    Date fechaActual = new Date();
     
     public ArrayList buscarMedicamento (String buscado){
         String cercano = "%"+buscado+"%";
         bd.Select("*", "stock, medicamento", "stock.mcod = medicamento.mcod and (mnbre like '"+cercano+"' or mgen like '"+cercano+"')");
         int cont = 0;
         try{
-            while(bd.getRs().next() && cont<5){
+            while(bd.getRs().next() ){
                 MedicamentoViewModel aux = new MedicamentoViewModel();
                     if(bd.getRs().getInt("cant")>0){
                         aux.mcod = bd.getRs().getString("mcod");
@@ -51,23 +52,26 @@ public class MedicamentoViewModel {
                         aux.medic.setPrecio(mprecio);
                         aux.medic.setPresentacion(mPresentacion);
                         aux.medic.setFrmaFarmaceutica(mFormFarmac);
-                        aux.medic.setCodigo(mcod);
-                        this.med.add(aux);
-                        cont ++;
-                        for(int i = 0; i<this.med.size(); i++){
-                            if(aux.mcod.equals(med.get(i).mcod)){
-                                if(aux.vto.before(med.get(i).getVto())){//si el vencimiento del que ingrese es anterior al existente
-                                    this.med.remove(i);//quito el existente
-                                    cont--;//resto el contador en uno
-                                }else{
-                                    if(med.get(i).vto.before(aux.vto)){//si la fecha de vencimiento del que ingrese es posterior al existente
-                                        this.med.remove(cont-1);//borro el que agregue
+                        aux.medic.setCodigo(mcod);                        
+                        if(aux.vto.after(fechaActual)){// si el medicamento aun no esta vencido
+                            this.med.add(aux);
+                            cont ++;
+                            for(int i = 0; i<this.med.size(); i++){
+                                if(aux.mcod.equals(med.get(i).mcod)){
+                                    if(aux.vto.before(med.get(i).getVto())){//si el vencimiento del que ingrese es anterior al existente
+                                        this.med.remove(i);//quito el existente
                                         cont--;//resto el contador en uno
+                                    }else{
+                                        if(med.get(i).vto.before(aux.vto)){//si la fecha de vencimiento del que ingrese es posterior al existente
+                                            this.med.remove(cont-1);//borro el que agregue
+                                            cont--;//resto el contador en uno
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    
                 
             }
         } catch (SQLException ex) {
@@ -108,19 +112,30 @@ public class MedicamentoViewModel {
         return med;
     }
     
-    public static boolean loteValido(String lote){
+    public static boolean loteRepetidoValido(String lote,String mcod){
         ConexionBD bd = ConexionBD.getInstance();
-        bd.Select("lote", "Stock", "");
+        bd.Select("lote", "Stock", "lote = '"+lote+"' and mcod ='"+mcod+"'");
         try {
-            while(bd.getRs().next()){
-                if(bd.getRs().getString("lote").equals(lote)){
-                    return false;
-                }
+            if(bd.getRs().next()){
+                return true;    
             }
         } catch (SQLException ex) {
             Logger.getLogger(MedicamentoViewModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        return false;
+    }
+    
+    public static boolean loteRepetido(String lote){
+        ConexionBD bd = ConexionBD.getInstance();
+        bd.Select("lote", "stock", "lote ='"+lote+"'");
+        try {
+            if(bd.getRs().next()){
+                return true;    
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicamentoViewModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     public Medicamento getMedic() {
@@ -141,6 +156,14 @@ public class MedicamentoViewModel {
 
     public String getmLab() {
         return mLab;
+    }
+
+    public boolean ismBajoReceta() {
+        return mBajoReceta;
+    }
+
+    public void setmBajoReceta(boolean mBajoReceta) {
+        this.mBajoReceta = mBajoReceta;
     }
 
     public String getmMarca() {

@@ -162,6 +162,22 @@ public class VentaViewModel {
        return aux;
    }
    
+   public ArrayList juntarVentasMismoLote(){
+       int cant = vtas.size()-1;
+       int i,j;
+       VentaViewModel auxm = new VentaViewModel();
+       for(i=0; i<cant; i++){
+           auxm = vtas.get(i);
+           i++;
+           for(j=i;j<cant;j++){
+               if(auxm.vcod.equals(vtas.get(j).vcod) && auxm.lote.equals(vtas.get(j).lote)){
+                   
+           }
+           }
+       }
+       return vtas;
+   }
+   
    public ArrayList cargarFarmaceuticos(){
        ArrayList <Farmaceutico> frm = new ArrayList<>();
        

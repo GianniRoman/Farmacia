@@ -1790,8 +1790,10 @@ public class Principal extends javax.swing.JFrame {
         int cant = Integer.parseInt(medsCant.getText());
         MedicamentoViewModel m = (MedicamentoViewModel) medicamentos.getValueAt(medicamentos.getSelectedRow(),0);
         String cod = m.getMcod();
-        if(MedicamentoViewModel.loteValido(lote)){
-            Stock.cargarStock(cod, venc, lote, cant);
+        if(MedicamentoViewModel.loteRepetido(lote)){//si el lote ya se encuentra cargado
+            System.out.println("entro al if");
+        if(MedicamentoViewModel.loteRepetidoValido(lote,cod)){//si el lote repetido coincide con el medicamento que se desea ingresar
+            Stock.actualizarStock(lote,cant);
             vto.setDate(null);
             nroLote.setText(null);
             medsCant.setText(null);
@@ -1801,7 +1803,19 @@ public class Principal extends javax.swing.JFrame {
             medicamentos.updateUI();
         }else{
             loteLbl.setBackground(Color.red);
-            JOptionPane.showMessageDialog(null, "El numero de lote ya ha sido cargado y este es unico para un conjunto de medicamentos", "Lote Repetido", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El medicamento que intenta cargar no corresponde con el numero de lote seleccionado", "Lote invalido", JOptionPane.ERROR_MESSAGE);
+        }
+        }
+        else{
+            System.out.println("entro al else");
+            Stock.cargarStock(lote, venc, cod, cant);
+            vto.setDate(null);
+            nroLote.setText(null);
+            medsCant.setText(null);
+            medSelecc.setText(null);
+            medBuscado.setText(null);
+            resetTable(medicamentos);
+            medicamentos.updateUI();
         }
     }//GEN-LAST:event_agregarStockActionPerformed
 
