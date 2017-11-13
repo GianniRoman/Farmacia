@@ -10,7 +10,7 @@ public class Venta {
     float descuento;
     int oscod;
     String formaDePago;
-    String tarjetaCredito, nbreTitularCred, direccionCred, cgoPostalCred, cgoSeguridadCred, nroTjtaCred;
+    String tarjetaCredito, nbreTitularCred, direccionCred, cgoSeguridadCred, nroTjtaCred;
     String tarjetaDebito, dniTitularDeb, nroTarjetaDeb, cgoSeguridadDeb;
     float monto;
     int fcod;
@@ -19,7 +19,86 @@ public class Venta {
     Cliente cliente;
     int dia, mes, año;
 
-    
+    public void setState(Venta estado){
+      //Atributos del paso 1
+      this.medicamentos = estado.medicamentos;
+      this.dia = estado.dia;
+      this.mes = estado.mes;
+      this.año = estado.año;
+      //Atributos del paso 2
+      this.descuento = estado.descuento;
+      this.monto = estado.monto;
+      this.formaDePago = estado.formaDePago;
+      this.tarjetaCredito = estado.tarjetaCredito;
+      this.tarjetaDebito = estado.tarjetaDebito;
+      this.nbreTitularCred = estado.nbreTitularCred;
+      this.direccionCred = estado.direccionCred;
+      this.cgoSeguridadCred = estado.cgoSeguridadCred;
+      this.cgoSeguridadDeb = estado.cgoSeguridadDeb;
+      this.nroTarjetaDeb = estado.nroTarjetaDeb;
+      this.nroTjtaCred = estado.nroTjtaCred;
+      this.dniTitularDeb = estado.dniTitularDeb;
+      //atributos del paso 3
+      this.oscod = estado.oscod; 
+      this.farmaceutico = estado.farmaceutico;
+      this.fcod = estado.fcod;
+      this.cliente = estado.cliente;
+  
+   }
+ 
+   public MementoVentas guardarEstadoToMemento(){
+      return new MementoVentas(descuento,oscod,formaDePago,tarjetaCredito,nbreTitularCred,direccionCred,cgoSeguridadCred,nroTjtaCred,tarjetaDebito,dniTitularDeb,nroTarjetaDeb,cgoSeguridadDeb,monto,fcod,cliente,dia,mes,año,medicamentos);
+   }
+
+    public Venta(float descuento, int oscod, String formaDePago, String tarjetaCredito, String nbreTitularCred, String direccionCred, String cgoSeguridadCred, String nroTjtaCred, String tarjetaDebito, String dniTitularDeb, String nroTarjetaDeb, String cgoSeguridadDeb, float monto, int fcod, Cliente cliente, int dia, int mes, int año,ArrayList medicamentos) {
+        this.descuento = descuento;
+        this.oscod = oscod;
+        this.formaDePago = formaDePago;
+        this.tarjetaCredito = tarjetaCredito;
+        this.nbreTitularCred = nbreTitularCred;
+        this.direccionCred = direccionCred;
+        this.cgoSeguridadCred = cgoSeguridadCred;
+        this.nroTjtaCred = nroTjtaCred;
+        this.tarjetaDebito = tarjetaDebito;
+        this.dniTitularDeb = dniTitularDeb;
+        this.nroTarjetaDeb = nroTarjetaDeb;
+        this.cgoSeguridadDeb = cgoSeguridadDeb;
+        this.monto = monto;
+        this.fcod = fcod;
+        this.cliente = cliente;
+        this.dia = dia;
+        this.mes = mes;
+        this.año = año;
+        this.medicamentos = medicamentos;
+    }
+   
+   public void getStateFromMemento(MementoVentas Memento){
+      Memento.getEstado();
+       //Atributos del paso 1
+      this.medicamentos = Memento.getEstado().medicamentos;
+      //Atributos del paso 2
+      this.descuento = Memento.getEstado().descuento;
+      this.monto = Memento.getEstado().monto;
+      this.formaDePago = Memento.getEstado().formaDePago;
+      this.tarjetaCredito = Memento.getEstado().tarjetaCredito;
+      this.tarjetaDebito = Memento.getEstado().tarjetaDebito;
+      this.nbreTitularCred = Memento.getEstado().nbreTitularCred;
+      this.direccionCred = Memento.getEstado().direccionCred;
+      this.cgoSeguridadCred = Memento.getEstado().cgoSeguridadCred;
+      this.cgoSeguridadDeb = Memento.getEstado().cgoSeguridadDeb;
+      this.nroTarjetaDeb = Memento.getEstado().nroTarjetaDeb;
+      this.nroTjtaCred = Memento.getEstado().nroTjtaCred;
+      this.dniTitularDeb = Memento.getEstado().dniTitularDeb;
+      //atributos del paso 3
+      this.oscod = Memento.getEstado().oscod; 
+      this.farmaceutico = Memento.getEstado().farmaceutico;
+      this.fcod = Memento.getEstado().fcod;
+      this.cliente = Memento.getEstado().cliente;
+      this.dia = Memento.getEstado().dia;
+      this.mes = Memento.getEstado().mes;
+      this.año = Memento.getEstado().año;
+   }
+      
 public void registrarVenta(){
     int i = this.medicamentos.size()-1;
     Medicamento med;
@@ -167,13 +246,6 @@ public void registrarVenta(){
         this.direccionCred = direccionCred;
     }
 
-    public String getCgoPostalCred() {
-        return cgoPostalCred;
-    }
-
-    public void setCgoPostalCred(String cgoPostalCred) {
-        this.cgoPostalCred = cgoPostalCred;
-    }
 
     public String getCgoSeguridadCred() {
         return cgoSeguridadCred;

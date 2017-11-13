@@ -3,16 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/Usuario.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/MedicamentoViewModel.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/Venta.java</file>
+            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelObraSocial.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Conexion/ConexionBD.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/Receta.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Interfaces/Login.java</file>
+            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/Stock.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelSeleccionProducto.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/farmacia/Farmacia.java</file>
             <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Interfaces/Principal.java</file>
-            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Modelos/VentaViewModel.java</file>
+            <file>file:/C:/Users/glupi/OneDrive/Documentos/GitHub/Farmacia/Farmacia/src/Paneles/panelFormaPago.java</file>
         </group>
     </open-files>
 </project-private>
